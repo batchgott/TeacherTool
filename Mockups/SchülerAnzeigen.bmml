@@ -1,0 +1,98 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1398" measuredH="717" mockupW="1105" mockupH="585">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="293" y="132" w="1105" h="585" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//TeacherTool</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Accordion" x="349" y="316" w="150" h="250" measuredW="150" measuredH="294" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>-1</selectedIndex>
+        <text>Giacomo%20Guilizzoni%0AMarco%20Botton%0AMariah%20Maclachlan%0AValerie%20Liberty%0AGuido%20Jack%20Guilizzoni%0AMichael%20Schrabauer%0AStefan%20Humpelstetter%0ALukas%20Hofbauer</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::SubTitle" x="710" y="235" w="-1" h="-1" measuredW="270" measuredH="33" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Noten%20Giacomo%20Guilizzoni</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="349" y="274" w="-1" h="-1" measuredW="68" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>UserName</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::RoundButton" x="738" y="268" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <shape>circle</shape>
+        <size>24</size>
+        <text>+</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::ButtonBar" x="531" y="270" w="207" h="29" measuredW="153" measuredH="29" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>MEDT%2CITP%2CD</text>
+      </controlProperties>
+    </control>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::Canvas" x="349" y="316" w="150" h="27" measuredW="100" measuredH="70" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0.25</backgroundAlpha>
+        <borderStyle>none</borderStyle>
+        <color>2848996</color>
+      </controlProperties>
+    </control>
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::DataGrid" x="531" y="316" w="628" h="235" measuredW="179" measuredH="233" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%20Performance%2C%20Note%0AStundenwiederholung%2C%201%0ATest%2C%203%0AStundenwiederholung%2C%204%0APr%FCfung%2C%203%0AProjekt%2C%201%0A%20%0AAktulle%20Note%2C%202.5%0A%7B65L%2C%200R%7D</text>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::Canvas" x="349" y="425" w="150" h="27" measuredW="100" measuredH="70" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0.5</backgroundAlpha>
+        <borderStyle>none</borderStyle>
+        <color>13576743</color>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::Button" x="1204" y="316" w="-1" h="-1" measuredW="166" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Notenschl%FCssel%20festlegen</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Button" x="1204" y="343" w="166" h="27" measuredW="98" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Fach%20l%F6schen</text>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Button" x="1204" y="369" w="166" h="27" measuredW="120" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sch%FCler%20auslosen</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::Button" x="1204" y="396" w="166" h="27" measuredW="116" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Noten%20eintragen</text>
+      </controlProperties>
+    </control>
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::Button" x="1204" y="423" w="163" h="27" measuredW="118" measuredH="27" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Jahresabschluss</text>
+      </controlProperties>
+    </control>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="349" y="295" w="-1" h="-1" measuredW="42" measuredH="21" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>1AHIT</text>
+      </controlProperties>
+    </control>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::ComboBox" x="531" y="490" w="153" h="-1" measuredW="155" measuredH="23" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>closed</state>
+        <text>Bewertung%20hinzuf%FCgen</text>
+      </controlProperties>
+    </control>
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::TextInput" x="1120" y="488" w="32" h="-1" measuredW="79" measuredH="27" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>disabled</state>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
