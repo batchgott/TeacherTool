@@ -117,10 +117,5 @@
         <text>verschieben</text>
       </controlProperties>
     </control>
-    <control controlID="40" controlTypeID="com.balsamiq.mockups::Arrow" x="922" y="332" w="282" h="100" measuredW="150" measuredH="100" zOrder="21" locked="false" isInGroup="-1">
-      <controlProperties>
-        <rightArrow>false</rightArrow>
-      </controlProperties>
-    </control>
   </controls>
 </mockup>

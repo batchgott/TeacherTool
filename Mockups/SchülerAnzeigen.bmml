@@ -72,7 +72,7 @@
         <text>Noten%20eintragen</text>
       </controlProperties>
     </control>
-    <control controlID="34" controlTypeID="com.balsamiq.mockups::Button" x="1204" y="423" w="163" h="27" measuredW="118" measuredH="27" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::Button" x="1206" y="447" w="163" h="27" measuredW="118" measuredH="27" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Jahresabschluss</text>
       </controlProperties>
@@ -92,6 +92,11 @@
       <controlProperties>
         <state>disabled</state>
         <text/>
+      </controlProperties>
+    </control>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Button" x="1206" y="420" w="163" h="27" measuredW="140" measuredH="27" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sch%FCler%20verschieben</text>
       </controlProperties>
     </control>
   </controls>

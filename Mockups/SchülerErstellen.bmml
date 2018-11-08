@@ -104,9 +104,9 @@
         <text>Vorname</text>
       </controlProperties>
     </control>
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::Button" x="696" y="459" w="-1" h="-1" measuredW="78" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Button" x="696" y="459" w="-1" h="-1" measuredW="85" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>hinzuf%FCen</text>
+        <text>hinzuf%FCgen</text>
       </controlProperties>
     </control>
     <control controlID="40" controlTypeID="com.balsamiq.mockups::Arrow" x="563" y="537" w="244" h="67" measuredW="150" measuredH="100" zOrder="19" locked="false" isInGroup="-1">

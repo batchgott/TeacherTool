@@ -52,7 +52,7 @@
         <text>Name%2C%20%20Note%0AGiacomo%20Guilizzoni%2C%0AMarco%20Botton%2C%20%0AMariah%20Maclachlan%2C%20%0AValerie%20Liberty%2C%20%0AGuido%20Jack%20Guilizzoni%2C%20%0AMichael%20Schrabauer%0AStefan%20Humpelstetter%2C%20%0ALukas%20Hofbauer%2C%20%0A%20%0A%7B65L%2C%2015L%7D</text>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::ComboBox" x="531" y="318" w="-1" h="-1" measuredW="121" measuredH="23" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::ComboBox" x="531" y="334" w="239" h="-1" measuredW="121" measuredH="23" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Bewertungsliste</text>
       </controlProperties>
@@ -100,6 +100,11 @@
     <control controlID="45" controlTypeID="com.balsamiq.mockups::Button" x="531" y="643" w="-1" h="-1" measuredW="116" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Noten%20eintragen</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::TextInput" x="531" y="307" w="239" h="-1" measuredW="48" measuredH="27" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Name</text>
       </controlProperties>
     </control>
   </controls>

@@ -42,7 +42,7 @@
     </control>
     <control controlID="23" controlTypeID="com.balsamiq.mockups::DataGrid" x="531" y="316" w="628" h="235" measuredW="179" measuredH="233" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>%20Performance%2C%20Note%0AStundenwiederholung%2C%201%0ATest%2C%203%0AStundenwiederholung%2C%204%0APr%FCfung%2C%203%0AProjekt%2C%201%0A%20%0AAktulle%20Note%2C%202.5%0A%7B65L%2C%200R%7D</text>
+        <text>Leistungen%2C%20Note%0AStundenwiederholung%2C%201%0ATest%2C%203%0AStundenwiederholung%2C%204%0APr%FCfung%2C%203%0AProjekt%2C%201%0A%20%0AAktulle%20Note%2C%202.5%0A%7B65L%2C%200R%7D</text>
       </controlProperties>
     </control>
     <control controlID="29" controlTypeID="com.balsamiq.mockups::Canvas" x="349" y="425" w="150" h="27" measuredW="100" measuredH="70" zOrder="7" locked="false" isInGroup="-1">
