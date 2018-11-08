@@ -1,0 +1,29 @@
+name	longName	foreName	gender	birthDate	klasse.name	entryDate	exitDate	text	id	externKey	medicalReportDuty	schulpflicht	majority	address.email	address.mobile	address.phone	address.city	address.postCode	address.street
+ApfeltMic	Apfelthaler	Michael	m		5AHIT	01.09.2014			12	3,01447E+13	false	false	true						
+ArnstoDom	Arnstorfer	Dominik	m		5AHIT	01.09.2014			14	3,01447E+13	false	false	true						
+AschauGre	Aschauer	Gregor	m		5AHIT	01.09.2014			15	3,01447E+13	false	false	true						
+AuerEmi	Auer	Emil	m		5AHIT	01.09.2014			20	3,01447E+13	false	false	true						
+AufmesLuk	Aufmesser	Lukas	m		5AHIT	02.09.2013			848	3,01447E+13	false	false	true						
+BergerMic	Berger	Michael	m		5AHIT	01.09.2014			43	3,01447E+13	false	false	true						
+CamerlPau	Camerloher	Paul	m		5AHIT	01.09.2014			73	3,01447E+13	false	false	true						
+DafertDom	Dafert	Dominik	m		5AHIT	01.09.2014			838	3,01447E+13	false	false	true						
+DirrTob	Dirr	Tobias	m		5AHIT	01.09.2014			88	3,01447E+13	false	false	true						
+GarzonMax	Garzon	Maximilian	m		5AHIT	01.09.2014	28.06.2019		156	3,01447E+13	false	false	true						
+HaagSeb	Haag	Sebastian	m		5AHIT	01.09.2014			196	3,01447E+13	false	false	true						
+HacklBer	Hackl	Bernhard	m		5AHIT	01.09.2014			203	3,01447E+13	false	false	true						
+HofbauLuk	Hofbauer	Lukas	m		5AHIT	01.09.2014			258	3,01447E+13	false	false	true						
+HumpelSte	Humpelstetter	Stefan	m		5AHIT	01.09.2014			289	3,01447E+13	false	false	true						
+JellSte	Jell	Stephan	m		5AHIT	01.09.2014			299	3,01447E+13	false	false	true						
+KauerAle	Kauer	Alexander	m		5AHIT	01.09.2014			321	3,01447E+13	false	false	true						
+KretscMat	Kretschmayer	Matthias	m		5AHIT	01.09.2014			373	3,01447E+13	false	false	true						
+LauerChr	Lauer	Christian Günther Karl	m		5AHIT	07.09.2015			845	3,01447E+13	false	false	true						
+LeitnePhi	Leitner	Philipp	m		5AHIT	01.09.2014			400	3,01447E+13	false	false	true						
+MarescMax	Maresch	Maximilian	m		5AHIT	01.09.2014			419	3,01447E+13	false	false	true						
+NaberGab	Naber	Gabriel	m		5AHIT	01.09.2014			457	3,01447E+13	false	false	true						
+ReifenMik	Reifenberger	Mika	m		5AHIT	01.09.2014			548	3,01447E+13	false	false	true						
+SchandLuk1	Schandl	Lukas	m		5AHIT	01.09.2014	28.06.2019		584	3,01447E+13	false	false	true						
+SchrabMic	Schrabauer	Michael	m		5AHIT	01.09.2014			613	3,01447E+13	false	false	true						
+SteindBer	Steindl	Bernhard	m		5AHIT	01.09.2014			658	3,01447E+13	false	false	true						
+WeidenMar	Weidenauer	Martin	m		5AHIT	01.09.2014			741	3,01447E+13	false	false	true						
+WidhalJak	Widhalm	Jakob	m		5AHIT	01.09.2014			756	3,01447E+13	false	false	true						
+ZellerBir	Zeller	Birgit	w		5AHIT	01.09.2014			780	3,01447E+13	false	false	true						

@@ -1,0 +1,22 @@
+3.2 Ziele des Benutzers
+Benutzer der Applikation sind Lehrer die einen strukturierten und einfachen Überblick über ihre Fächer und Klassen wollen. Außerdem soll es Benutzern möglich sein unkompliert Tests, Schularbeiten und ähnliches zu verwalten. Darüber hinaus wird einem Lehrer die Auswahl eines Schülers für die Stundenwiederholung abgenommen.
+
+3.3 Geforderte Funktionen
+3.3.1
+
+Klassen importieren
+Zu Beginn, um die Anwendung überhaupt benutzen zu können, muss der Lehrer, der die Applikation benutzt, seine Klassen einspielen und sie Fächern zuweisen. Die einzelnen Tabellen der CSV-Datei können dynamisch an die Felder die die Applikation verlangt angepasst werden.
+
+Fächer zuteilen
+Die importierten Klassen können auch im Nachhinein noch zu anderen Fächern zugewiesen werden. Ändert sich aber die Schülerzusammensetzung, zum Beipspiel bei Gruppenteilern muss eine eigenen CSV-Datei eingespielt werden die nur die Schüler der jeweiligen Gruppe beinhaltet.
+
+Schüler löschen/hinzufügen
+Es besteht die Möglichkeit für den Lehrer Schüler aus einer Klasse zu löschen bzw. Schüler hinzuzufügen, für den Fall das Webuntis 
+
+3.3.2 Nicht funktionale Anforderungen
+
+Notenberechnung
+Die Berechnung der Noten von einem einzelnen Schüler passiert automatisch im Hintergrund und ist bei jedem Schüler zu jedem Zeitpunkt aktuell. 
+
+Hard- & Software
+Zum Programmieren werden die Programme WebStorm und PhpStorm von Jetbrains verwendet. Gehostet werden kann die Applikation auf einem Webserver mit Apache.
