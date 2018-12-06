@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import {Route, Routes} from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RandomStudentComponent } from './random-student/random-student.component';
+import {HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes=[
   {path: 'users'}
@@ -12,10 +15,12 @@ const appRoutes: Routes=[
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    RandomStudentComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
