@@ -6,23 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $student_id
- * @property int $assessment_id
  * @property int $subject_id
- * @property string $date
- * @property int $grade
+ * @property int $assessment_id
+ * @property float $scale_factor
  * @property string $created_at
  * @property string $updated_at
  * @property Assessment $assessment
- * @property Student $student
  * @property Subject $subject
  */
-class Performance extends Model
+class SubjectAssessment extends Model
 {
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'subjects_assessments';
+
     /**
      * @var array
      */
-    protected $fillable = ['name','student_id', 'assessment_id', 'subject_id', 'date', 'grade', 'created_at', 'updated_at'];
+    protected $fillable = ['subject_id', 'assessment_id', 'scale_factor', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -30,14 +34,6 @@ class Performance extends Model
     public function assessment()
     {
         return $this->belongsTo('App\Assessment');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function student()
-    {
-        return $this->belongsTo('App\Student');
     }
 
     /**

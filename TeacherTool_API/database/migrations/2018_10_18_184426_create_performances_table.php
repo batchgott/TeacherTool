@@ -15,12 +15,15 @@ class CreatePerformancesTable extends Migration
     {
         Schema::create('performances', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->date('date');
             $table->integer('grade');
             $table->integer('student_id')->unsigned();
             $table->integer('assessment_id')->unsigned();
+            $table->integer('subject_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students');
             $table->foreign('assessment_id')->references('id')->on('assessments');
+            $table->foreign('subject_id')->references('id')->on('subjects');
             $table->timestamps();
         });
     }

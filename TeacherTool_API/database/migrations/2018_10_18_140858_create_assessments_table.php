@@ -15,7 +15,7 @@ class CreateAssessmentsTable extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('table');
+            $table->string('name');
             $table->timestamps();
         });
     }

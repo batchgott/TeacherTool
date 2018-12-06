@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Resources\Json\Resource;
+use PhpParser\Node\Expr\Array_;
 
 /**
  * @property int $id
@@ -36,4 +38,5 @@ class Subject extends Model
     {
         return $this->hasMany('App\SubjectsAssessment');
     }
+
 }
