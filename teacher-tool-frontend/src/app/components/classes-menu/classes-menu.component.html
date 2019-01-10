@@ -1,0 +1,23 @@
+<mat-drawer-container class="app-sidenav-container" autosize>
+  <mat-drawer #drawer class="app-sidenav mat-elevation-z10"
+              [mode]="isScreenSmall()? 'over':'side'"
+              [opened]="!isScreenSmall()">
+    <mat-toolbar color="primary">Contacts</mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let class of classes | async">
+        <a matLine
+           [routerLink]="['/class',class.id]">
+           {{ user.name }}
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="app-sidenav-content">
+    <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</mat-drawer-container>
