@@ -1,5 +1,5 @@
 import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatDrawer} from '@angular/material';
 import {Observable} from 'rxjs';
 import {Class} from '../../models/class';
@@ -19,7 +19,8 @@ export class ClassesMenuComponent implements OnInit {
 
   constructor(zone:NgZone,
               private router:Router,
-              private classService: ClassService) {
+              private classService: ClassService,
+              private activatedRoute:ActivatedRoute) {
     this.mediaMatcher.addListener(mql =>
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
   }
@@ -31,7 +32,8 @@ export class ClassesMenuComponent implements OnInit {
     this.router.events.subscribe(()=>{
       if (this.isScreenSmall())
         this.drawer.close();
-    })
+
+    });
   }
 
   isScreenSmall():boolean {

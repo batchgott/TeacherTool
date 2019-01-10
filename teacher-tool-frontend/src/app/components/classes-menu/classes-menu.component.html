@@ -2,17 +2,17 @@
   <mat-drawer #drawer class="app-sidenav mat-elevation-z10"
               [mode]="isScreenSmall()? 'over':'side'"
               [opened]="!isScreenSmall()">
-    <mat-toolbar color="primary">Contacts</mat-toolbar>
     <mat-nav-list>
-      <mat-list-item *ngFor="let c of classes | async">
-        <a matLine
-           [routerLink]="['/class',c.id]">
-           {{ c.name }}
-        </a>
+      <mat-toolbar color="primary">Klassen</mat-toolbar>
+      <mat-list-item *ngFor="let c of classes | async" [routerLink]="['class',c.id]">
+        {{c.name}}
       </mat-list-item>
+      <!--<button mat-button color="accent" class="add-class-button"><mat-icon>plus</mat-icon> Hinzufügen</button>-->
+      <button mat-fab class="fab" color="accent" [routerLink]="['class','upload']">
+        <mat-icon>add</mat-icon>
+      </button>
     </mat-nav-list>
   </mat-drawer>
-
   <div class="app-sidenav-content">
     <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
     <div class="wrapper">

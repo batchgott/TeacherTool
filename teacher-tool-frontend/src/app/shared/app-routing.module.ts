@@ -6,11 +6,9 @@ import {ClassOverviewComponent} from '../components/class-overview/class-overvie
 import {ClassUploadComponent} from '../components/class-upload/class-upload.component';
 
 const appRoutes: Routes=[
-  {path: 'class',component:ClassOverviewComponent,children:[
-      {path:':id',component:ClassOverviewComponent},
-      {path:'upload',component:ClassUploadComponent},
-    ]},
-
+  {path: 'class',component:ClassOverviewComponent},
+  {path:'class/:id',component:ClassOverviewComponent},
+  {path:'class/upload',component:ClassUploadComponent},
   {path: '', redirectTo: 'class',pathMatch: 'full'},
   {path: '**', redirectTo: 'class',pathMatch: 'full'}
 ];

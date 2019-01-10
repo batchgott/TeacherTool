@@ -29,7 +29,7 @@ export class ClassService {
   }
 
   loadAll(){
-
+  console.log("loaded all");
     return this.http.get<Class[]>(environment.apiURL+"/classes").subscribe(
       data=>{
         this.dataStore.classes=data;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ClassService} from '../../services/class.service';
 import {Class} from '../../models/class';
+import get = Reflect.get;
 
 @Component({
   selector: 'app-class-overview',
@@ -18,11 +19,15 @@ export class ClassOverviewComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params=>{
       let id=+params['id'];
-      if (!id) id=1;
+      let getFirst=false;
+      if (!id) getFirst=true;
 
       this.classService.classes.subscribe(classes=>{
         if (classes.length == 0) return;
-        this.class=this.classService.classArrayById(id);
+        if (getFirst)
+          this.class=this.classService.classArrayById(0);
+        else
+          this.class=this.classService.classById(id);
       });
     })
   }
