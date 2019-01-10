@@ -4,10 +4,10 @@
               [opened]="!isScreenSmall()">
     <mat-toolbar color="primary">Contacts</mat-toolbar>
     <mat-nav-list>
-      <mat-list-item *ngFor="let class of classes | async">
+      <mat-list-item *ngFor="let c of classes | async">
         <a matLine
-           [routerLink]="['/class',class.id]">
-           {{ user.name }}
+           [routerLink]="['/class',c.id]">
+           {{ c.name }}
         </a>
       </mat-list-item>
     </mat-nav-list>

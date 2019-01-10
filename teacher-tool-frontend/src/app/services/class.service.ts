@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Class} from '../models/class';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ClassService {
   };
 
   constructor(private http:HttpClient) {
-    this.dataStore.classes=[];
+    this.dataStore={classes:[]};
     this._classes=new BehaviorSubject<Class[]>([]);
   }
 
@@ -23,14 +24,13 @@ export class ClassService {
     return this._classes.asObservable();
   }
 
-  classById(id:number){
+  classById(id:number):Class{
     return this.dataStore.classes.find(x=>x.id==id);
   }
 
   loadAll(){
-    const classesURL='https://angular-material-api.azurewebsites.net/users';
 
-    return this.http.get<Class[]>(classesURL).subscribe(
+    return this.http.get<Class[]>(environment.apiURL+"/classes").subscribe(
       data=>{
         this.dataStore.classes=data;
         this._classes.next(Object.assign({},this.dataStore).classes);
@@ -41,4 +41,7 @@ export class ClassService {
     );
   }
 
+  classArrayById(id: number):Class {
+    return this.dataStore.classes[id];
+  }
 }

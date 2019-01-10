@@ -16,7 +16,10 @@ class ClassController extends Controller
     public function index()
     {
         $classes=Clas::all();
-        return response()->json($classes,200);
+        $header = array(
+        "Access-Control-Allow-Origin" => "*"
+        );
+        return response()->json($classes,200,$header);
     }
 
     /**

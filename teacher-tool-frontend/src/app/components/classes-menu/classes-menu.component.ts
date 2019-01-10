@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {MatDrawer} from '@angular/material';
 import {Observable} from 'rxjs';
 import {Class} from '../../models/class';
+import {ClassService} from '../../services/class.service';
 
 const SMALL_WIDTH_BREAKPOINT=720;
 @Component({
@@ -17,13 +18,16 @@ export class ClassesMenuComponent implements OnInit {
   classes:Observable<Class[]>;
 
   constructor(zone:NgZone,
-              private router:Router) {
+              private router:Router,
+              private classService: ClassService) {
     this.mediaMatcher.addListener(mql =>
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
   }
 
 
   ngOnInit() {
+    this.classes=this.classService.classes;
+    this.classService.loadAll();
     this.router.events.subscribe(()=>{
       if (this.isScreenSmall())
         this.drawer.close();
