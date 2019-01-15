@@ -16,7 +16,6 @@ use Faker\Generator as Faker;
 $factory->define(App\Subject::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
-        'schoolyear' => $faker->year,
         'class_id' => $faker->numberBetween(1,\App\Clas::all()->count())
     ];
 });

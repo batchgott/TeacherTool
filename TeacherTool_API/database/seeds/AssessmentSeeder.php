@@ -11,6 +11,6 @@ class AssessmentSeeder extends Seeder
      */
     public function run()
     {
-        $assessment=factory(\App\Assessment::class,100)->create();
+        $assessment=factory(\App\Assessment::class,50)->create();
     }
 }

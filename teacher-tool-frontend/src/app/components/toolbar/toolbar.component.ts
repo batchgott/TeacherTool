@@ -1,4 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Observable} from 'rxjs';
+import {SettingsService} from '../../services/settings.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,10 +10,20 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class ToolbarComponent implements OnInit {
 
   @Output() toggleSidenav=new EventEmitter<void>();
+  darkTheme_enabled:Observable<boolean>;
 
-  constructor() { }
+  constructor(public settingsService:SettingsService) { }
 
   ngOnInit() {
+    this.darkTheme_enabled=this.settingsService.dark_theme;
+    this.settingsService.loadSettings();
   }
 
+  toggleTheme():void{
+    this.settingsService.toggleDarkTheme();
+  }
+
+  finishYear() {
+
+  }
 }

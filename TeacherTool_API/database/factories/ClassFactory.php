@@ -18,6 +18,7 @@ $factory->define(App\Clas::class, function (Faker $faker) {
         'name' => $faker->word,
         'level' => 1,
         'max_level' => $faker->numberBetween(0,5),
+        'schoolyear'=>$faker->year,
         'archieved'=>0
     ];
 });

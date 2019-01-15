@@ -4,12 +4,13 @@
               [opened]="!isScreenSmall()">
     <mat-nav-list>
       <mat-toolbar color="primary">Klassen</mat-toolbar>
-      <mat-list-item *ngFor="let c of classes | async" [routerLink]="['class',c.id]">
-        {{c.name}}
-      </mat-list-item>
-      <!--<button mat-button color="accent" class="add-class-button"><mat-icon>plus</mat-icon> Hinzufügen</button>-->
-      <button mat-fab class="fab" color="accent" [routerLink]="['class','upload']">
-        <mat-icon>add</mat-icon>
+        <mat-list-item *ngFor="let c of classes | async"
+                       [routerLink]="['/class',c.id]"
+                       (click)="subjectService.loadSubjectsOfClass(c.id)">
+          {{c.name}}
+        </mat-list-item>
+      <button mat-button class="add-class-button" color="accent" [routerLink]="['class','upload']">
+        <mat-icon>add</mat-icon> Klasse
       </button>
     </mat-nav-list>
   </mat-drawer>
@@ -17,6 +18,19 @@
     <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
     <div class="wrapper">
       <router-outlet></router-outlet>
+      <eco-fab-speed-dial class="fab" *ngIf="isScreenSmall()" animationMode="scale">
+        <eco-fab-speed-dial-trigger>
+          <button mat-fab color="primary" matTooltip="Menü"><mat-icon>menu</mat-icon></button>
+        </eco-fab-speed-dial-trigger>
+
+        <eco-fab-speed-dial-actions>
+          <button mat-mini-fab color="primary" matTooltip="Schüler verschieben"><mat-icon>open_with</mat-icon></button>
+          <button mat-mini-fab color="primary" matTooltip="Noten eintragen"><mat-icon>edit</mat-icon></button>
+          <button mat-mini-fab color="primary" matTooltip="Schüler auslosen"><mat-icon>not_listed_location</mat-icon></button>
+          <button mat-mini-fab color="primary" matTooltip="Fach löschen"><mat-icon>delete</mat-icon></button>
+          <button mat-mini-fab color="primary" matTooltip="Notenschlüssel festlegen"><mat-icon>settings</mat-icon></button>
+        </eco-fab-speed-dial-actions>
+      </eco-fab-speed-dial>
     </div>
   </div>
 

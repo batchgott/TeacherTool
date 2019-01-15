@@ -10,6 +10,12 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ClassOverviewComponent } from './components/class-overview/class-overview.component';
 import { ClassUploadComponent } from './components/class-upload/class-upload.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatButtonModule} from '@angular/material';
+import {EcoFabSpeedDialModule} from '@ecodev/fab-speed-dial';
+import { AddSubjectDialogComponent } from './components/add-subject-dialog/add-subject-dialog.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
@@ -17,16 +23,22 @@ import { ClassUploadComponent } from './components/class-upload/class-upload.com
     ClassesMenuComponent,
     ToolbarComponent,
     ClassOverviewComponent,
-    ClassUploadComponent
+    ClassUploadComponent,
+    AddSubjectDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     AppRoutingModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    EcoFabSpeedDialModule,
+    ReactiveFormsModule,
+    FlexLayoutModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[AddSubjectDialogComponent]
 })
 export class AppModule { }

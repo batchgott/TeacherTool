@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,7 +30,6 @@ export class ClassService {
   }
 
   loadAll(){
-  console.log("loaded all");
     return this.http.get<Class[]>(environment.apiURL+"/classes").subscribe(
       data=>{
         this.dataStore.classes=data;
@@ -41,7 +41,7 @@ export class ClassService {
     );
   }
 
-  classArrayById(id: number):Class {
-    return this.dataStore.classes[id];
+  classArrayById(index: number):Class {
+    return this.dataStore.classes[index];
   }
 }

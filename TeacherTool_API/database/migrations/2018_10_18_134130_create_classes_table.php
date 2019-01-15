@@ -18,6 +18,7 @@ class CreateClassesTable extends Migration
             $table->string('name');
             $table->integer('level');
             $table->integer('max_level');
+            $table->year('schoolyear');
             $table->boolean('archieved');
             $table->timestamps();
         });

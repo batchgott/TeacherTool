@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Fach erstellen</h1>
+<div mat-dialog-content>
+    <mat-form-field [formGroup]="subjectForm">
+      <input matInput type="text" placeholder="Name" id="name" formControlName="name">
+      <mat-error *ngIf="subjectForm.get('name').hasError('required')">
+        Ein Name ist verlangt
+      </mat-error>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button type="submit" [disabled]="!subjectForm.valid" (click)="createSubject()">Erstellen</button>
+  <button mat-button (click)="cancel()">Abbrechen</button>
+</div>

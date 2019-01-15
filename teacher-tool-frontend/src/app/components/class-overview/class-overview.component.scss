@@ -1,0 +1,17 @@
+.add-subject-button {
+  margin-left: 6px;
+  width: 25px;
+  height: 25px;
+  line-height: 14px;
+  font-size: 14px;
+
+  &::ng-deep .mat-button-wrapper{
+    line-height: 14px;
+    padding: 0;
+
+    mat-icon {
+      font-size: 14px;
+      padding-top: 6px;
+    }
+  }
+}

@@ -4,6 +4,7 @@ export class Class {
   name:string;
   level:number;
   max_level:number;
+  schoolyear: number;
   archieved:boolean;
 
 }

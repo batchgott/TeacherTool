@@ -12,6 +12,6 @@ class SubjectAssessmentSeeder extends Seeder
      */
     public function run()
     {
-        $sa=factory(SubjectAssessment::class,100)->create();
+        $sa=factory(SubjectAssessment::class,30)->create();
     }
 }

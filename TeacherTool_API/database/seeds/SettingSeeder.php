@@ -1,10 +1,8 @@
 <?php
 
-use App\Clas;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class ClassSeeder extends Seeder
+class SettingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +11,6 @@ class ClassSeeder extends Seeder
      */
     public function run()
     {
-        $classes=factory(Clas::class,6)->create();
+        $setting=factory(\App\Setting::class,1)->create();
     }
 }

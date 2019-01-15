@@ -20,10 +20,7 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //Get all task
         $subjects = Subject::all();
-
-        // Return a collection of $task with pagination
         return response($subjects,200);
     }
 
@@ -38,7 +35,6 @@ class SubjectController extends Controller
     {
             $this->validate($request, [
                 'name' => 'required',
-                'schoolyear' => 'required',
                 'class_id' => 'required'
             ]);
 
@@ -47,20 +43,22 @@ class SubjectController extends Controller
         $subject = $request->isMethod('put') ? Subject::findOrFail($request->id): new Subject();
 
         $subject->name = $request->input('name');
-        $subject->schoolyear = $request->input('schoolyear');
         $subject->class_id =  $request->input('class_id');
 
+        $header = array(
+            "Access-Control-Allow-Origin" => "*"
+        );
         if($subject->save()) {
-            return response()->json($subject,$status);
+            return response()->json($subject,$status,$header);
         }
-        return response(["msg"=>"An error occured"],404);
+        return response(["msg"=>"An error occured"],404,$header);
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Subject  $subject
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,7 +71,7 @@ class SubjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Subject  $subject
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

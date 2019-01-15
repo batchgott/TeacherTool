@@ -21,7 +21,7 @@ class Clas extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'level', 'max_level', 'archieved', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'level', 'max_level','schoolyear', 'archieved', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -32,10 +32,10 @@ class Clas extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function subjects()
     {
-        return $this->hasMany('App\Subject');
+        return $this->hasMany('App\Subject','class_id')->get();
     }
 }

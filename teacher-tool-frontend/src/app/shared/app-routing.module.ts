@@ -9,6 +9,7 @@ const appRoutes: Routes=[
   {path: 'class',component:ClassOverviewComponent},
   {path:'class/:id',component:ClassOverviewComponent},
   {path:'class/upload',component:ClassUploadComponent},
+  {path:'class/:id/subject/:subjectid',component:ClassOverviewComponent},
   {path: '', redirectTo: 'class',pathMatch: 'full'},
   {path: '**', redirectTo: 'class',pathMatch: 'full'}
 ];

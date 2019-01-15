@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Clas;
+use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -19,7 +20,15 @@ class ClassController extends Controller
         $header = array(
         "Access-Control-Allow-Origin" => "*"
         );
-        return response()->json($classes,200,$header);
+        return response()->json($classes->where('archieved',0),200,$header);
+    }
+
+    public function getSubjects($id){
+        $subjects=Clas::find($id)->subjects();
+        $header = array(
+            "Access-Control-Allow-Origin" => "*"
+        );
+        return response()->json($subjects,200,$header);
     }
 
     /**
@@ -34,7 +43,8 @@ class ClassController extends Controller
             $this->validate($request, [
                 'name' => 'required',
                 'level' => 'required',
-                'max_level' => 'required'
+                'max_level' => 'required',
+                'schoolyear'=>'required'
             ]);
 
         $status=201;
@@ -44,6 +54,7 @@ class ClassController extends Controller
         $class->name = $request->input('name');
         $class->level = $request->input('level');
         $class->max_level =  $request->input('max_level');
+        $class->schoolyear=$request->input('schoolyear');
         $request->input('archieved')==null?$class->archieved=0:$class->archieved=$request->input('archieved');
 
         if($class->save()) {

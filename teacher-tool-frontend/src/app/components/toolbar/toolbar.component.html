@@ -4,5 +4,16 @@
     <mat-icon>menu</mat-icon>
   </button>
 
-  <span>TeacherTool</span>
+  <span class="title-span">TeacherTool</span>
+
+  <span class="spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon class="icon">more_vert</mat-icon>
+  </button>
+  <mat-menu  #menu="matMenu">
+    <button mat-menu-item (click)="finishYear()">Jahresabschluss</button>
+    <div mat-menu-item class="no-hover-effect" (click)="$event.stopPropagation();" disableRipple >
+    <mat-slide-toggle labelPosition="before" (dragChange)="toggleTheme();" color="accent" [ngModel]="darkTheme_enabled|async">Dark Theme</mat-slide-toggle>
+    </div>
+  </mat-menu>
 </mat-toolbar>
