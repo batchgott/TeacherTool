@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Fach erstellen</h1>
+<mat-tab-group>
+  <mat-tab label="CSV-Import">
+    <app-class-upload></app-class-upload>
+  </mat-tab>
+  <mat-tab label="Erstellen">
+      <form [formGroup]="classForm">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Name" id="name" formControlName="name">
+          <mat-error *ngIf="classForm.get('name').hasError('required')">
+            Ein Name ist verlangt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Schulstufe" id="level" formControlName="level">
+          <mat-error *ngIf="classForm.get('level').hasError('required')">
+            Sie müssen eine Schulstufe angeben
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Maximale Schulstufe" id="max-level" formControlName="max-level">
+          <mat-error *ngIf="classForm.get('level').hasError('required')">
+            Sie müssen eine maximale Schulstufe angeben
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Schuljahr" id="schoolyear" formControlName="schoolyear" [(value)]="selectedYear">
+            <mat-option [value]="year" *ngFor="let year of years">{{year}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    <div mat-dialog-actions>
+      <button mat-button type="submit" [disabled]="!classForm.valid" (click)="createClass()">Erstellen</button>
+      <button mat-button (click)="cancel()">Abbrechen</button>
+    </div>
+  </mat-tab>
+</mat-tab-group>

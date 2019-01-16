@@ -1,3 +1,4 @@
+<div class="align-content-center">
 <h1 mat-dialog-title>Fach erstellen</h1>
 <div mat-dialog-content>
     <mat-form-field [formGroup]="subjectForm">
@@ -10,4 +11,5 @@
 <div mat-dialog-actions>
   <button mat-button type="submit" [disabled]="!subjectForm.valid" (click)="createSubject()">Erstellen</button>
   <button mat-button (click)="cancel()">Abbrechen</button>
+</div>
 </div>

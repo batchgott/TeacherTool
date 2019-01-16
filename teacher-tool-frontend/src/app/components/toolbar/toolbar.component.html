@@ -11,9 +11,10 @@
     <mat-icon class="icon">more_vert</mat-icon>
   </button>
   <mat-menu  #menu="matMenu">
-    <button mat-menu-item (click)="finishYear()">Jahresabschluss</button>
+    <button mat-menu-item (click)="finishYear()"><mat-icon>done_outline</mat-icon>Jahresabschluss</button>
+    <button mat-menu-item (click)="finishYear()"><mat-icon>archive</mat-icon>Archiv</button>
     <div mat-menu-item class="no-hover-effect" (click)="$event.stopPropagation();" disableRipple >
-    <mat-slide-toggle labelPosition="before" (dragChange)="toggleTheme();" color="accent" [ngModel]="darkTheme_enabled|async">Dark Theme</mat-slide-toggle>
+    <mat-slide-toggle labelPosition="before" (toggleChange)="toggleTheme();" color="accent" [ngModel]="darkTheme_enabled|async">Dark Theme</mat-slide-toggle>
     </div>
   </mat-menu>
 </mat-toolbar>

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
     Route::put('class','API\ClassController@store');
     Route::delete('subject/{id}','API\ClassController@destroy');
     Route::get('class/{id}/subjects','API\ClassController@getSubjects');
+    Route::get('class/{id}/subject/{subject_}/students','API\ClassController@getStudents');
 
     Route::get('assessments','API\AssessmentController@index');
     Route::get('assessment/{id}','API\AssessmentController@show');

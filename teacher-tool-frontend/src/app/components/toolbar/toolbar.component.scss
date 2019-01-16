@@ -30,7 +30,7 @@ mat-toolbar{
   margin: 8px;
   min-width: $iconWidth;
 
-  @media (max-width: 720px) {
+  @media (max-width: 768px) {
     display: flex;
     align-items: center;
     justify-content: center;

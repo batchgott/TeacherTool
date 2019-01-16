@@ -1,11 +1,13 @@
 .add-subject-button {
   margin-left: 6px;
-  width: 25px;
-  height: 25px;
+  width: 33px;
+  height: 33px;
   line-height: 14px;
   font-size: 14px;
+  vertical-align: center;
+  margin-top: 9px;
 
-  &::ng-deep .mat-button-wrapper{
+  &::ng-deep .mat-button-wrapper {
     line-height: 14px;
     padding: 0;
 
@@ -14,4 +16,37 @@
       padding-top: 6px;
     }
   }
+}
+
+.toggle-group-responsive {
+  width: fit-content;
+  display: flex;
+  flex-flow: row wrap;
+  border-style: none;
+  justify-content: left;
+
+  .toggle-group-item {
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgrey;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+  }
+}
+
+mat-card-title{
+  h1{
+    margin-top: 10px;
+  }
+}
+.student-list-item{
+  margin-bottom: 4px;
+  &:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+.add-student-button{
+  //display: block;
+  horiz-align: center;
 }

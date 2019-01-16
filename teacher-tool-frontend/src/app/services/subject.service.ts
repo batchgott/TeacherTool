@@ -43,13 +43,6 @@ export class SubjectService {
     return this.dataStore.subjects[index];
   }
 
-  getIndexForId(subject_id: number) {
-    for (let i = 0; i < this.dataStore.subjects.length; i++)
-      if (subject_id == this.dataStore.subjects[i].id)
-        return i;
-    return 0;
-  }
-
   addSubject(subject: Subject){
     return new Promise((resolve, reject) => {
       this.http.post<Subject>(environment.apiURL + "/subject", subject)

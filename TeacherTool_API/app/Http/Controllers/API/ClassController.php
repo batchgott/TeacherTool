@@ -31,6 +31,16 @@ class ClassController extends Controller
         return response()->json($subjects,200,$header);
     }
 
+    public function getStudents($id,$subject_id){
+        $students=Clas::find($id)->students();
+        foreach ($students as $student)
+            $student["currentGrade"]=0;
+        $header = array(
+            "Access-Control-Allow-Origin" => "*"
+        );
+        return response()->json($students,200,$header);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

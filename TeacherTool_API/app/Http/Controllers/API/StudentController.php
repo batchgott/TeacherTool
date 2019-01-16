@@ -16,7 +16,10 @@ class StudentController extends Controller
     public function index()
     {
         $students=Student::all();
-        return response()->json($students,200);
+        $header = array(
+            "Access-Control-Allow-Origin" => "*"
+        );
+        return response()->json($students,200,$header);
     }
 
     /**
@@ -42,10 +45,13 @@ class StudentController extends Controller
         $student->lastname = $request->input('lastname');
         $student->class_id =  $request->input('class_id');
 
+        $header = array(
+            "Access-Control-Allow-Origin" => "*"
+        );
         if($student->save()) {
-            return response()->json($student,$status);
+            return response()->json($student,$status,$header);
         }
-        return response(["msg"=>"An error occured"],404);
+        return response(["msg"=>"An error occured"],404,$header);
     }
 
     /**

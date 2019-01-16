@@ -9,7 +9,7 @@
                        (click)="subjectService.loadSubjectsOfClass(c.id)">
           {{c.name}}
         </mat-list-item>
-      <button mat-button class="add-class-button" color="accent" [routerLink]="['class','upload']">
+      <button mat-button class="add-class-button" color="accent" (click)="openAddStudentDialog()">
         <mat-icon>add</mat-icon> Klasse
       </button>
     </mat-nav-list>

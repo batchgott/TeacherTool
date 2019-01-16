@@ -24,11 +24,11 @@ class Clas extends Model
     protected $fillable = ['name', 'level', 'max_level','schoolyear', 'archieved', 'created_at', 'updated_at'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function students()
     {
-        return $this->hasMany('App\Student');
+        return $this->hasMany('App\Student','class_id')->get();
     }
 
     /**

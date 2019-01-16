@@ -4,17 +4,40 @@
 <mat-card *ngIf="class">
   <mat-card-header>
     <mat-card-title>
-      Klasse {{class.name}}
+      <h1>{{class.name}}</h1>
     </mat-card-title>
   </mat-card-header>
-  <mat-button-toggle-group name="fontStyle" [ngModel]="selectedSubject?.id" aria-label="Font Style" *ngIf="(subjects|async).length>0">
-    <mat-button-toggle *ngFor="let subject of subjects | async" [routerLink]="['/class',class.id,'subject',subject.id]"
-                       [value]="subject.id" (click)="selectedSubject=subject"
-                       >
+  <mat-button-toggle-group class="toggle-group-responsive" name="fontStyle" [ngModel]="selectedSubject?.id"
+                           aria-label="Font Style" *ngIf="(subjects|async).length>0 && !isScreenSmall()"
+  (ngModelChange)="studentService.loadStudentsOfClass(class.id,selectedSubject.id);">
+    <mat-button-toggle class="toggle-group-item" *ngFor="let subject of subjects | async"
+                       [routerLink]="['/class',class.id,'subject',subject.id]"
+                       [value]="subject.id" (click)="selectedSubject=subject">
       {{subject?.name}}</mat-button-toggle>
+    <button mat-fab color="accent" matTooltip="Fach hinzufügen" class="add-subject-button" (click)="openAddSubjectDialog()">
+      <mat-icon aria-label="Fach hinzufügen">add</mat-icon>
+    </button>
   </mat-button-toggle-group>
-  <button mat-fab color="accent" matTooltip="Fach hinzufügen" class="add-subject-button" (click)="openAddSubjectDialog()">
+  <mat-form-field *ngIf="isScreenSmall()">
+    <mat-select placeholder="Fach" label="Fach" [ngModel]="selectedSubject?.id"
+                (ngModelChange)="studentService.loadStudentsOfClass(class.id,selectedSubject.id);">
+      <mat-option *ngFor="let subject of subjects | async"
+                  [value]="subject.id"
+                  (click)="selectedSubject=subject;"
+                  [routerLink]="['/class',class.id,'subject',subject.id]">
+        {{subject.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button *ngIf="isScreenSmall()" mat-fab color="accent" matTooltip="Fach hinzufügen" class="add-subject-button" (click)="openAddSubjectDialog()">
     <mat-icon aria-label="Fach hinzufügen">add</mat-icon>
+  </button>
+  <mat-divider></mat-divider>
+  <h3>Schüler</h3>
+
+  <mat-card class="student-list-item" *ngFor="let student of students|async">{{student.firstname}} {{student.lastname}}</mat-card>
+  <button mat-button class="add-student-button" color="accent" (click)="openAddStudentDialog()">
+    <mat-icon>add</mat-icon> Schüler
   </button>
 </mat-card>
 

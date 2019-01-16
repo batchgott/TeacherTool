@@ -14,7 +14,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material';
 import {EcoFabSpeedDialModule} from '@ecodev/fab-speed-dial';
 import { AddSubjectDialogComponent } from './components/add-subject-dialog/add-subject-dialog.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { AddStudentDialogComponent } from './components/add-student-dialog/add-student-dialog.component';
+import { AddClassDialogComponent } from './components/add-class-dialog/add-class-dialog.component';
 
 
 @NgModule({
@@ -24,7 +25,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ToolbarComponent,
     ClassOverviewComponent,
     ClassUploadComponent,
-    AddSubjectDialogComponent
+    AddSubjectDialogComponent,
+    AddStudentDialogComponent,
+    AddClassDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,11 +37,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MaterialModule,
     HttpClientModule,
     EcoFabSpeedDialModule,
-    ReactiveFormsModule,
-    FlexLayoutModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[AddSubjectDialogComponent]
+  entryComponents:[AddSubjectDialogComponent,AddStudentDialogComponent,AddClassDialogComponent]
 })
 export class AppModule { }
