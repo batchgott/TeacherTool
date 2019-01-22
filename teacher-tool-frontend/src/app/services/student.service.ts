@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Subject} from '../models/subject';
 import {environment} from '../../environments/environment';
+import {ClassService} from './class.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class StudentService {
 
   private _fetched:boolean;
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,
+              private classService:ClassService) {
     this.dataStore={students:[]};
     this._students=new BehaviorSubject<Student[]>([]);
     this._fetched=false;
@@ -32,8 +34,8 @@ export class StudentService {
     return this.dataStore.students.find(x=>x.id==id);
   }
 
-  loadStudentsOfClass(class_id:number, subject_id:number){
-    return this.http.get<Student[]>(environment.apiURL+"/class/"+class_id+"/subject/"+subject_id+"/students").subscribe(
+  loadStudentsOfSubject(subject_id:number){
+    return this.http.get<Student[]>(environment.apiURL+"/subject/"+subject_id+"/students").subscribe(
       data=>{
         this.dataStore.students=data;
         this._students.next(Object.assign({},this.dataStore).students);
@@ -51,6 +53,7 @@ export class StudentService {
         .toPromise()
         .then(
           res => {
+            this.classService.loadAll();
             resolve(res);
           },
           msg => {
@@ -58,5 +61,14 @@ export class StudentService {
           }
         );
     });
+  }
+
+  deleteStudent(id: number) {
+    return this.http.delete(environment.apiURL+"/student/"+id).subscribe(
+      data=>{this.classService.loadAll()},
+      error=>{
+        console.log("Failed to delete class")
+      }
+    );
   }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Student;
+use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

@@ -38,4 +38,6 @@ class Clas extends Model
     {
         return $this->hasMany('App\Subject','class_id')->get();
     }
+
+
 }

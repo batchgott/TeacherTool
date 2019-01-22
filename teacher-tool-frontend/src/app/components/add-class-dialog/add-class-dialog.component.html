@@ -1,5 +1,5 @@
-<h1 mat-dialog-title>Fach erstellen</h1>
-<mat-tab-group>
+<h1 mat-dialog-title>Klasse erstellen</h1>
+<mat-tab-group [dynamicHeight]="true">
   <mat-tab label="CSV-Import">
     <app-class-upload></app-class-upload>
   </mat-tab>
@@ -24,12 +24,12 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Schuljahr" id="schoolyear" formControlName="schoolyear" [(value)]="selectedYear">
-            <mat-option [value]="year" *ngFor="let year of years">{{year}}</mat-option>
+          <mat-select [(value)]="selectedYear" placeholder="Schuljahr" id="schoolyear" formControlName="schoolyear">
+            <mat-option [value]="year" *ngFor="let year of years">{{year | schoolyear}}</mat-option>
           </mat-select>
         </mat-form-field>
       </form>
-    <div mat-dialog-actions>
+    <div mat-dialog-actions class="mat-dialog-actions">
       <button mat-button type="submit" [disabled]="!classForm.valid" (click)="createClass()">Erstellen</button>
       <button mat-button (click)="cancel()">Abbrechen</button>
     </div>

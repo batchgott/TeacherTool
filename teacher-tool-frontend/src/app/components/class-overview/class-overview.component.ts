@@ -1,4 +1,4 @@
-import {Component, DoCheck, NgZone, OnInit} from '@angular/core';
+import {AfterContentInit, Component, DoCheck, NgZone, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ClassService} from '../../services/class.service';
 import {Class} from '../../models/class';
@@ -11,6 +11,10 @@ import {AddSubjectDialogComponent} from '../add-subject-dialog/add-subject-dialo
 import {StudentService} from '../../services/student.service';
 import {Student} from '../../models/student';
 import {AddStudentDialogComponent} from '../add-student-dialog/add-student-dialog.component';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {ConfirmationDialogComponent} from '../../shared/confirmation-dialog.component';
+import {RemoveSubjectDialogComponent} from '../remove-subject-dialog/remove-subject-dialog.component';
+import {RemoveStudentDialogComponent} from '../remove-student-dialog/remove-student-dialog.component';
 
 const SMALL_WIDTH_BREAKPOINT=426;
 @Component({
@@ -18,12 +22,12 @@ const SMALL_WIDTH_BREAKPOINT=426;
   templateUrl: './class-overview.component.html',
   styleUrls: ['./class-overview.component.scss']
 })
-export class ClassOverviewComponent implements OnInit,DoCheck {
+export class ClassOverviewComponent implements OnInit,OnDestroy {
 
   class:Class;
-  subjects:Observable<Subject[]>;
+  subjects:Subject[];
   classes:Observable<Class[]>;
-  students:Observable<Student[]>;
+  students:Student[];
   selectedSubject:Subject;
   inited:boolean;
   private mediaMatcher:MediaQueryList=matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
@@ -31,12 +35,10 @@ export class ClassOverviewComponent implements OnInit,DoCheck {
   constructor(private route:ActivatedRoute,
               private router:Router,
               private classService:ClassService,
-              public subjectService:SubjectService,
               public studentService:StudentService,
               private dialog:MatDialog,
               private snackBar:MatSnackBar,
               private zone:NgZone) {
-    this.selectedSubject=null;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.mediaMatcher.addListener(mql =>
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
@@ -44,8 +46,6 @@ export class ClassOverviewComponent implements OnInit,DoCheck {
   }
 
   ngOnInit() {
-    this.students=this.studentService.students;
-    this.subjects=this.subjectService.subjects;
     this.classes=this.classService.classes;
     this.route.params.subscribe(params=>{
       let id=+params['id'];
@@ -56,15 +56,6 @@ export class ClassOverviewComponent implements OnInit,DoCheck {
       let getFirstSubject=false;
       if (!subject_id) getFirstSubject=true;
 
-      this.subjectService.subjects.subscribe(subjects=>{
-        if (subjects.length == 0){
-          return;}
-        if (getFirstSubject)
-          this.selectedSubject = this.subjectService.subjectArrayById(0);
-        else if (this.subjectService.subjectById(subject_id) != undefined)
-          this.selectedSubject = this.subjectService.subjectById(subject_id);
-        this.inited=true;
-      });
 
       this.classService.classes.subscribe(classes=>{
         if (classes.length == 0){
@@ -74,7 +65,14 @@ export class ClassOverviewComponent implements OnInit,DoCheck {
           this.class = this.classService.classArrayById(0);
         else
           this.class=this.classService.classById(id);
-        this.subjectService.loadSubjectsOfClass(this.class.id);
+        if (this.class == undefined)return;
+        this.subjects=this.class.subjects;
+        if (getFirstSubject)
+          this.selectedSubject=this.class.subjects[0];
+        else
+        this.selectedSubject=this.class.subjects.find(x=>x.id==subject_id);
+        if (this.selectedSubject != undefined)
+        this.students=this.selectedSubject.students;
       });
     })
   }
@@ -85,9 +83,8 @@ export class ClassOverviewComponent implements OnInit,DoCheck {
     });
     dialogRef.componentInstance.class_id=this.class.id;
     dialogRef.afterClosed().subscribe(result=>{
-      this.classService.loadAll();
-      this.subjectService.loadSubjectsOfClass(this.class.id);
       if (result) {
+        this.classService.loadAll();
         this.router.navigate(['/class',this.class.id,'subject',result.id]);
         this.openSnackBar("Das Fach "+result.name+" wurde hinzugefügt");
       }
@@ -100,11 +97,8 @@ export class ClassOverviewComponent implements OnInit,DoCheck {
     });
     dialogRef.componentInstance.class_id=this.class.id;
     dialogRef.afterClosed().subscribe(result=>{
-      this.classService.loadAll();
-      this.subjectService.loadSubjectsOfClass(this.class.id);
-      this.studentService.loadStudentsOfClass(this.class.id,this.selectedSubject.id);
       if (result) {
-        this.openSnackBar("Das Schüler "+result.name+" wurde hinzugefügt");
+        this.openSnackBar("Das Schüler "+result.firstname+" "+result.lastname+" wurde hinzugefügt");
       }
     });
   }
@@ -117,10 +111,38 @@ export class ClassOverviewComponent implements OnInit,DoCheck {
     return this.mediaMatcher.matches;
   }
 
-  ngDoCheck(): void {
-    if (this.inited)
-    if (this.class != null && this.selectedSubject != null && !this.studentService.fetched)
-      this.studentService.loadStudentsOfClass(this.class.id,this.selectedSubject.id);
+  ngOnDestroy(): void {
   }
 
+  deleteClass() {
+    let dialogRef=this.dialog.open(ConfirmationDialogComponent);
+    dialogRef.componentInstance.message="Sind Sie sicher, dass Sie die Klasse "+this.class.name+" löschen wollen?";
+    dialogRef.afterClosed().subscribe(result=>{
+      if (result) {
+        this.classService.deleteClass(this.class.id);
+        this.router.navigate(['/class']);
+      }
+    })
+  }
+
+  deleteSubject() {
+    let dialogRef= this.dialog.open(RemoveSubjectDialogComponent, {
+      width: '250px'
+    });
+    dialogRef.componentInstance.class=this.class;
+    dialogRef.afterClosed().subscribe(result=>{
+      if (result) {
+        if (this.selectedSubject == undefined)
+          this.selectedSubject=this.class.subjects[0];
+      }
+    });
+  }
+
+  deleteStudent() {
+    let dialogRef= this.dialog.open(RemoveStudentDialogComponent, {
+      width: '250px'
+    });
+    dialogRef.componentInstance.class=this.class;
+    dialogRef.afterClosed();
+  }
 }

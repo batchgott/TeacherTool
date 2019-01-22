@@ -16,6 +16,12 @@ import {EcoFabSpeedDialModule} from '@ecodev/fab-speed-dial';
 import { AddSubjectDialogComponent } from './components/add-subject-dialog/add-subject-dialog.component';
 import { AddStudentDialogComponent } from './components/add-student-dialog/add-student-dialog.component';
 import { AddClassDialogComponent } from './components/add-class-dialog/add-class-dialog.component';
+import { SchoolyearPipe } from './pipes/schoolyear.pipe';
+import { ConfirmationDialogComponent } from './shared/confirmation-dialog.component';
+import { RemoveSubjectDialogComponent } from './components/remove-subject-dialog/remove-subject-dialog.component';
+import { RemoveStudentDialogComponent } from './components/remove-student-dialog/remove-student-dialog.component';
+import { StudentRandomizerComponent } from './components/student-randomizer/student-randomizer.component';
+import { ShufflePipe } from './pipes/shuffle.pipe';
 
 
 @NgModule({
@@ -27,7 +33,13 @@ import { AddClassDialogComponent } from './components/add-class-dialog/add-class
     ClassUploadComponent,
     AddSubjectDialogComponent,
     AddStudentDialogComponent,
-    AddClassDialogComponent
+    AddClassDialogComponent,
+    SchoolyearPipe,
+    ConfirmationDialogComponent,
+    RemoveSubjectDialogComponent,
+    RemoveStudentDialogComponent,
+    StudentRandomizerComponent,
+    ShufflePipe
   ],
   imports: [
     BrowserModule,
@@ -41,6 +53,13 @@ import { AddClassDialogComponent } from './components/add-class-dialog/add-class
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[AddSubjectDialogComponent,AddStudentDialogComponent,AddClassDialogComponent]
+  entryComponents:[
+    AddSubjectDialogComponent,
+    AddStudentDialogComponent,
+    AddClassDialogComponent,
+    ConfirmationDialogComponent,
+    RemoveSubjectDialogComponent,
+    RemoveStudentDialogComponent
+  ]
 })
 export class AppModule { }

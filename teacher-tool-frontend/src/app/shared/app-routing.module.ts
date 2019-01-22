@@ -4,12 +4,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from '../app.component';
 import {ClassOverviewComponent} from '../components/class-overview/class-overview.component';
 import {ClassUploadComponent} from '../components/class-upload/class-upload.component';
+import {StudentRandomizerComponent} from '../components/student-randomizer/student-randomizer.component';
 
 const appRoutes: Routes=[
   {path: 'class',component:ClassOverviewComponent},
   {path:'class/:id',component:ClassOverviewComponent},
   {path:'class/upload',component:ClassUploadComponent},
   {path:'class/:id/subject/:subjectid',component:ClassOverviewComponent},
+  {path:'class/:id/subject/:subjectid/random',component:StudentRandomizerComponent},
   {path: '', redirectTo: 'class',pathMatch: 'full'},
   {path: '**', redirectTo: 'class',pathMatch: 'full'}
 ];

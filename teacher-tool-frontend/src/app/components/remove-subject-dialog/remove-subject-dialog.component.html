@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Fach löschen</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-select placeholder="Fach" label="Fach" [ngModel]="selectedSubject?.id">
+      <mat-option *ngFor="let subject of class.subjects"
+                  [value]="subject.id"
+                  (click)="selectedSubject=subject;">
+        {{subject.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button mat-button type="submit" [disabled]="!selectedSubject" (click)="removeSubject()">Löschen</button>
+  <button mat-button (click)="cancel()">Abbrechen</button>
+</div>

@@ -28,7 +28,7 @@ class Subject extends Model
      */
     public function class()
     {
-        return $this->belongsTo('App\Class');
+        return $this->belongsTo('App\Clas','class_id')->first();
     }
 
     /**

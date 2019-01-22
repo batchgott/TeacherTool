@@ -1,3 +1,5 @@
+import {Subject} from './subject';
+
 export class Class {
 
   id:number;
@@ -6,5 +8,5 @@ export class Class {
   max_level:number;
   schoolyear: number;
   archieved:boolean;
-
+  subjects:Subject[];
 }

@@ -16,11 +16,21 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $classes=Clas::all();
+        $classes=Clas::all()->where('archieved',0);
         $header = array(
         "Access-Control-Allow-Origin" => "*"
         );
-        return response()->json($classes->where('archieved',0),200,$header);
+        foreach( $classes as $class){
+            $subjects=$class->subjects();
+            foreach ($subjects as $subject) {
+                $students=$class->students();
+                foreach ($students as $student)
+                    $student["currentGrade"]=0;
+                $subject["students"] = $students;
+            }
+            $class["subjects"]=$subjects;
+        }
+        return response(json_encode(array_values($classes->toArray())),200,$header);
     }
 
     public function getSubjects($id){
@@ -31,15 +41,6 @@ class ClassController extends Controller
         return response()->json($subjects,200,$header);
     }
 
-    public function getStudents($id,$subject_id){
-        $students=Clas::find($id)->students();
-        foreach ($students as $student)
-            $student["currentGrade"]=0;
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
-        return response()->json($students,200,$header);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -67,10 +68,13 @@ class ClassController extends Controller
         $class->schoolyear=$request->input('schoolyear');
         $request->input('archieved')==null?$class->archieved=0:$class->archieved=$request->input('archieved');
 
+        $header = array(
+            "Access-Control-Allow-Origin" => "*"
+        );
         if($class->save()) {
-            return response()->json($class,$status);
+            return response()->json($class,$status,$header);
         }
-        return response(["msg"=>"An error occured"],404);
+        return response(["msg"=>"An error occured"],404,$header);
     }
 
     /**
@@ -95,9 +99,11 @@ class ClassController extends Controller
     public function destroy($id)
     {
         $class=Clas::findOrfail($id);
-
+        $header = array(
+            "Access-Control-Allow-Origin" => "*"
+        );
         if ($class->delete())
-            return response([],202);
-        return response()->json(["msg"=>"an error occured"],404);
+            return response([],202,$header);
+        return response()->json(["msg"=>"an error occured"],404,$header);
     }
 }

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Schüler löschen</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-select placeholder="Schüler" label="Schüler" [ngModel]="selectedStudent?.id">
+      <mat-option *ngFor="let student of class.subjects[0]?.students"
+                  [value]="student.id"
+                  (click)="selectedStudent=student;">
+        {{student.firstname}} {{student.lastname}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button mat-button type="submit" [disabled]="!selectedStudent" (click)="removeStudent()">Löschen</button>
+  <button mat-button (click)="cancel()">Abbrechen</button>
+</div>

@@ -1,43 +1,86 @@
 <div *ngIf="!class">
   <mat-spinner></mat-spinner>
 </div>
-<mat-card *ngIf="class">
-  <mat-card-header>
-    <mat-card-title>
-      <h1>{{class.name}}</h1>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-button-toggle-group class="toggle-group-responsive" name="fontStyle" [ngModel]="selectedSubject?.id"
-                           aria-label="Font Style" *ngIf="(subjects|async).length>0 && !isScreenSmall()"
-  (ngModelChange)="studentService.loadStudentsOfClass(class.id,selectedSubject.id);">
-    <mat-button-toggle class="toggle-group-item" *ngFor="let subject of subjects | async"
-                       [routerLink]="['/class',class.id,'subject',subject.id]"
-                       [value]="subject.id" (click)="selectedSubject=subject">
-      {{subject?.name}}</mat-button-toggle>
-    <button mat-fab color="accent" matTooltip="Fach hinzufügen" class="add-subject-button" (click)="openAddSubjectDialog()">
+<div *ngIf="class">
+  <mat-card>
+    <button mat-button class="class-options-icon" [matMenuTriggerFor]="menu" dir="rtl">
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [mat-menu-trigger-for]="deleteMenu">
+        <mat-icon>delete</mat-icon>
+        Löschen
+      </button>
+    </mat-menu>
+    <mat-menu #deleteMenu>
+      <button mat-menu-item (click)="deleteClass()">Klasse löschen</button>
+      <button mat-menu-item (click)="deleteSubject()">Fach löschen</button>
+      <button mat-menu-item (click)="deleteStudent()">Schüler löschen</button>
+    </mat-menu>
+    <mat-card-header>
+      <mat-card-title>
+        <h1>{{class.name}}</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <div class="flexbox">
+      <mat-button-toggle-group class="toggle-group-responsive" name="fontStyle" [ngModel]="selectedSubject?.id"
+                               aria-label="Font Style" *ngIf="subjects.length>0 && !isScreenSmall()"
+                               (ngModelChange)="studentService.loadStudentsOfSubject(selectedSubject.id);">
+        <mat-button-toggle class="toggle-group-item" *ngFor="let subject of subjects"
+                           [routerLink]="['/class',class.id,'subject',subject.id]"
+                           [value]="subject.id" (click)="selectedSubject=subject">
+          {{subject?.name}}</mat-button-toggle>
+      </mat-button-toggle-group>
+      <button mat-fab color="accent" matTooltip="Fach hinzufügen" class="add-subject-button"
+              (click)="openAddSubjectDialog()" *ngIf="!isScreenSmall()">
+        <mat-icon aria-label="Fach hinzufügen">add</mat-icon>
+      </button>
+    </div>
+    <mat-form-field *ngIf="isScreenSmall()">
+      <mat-select placeholder="Fach" label="Fach" [ngModel]="selectedSubject?.id"
+                  (ngModelChange)="studentService.loadStudentsOfSubject(selectedSubject.id);">
+        <mat-option *ngFor="let subject of subjects"
+                    [value]="subject.id"
+                    (click)="selectedSubject=subject;"
+                    [routerLink]="['/class',class.id,'subject',subject.id]">
+          {{subject.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button *ngIf="isScreenSmall()" mat-fab color="accent" matTooltip="Fach hinzufügen" class="add-subject-button"
+            (click)="openAddSubjectDialog()">
       <mat-icon aria-label="Fach hinzufügen">add</mat-icon>
     </button>
-  </mat-button-toggle-group>
-  <mat-form-field *ngIf="isScreenSmall()">
-    <mat-select placeholder="Fach" label="Fach" [ngModel]="selectedSubject?.id"
-                (ngModelChange)="studentService.loadStudentsOfClass(class.id,selectedSubject.id);">
-      <mat-option *ngFor="let subject of subjects | async"
-                  [value]="subject.id"
-                  (click)="selectedSubject=subject;"
-                  [routerLink]="['/class',class.id,'subject',subject.id]">
-        {{subject.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <button *ngIf="isScreenSmall()" mat-fab color="accent" matTooltip="Fach hinzufügen" class="add-subject-button" (click)="openAddSubjectDialog()">
-    <mat-icon aria-label="Fach hinzufügen">add</mat-icon>
-  </button>
-  <mat-divider></mat-divider>
-  <h3>Schüler</h3>
+  </mat-card>
+  <div class="algin-content" *ngIf="selectedSubject">
+    <mat-card class="class-name-card" [ngClass]="{'less-heigth':isScreenSmall()}">
+      <h1>{{selectedSubject?.name}}</h1>
+    </mat-card>
+    <div class="class-options-card" *ngIf="!isScreenSmall()">
+      <button mat-stroked-button color="primary" class="subject-menu-button mat-elevation-z1">Notenschlüssel festlegen</button>
+      <button mat-stroked-button color="primary" class="subject-menu-button mat-elevation-z1" [disabled]="students.length<2" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'random']">Schüler auslosen</button>
+      <button mat-stroked-button color="primary" class="subject-menu-button mat-elevation-z1 no-bottom-margin">Noten eintragen</button>
+    </div>
+  </div>
+  <mat-card *ngIf="selectedSubject">
+    <h3>Schüler</h3>
+    <mat-action-list>
+      <button mat-list-item class="student-list-item" *ngFor="let student of students">{{student.firstname}} {{student.lastname}}</button>
+    </mat-action-list>
+    <button mat-button class="add-student-button" color="accent" (click)="openAddStudentDialog()">
+      <mat-icon>add</mat-icon>
+      Schüler
+    </button>
+  </mat-card>
+  <eco-fab-speed-dial class="fab" *ngIf="isScreenSmall()" animationMode="scale">
+    <eco-fab-speed-dial-trigger>
+      <button mat-fab color="primary" matTooltip="Menü"><mat-icon>menu</mat-icon></button>
+    </eco-fab-speed-dial-trigger>
 
-  <mat-card class="student-list-item" *ngFor="let student of students|async">{{student.firstname}} {{student.lastname}}</mat-card>
-  <button mat-button class="add-student-button" color="accent" (click)="openAddStudentDialog()">
-    <mat-icon>add</mat-icon> Schüler
-  </button>
-</mat-card>
-
+    <eco-fab-speed-dial-actions>
+      <button mat-mini-fab color="primary" matTooltip="Noten eintragen"><mat-icon>edit</mat-icon></button>
+      <button mat-mini-fab color="primary" matTooltip="Schüler auslosen" [disabled]="students.length<2" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'random']"><mat-icon>not_listed_location</mat-icon></button>
+      <button mat-mini-fab color="primary" matTooltip="Notenschlüssel festlegen"><mat-icon>settings</mat-icon></button>
+    </eco-fab-speed-dial-actions>
+  </eco-fab-speed-dial>
+</div>

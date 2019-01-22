@@ -24,6 +24,16 @@ class SubjectController extends Controller
         return response($subjects,200);
     }
 
+    public function getStudents($id){
+        $students=Subject::find($id)->class()->students();
+        foreach ($students as $student)
+            $student["currentGrade"]=0;
+        $header = array(
+            "Access-Control-Allow-Origin" => "*"
+        );
+        return response()->json($students,200,$header);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

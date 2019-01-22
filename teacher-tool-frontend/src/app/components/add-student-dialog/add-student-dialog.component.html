@@ -1,3 +1,21 @@
-<p>
-  add-student-dialog works!
-</p>
+<h1 mat-dialog-title>Schüler hinzufügen</h1>
+<div mat-dialog-content>
+  <form [formGroup]="studentForm">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Vorname" id="firstName" formControlName="firstName">
+      <mat-error *ngIf="studentForm.get('firstName').hasError('required')">
+        Ein Vorname ist verlangt
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Nachname" id="lastName" formControlName="lastName">
+      <mat-error *ngIf="studentForm.get('lastName').hasError('required')">
+        Ein Nachname ist verlangt
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button mat-button type="submit" [disabled]="!studentForm.valid" (click)="createStudent()">Erstellen</button>
+  <button mat-button (click)="cancel()">Abbrechen</button>
+</div>
