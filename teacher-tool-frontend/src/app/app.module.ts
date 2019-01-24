@@ -22,6 +22,7 @@ import { RemoveSubjectDialogComponent } from './components/remove-subject-dialog
 import { RemoveStudentDialogComponent } from './components/remove-student-dialog/remove-student-dialog.component';
 import { StudentRandomizerComponent } from './components/student-randomizer/student-randomizer.component';
 import { ShufflePipe } from './pipes/shuffle.pipe';
+import { ChooseStudentsDialogComponent } from './components/choose-students-dialog/choose-students-dialog.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ShufflePipe } from './pipes/shuffle.pipe';
     RemoveSubjectDialogComponent,
     RemoveStudentDialogComponent,
     StudentRandomizerComponent,
-    ShufflePipe
+    ShufflePipe,
+    ChooseStudentsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { ShufflePipe } from './pipes/shuffle.pipe';
     AddClassDialogComponent,
     ConfirmationDialogComponent,
     RemoveSubjectDialogComponent,
-    RemoveStudentDialogComponent
+    RemoveStudentDialogComponent,
+    ChooseStudentsDialogComponent
   ]
 })
 export class AppModule { }

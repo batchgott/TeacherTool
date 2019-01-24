@@ -57,9 +57,9 @@
       <h1>{{selectedSubject?.name}}</h1>
     </mat-card>
     <div class="class-options-card" *ngIf="!isScreenSmall()">
-      <button mat-stroked-button color="primary" class="subject-menu-button mat-elevation-z1">Notenschlüssel festlegen</button>
-      <button mat-stroked-button color="primary" class="subject-menu-button mat-elevation-z1" [disabled]="students.length<2" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'random']">Schüler auslosen</button>
-      <button mat-stroked-button color="primary" class="subject-menu-button mat-elevation-z1 no-bottom-margin">Noten eintragen</button>
+      <button mat-raised-button color="primary" class="subject-menu-button mat-elevation-z1">Notenschlüssel festlegen</button>
+      <button mat-raised-button color="primary" class="subject-menu-button mat-elevation-z1" [disabled]="students.length<2" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'random']">Schüler auslosen</button>
+      <button mat-raised-button color="primary" class="subject-menu-button mat-elevation-z1 no-bottom-margin">Noten eintragen</button>
     </div>
   </div>
   <mat-card *ngIf="selectedSubject">

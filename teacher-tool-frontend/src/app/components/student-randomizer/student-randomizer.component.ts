@@ -1,4 +1,4 @@
-import {ApplicationRef, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, ApplicationRef, Component, OnChanges, OnInit} from '@angular/core';
 import {ClassService} from '../../services/class.service';
 import {Observable, timer} from 'rxjs';
 import {Class} from '../../models/class';
@@ -7,13 +7,16 @@ import {Subject} from '../../models/subject';
 import {StudentService} from '../../services/student.service';
 import {Student} from '../../models/student';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {ChooseStudentsDialogComponent} from '../choose-students-dialog/choose-students-dialog.component';
 
 @Component({
   selector: 'app-student-randomizer',
   template: `
+    <div *ngIf="selectedStudents">
     <div *ngFor="let student of selectedStudents|shuffle">
-      <mat-card [@student]>{{student.firstname}} {{student.lastname}}</mat-card>
-    </div>`,
+      <mat-card [@student]>{{student?.firstname}} {{student?.lastname}}</mat-card>
+    </div></div>`,
   styles: [`mat-card {
     margin-bottom: 5px;
   }`],
@@ -38,14 +41,16 @@ export class StudentRandomizerComponent implements OnInit {
   class: Class;
   selectedSubject: Subject;
   students: Student[];
-  selectedStudents: Student[];
+  selectedStudents: Student[]=[];
   selectedStudent: Student;
   interval;
+  studentsSelected:boolean=false;
 
   constructor(private classService: ClassService,
               private route: ActivatedRoute,
               private router:Router,
-              private applicationRef:ApplicationRef) {
+              private applicationRef:ApplicationRef,
+              private dialog:MatDialog) {
     this.selectedStudent = null;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -69,9 +74,23 @@ export class StudentRandomizerComponent implements OnInit {
         this.selectedSubject = this.class.subjects.find(x => x.id == subject_id);
         if (this.selectedSubject != undefined) {
           this.students = this.selectedSubject.students;
-          //TODO diese nicht
-          this.selectedStudents = this.students;
-          this.startSelection();
+          if (!this.studentsSelected) {
+            setTimeout(()=>{
+              this.studentsSelected=true;
+              let dialogRef=this.dialog.open(ChooseStudentsDialogComponent,{
+                width:"700px"
+              });
+              dialogRef.componentInstance.entryStudents=this.students.slice();
+              dialogRef.afterClosed().subscribe(result=>{
+                if (result) {
+                  this.selectedStudents=result.slice();
+                  this.startSelection();
+                }
+                else
+                  this.router.navigate(["/class",this.class.id,'subject',this.selectedSubject.id]);
+              });
+            });
+            }
         }
       });
     });
@@ -86,8 +105,11 @@ export class StudentRandomizerComponent implements OnInit {
           clearInterval(this.interval);
         }
       this.applicationRef.tick();
-    }, 2000)
+    }, 1000)
   }
+
+
+
 
 
 }

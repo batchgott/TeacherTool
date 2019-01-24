@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Schüler auswählen</h1>
+<div mat-dialog-content>
+  <mat-checkbox [checked]="entryStudents?.length==selectedStudents?.length" (change)="checkAll()">Alle auswählen</mat-checkbox>
+  <mat-selection-list #students [(ngModel)]="selectedStudents">
+    <mat-list-option *ngFor="let student of entryStudents" [value]="student">
+      {{student.firstname}} {{student.lastname}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [disabled]="selectedStudents.length<2" (click)="submit()">Fertig</button>
+  <button mat-button (click)="cancel()">Abbrechen</button>
+</div>
