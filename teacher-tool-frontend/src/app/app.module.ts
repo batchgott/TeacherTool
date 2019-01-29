@@ -23,6 +23,9 @@ import { RemoveStudentDialogComponent } from './components/remove-student-dialog
 import { StudentRandomizerComponent } from './components/student-randomizer/student-randomizer.component';
 import { ShufflePipe } from './pipes/shuffle.pipe';
 import { ChooseStudentsDialogComponent } from './components/choose-students-dialog/choose-students-dialog.component';
+import { GradingKeyComponent } from './components/grading-key/grading-key.component';
+import { EditClassDialogComponent } from './components/edit-class-dialog/edit-class-dialog.component';
+import { SubjectOverviewComponent } from './components/subject-overview/subject-overview.component';
 
 
 @NgModule({
@@ -41,7 +44,10 @@ import { ChooseStudentsDialogComponent } from './components/choose-students-dial
     RemoveStudentDialogComponent,
     StudentRandomizerComponent,
     ShufflePipe,
-    ChooseStudentsDialogComponent
+    ChooseStudentsDialogComponent,
+    GradingKeyComponent,
+    EditClassDialogComponent,
+    SubjectOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +68,8 @@ import { ChooseStudentsDialogComponent } from './components/choose-students-dial
     ConfirmationDialogComponent,
     RemoveSubjectDialogComponent,
     RemoveStudentDialogComponent,
-    ChooseStudentsDialogComponent
+    ChooseStudentsDialogComponent,
+    EditClassDialogComponent
   ]
 })
 export class AppModule { }

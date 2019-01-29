@@ -48,16 +48,7 @@ mat-card-title{
     margin-top: 10px;
   }
 }
-.student-list-item{
-  margin-bottom: 4px;
-  &:hover{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-}
-.add-student-button{
-  //display: block;
-  horiz-align: center;
-}
+
 
 .class-options-icon{
   padding: 5px;
@@ -72,42 +63,5 @@ mat-card-title{
   }
 }
 
-mat-card{
-  margin-bottom: 5px;
-}
-.algin-content{
-  display: flex;
-  justify-content: left;
-  flex-flow: row;
-}
-.class-name-card{
-  width: 100%;
-  height: 150px;
-  display: flex;
-  margin-right: 5px;
-  justify-content: center;
-  align-items: center;
-}
-.class-options-card{
-  display: flex;
-  justify-content: left;
-  flex-flow: column;
-  width: 80%;
-  height: 150px;
-}
-.less-heigth{
-  height: 100px;
-}
-.subject-menu-button{
-  height: 100%;
-  margin-bottom: 5px;
-}
-.no-bottom-margin{
-  margin-bottom: 0;
-}
-.fab{
-  position: sticky;
-  float: right;
-  right: 20px;
-  bottom: 20px;
-}
+mat-card{margin-bottom: 5px}
+
