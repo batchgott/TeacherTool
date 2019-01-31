@@ -31,7 +31,8 @@ class SubjectAssessmentController extends Controller
         $this->validate($request, [
             'subject_id' => 'required',
             'assessment_id' => 'required',
-            'scale_factor' => 'required'
+            'scale_factor' => 'required',
+            'semester'=>'required'
         ]);
 
         $status=201;
@@ -41,6 +42,7 @@ class SubjectAssessmentController extends Controller
         $sa->subject_id = $request->input('subject_id');
         $sa->assessment_id = $request->input('assessment_id');
         $sa->scale_factor =  $request->input('scale_factor');
+        $sa->semester=$request->input('semester');
 
         if($sa->save()) {
             return response()->json($sa,$status);

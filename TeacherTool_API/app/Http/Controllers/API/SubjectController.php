@@ -47,13 +47,18 @@ class SubjectController extends Controller
                 'name' => 'required',
                 'class_id' => 'required'
             ]);
-
         $status=201;
         ($request->isMethod('put'))?$status=204:null;
         $subject = $request->isMethod('put') ? Subject::findOrFail($request->id): new Subject();
 
         $subject->name = $request->input('name');
         $subject->class_id =  $request->input('class_id');
+        $request->input('first_semester_numerator')==null?
+            null:
+            $subject->first_semester_denominator=$request->input('first_semester_numerator');
+        $request->input('first_semester_denominator')==null?
+            null:
+            $subject->first_semester_denominator=$request->input('first_semester_denominator');
 
         $header = array(
             "Access-Control-Allow-Origin" => "*"

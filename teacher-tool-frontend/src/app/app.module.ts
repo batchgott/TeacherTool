@@ -26,6 +26,7 @@ import { ChooseStudentsDialogComponent } from './components/choose-students-dial
 import { GradingKeyComponent } from './components/grading-key/grading-key.component';
 import { EditClassDialogComponent } from './components/edit-class-dialog/edit-class-dialog.component';
 import { SubjectOverviewComponent } from './components/subject-overview/subject-overview.component';
+import { SecondSemesterNumeratorPipe } from './pipes/second-semester-numerator.pipe';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { SubjectOverviewComponent } from './components/subject-overview/subject-
     ChooseStudentsDialogComponent,
     GradingKeyComponent,
     EditClassDialogComponent,
-    SubjectOverviewComponent
+    SubjectOverviewComponent,
+    SecondSemesterNumeratorPipe
   ],
   imports: [
     BrowserModule,
