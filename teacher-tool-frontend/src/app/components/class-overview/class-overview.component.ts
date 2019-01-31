@@ -15,6 +15,7 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {ConfirmationDialogComponent} from '../../shared/confirmation-dialog.component';
 import {RemoveSubjectDialogComponent} from '../remove-subject-dialog/remove-subject-dialog.component';
 import {RemoveStudentDialogComponent} from '../remove-student-dialog/remove-student-dialog.component';
+import {EditClassDialogComponent} from '../edit-class-dialog/edit-class-dialog.component';
 
 const SMALL_WIDTH_BREAKPOINT=426;
 @Component({
@@ -29,7 +30,6 @@ export class ClassOverviewComponent implements OnInit,OnDestroy {
   classes:Observable<Class[]>;
   students:Student[];
   selectedSubject:Subject;
-  inited:boolean;
   private mediaMatcher:MediaQueryList=matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
 
   constructor(private route:ActivatedRoute,
@@ -42,7 +42,6 @@ export class ClassOverviewComponent implements OnInit,OnDestroy {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.mediaMatcher.addListener(mql =>
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
-    this.inited=false;
   }
 
   ngOnInit() {
@@ -67,8 +66,11 @@ export class ClassOverviewComponent implements OnInit,OnDestroy {
           this.class=this.classService.classById(id);
         if (this.class == undefined)return;
         this.subjects=this.class.subjects;
-        if (getFirstSubject)
-          this.selectedSubject=this.class.subjects[0];
+        if (getFirstSubject) {
+          this.selectedSubject = this.class.subjects[0];
+          if (this.selectedSubject!=undefined)
+          this.router.navigate(['/class',this.class.id,'subject',this.selectedSubject.id]);
+        }
         else
         this.selectedSubject=this.class.subjects.find(x=>x.id==subject_id);
         if (this.selectedSubject != undefined)
@@ -87,18 +89,6 @@ export class ClassOverviewComponent implements OnInit,OnDestroy {
         this.classService.loadAll();
         this.router.navigate(['/class',this.class.id,'subject',result.id]);
         this.openSnackBar("Das Fach "+result.name+" wurde hinzugefügt");
-      }
-    });
-  }
-
-  openAddStudentDialog() {
-    let dialogRef= this.dialog.open(AddStudentDialogComponent, {
-      width: '250px'
-    });
-    dialogRef.componentInstance.class_id=this.class.id;
-    dialogRef.afterClosed().subscribe(result=>{
-      if (result) {
-        this.openSnackBar("Das Schüler "+result.firstname+" "+result.lastname+" wurde hinzugefügt");
       }
     });
   }
@@ -144,5 +134,18 @@ export class ClassOverviewComponent implements OnInit,OnDestroy {
     });
     dialogRef.componentInstance.class=this.class;
     dialogRef.afterClosed();
+  }
+
+  editClass() {
+    let dialogRef= this.dialog.open(EditClassDialogComponent, {
+      width: '700px'
+    });
+    dialogRef.componentInstance.class=this.class;
+    dialogRef.afterClosed().subscribe(result=>{
+      if (result) {
+        if (this.selectedSubject == undefined)
+          this.selectedSubject=this.class.subjects[0];
+      }
+    });
   }
 }

@@ -7,6 +7,7 @@
       <mat-icon>more_horiz</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="editClass()"><mat-icon>edit</mat-icon>Klasse bearbeiten</button>
       <button mat-menu-item [mat-menu-trigger-for]="deleteMenu">
         <mat-icon>delete</mat-icon>
         Löschen
@@ -52,35 +53,5 @@
       <mat-icon aria-label="Fach hinzufügen">add</mat-icon>
     </button>
   </mat-card>
-  <div class="algin-content" *ngIf="selectedSubject">
-    <mat-card class="class-name-card" [ngClass]="{'less-heigth':isScreenSmall()}">
-      <h1>{{selectedSubject?.name}}</h1>
-    </mat-card>
-    <div class="class-options-card" *ngIf="!isScreenSmall()">
-      <button mat-raised-button color="primary" class="subject-menu-button mat-elevation-z1">Notenschlüssel festlegen</button>
-      <button mat-raised-button color="primary" class="subject-menu-button mat-elevation-z1" [disabled]="students.length<2" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'random']">Schüler auslosen</button>
-      <button mat-raised-button color="primary" class="subject-menu-button mat-elevation-z1 no-bottom-margin">Noten eintragen</button>
-    </div>
-  </div>
-  <mat-card *ngIf="selectedSubject">
-    <h3>Schüler</h3>
-    <mat-action-list>
-      <button mat-list-item class="student-list-item" *ngFor="let student of students">{{student.firstname}} {{student.lastname}}</button>
-    </mat-action-list>
-    <button mat-button class="add-student-button" color="accent" (click)="openAddStudentDialog()">
-      <mat-icon>add</mat-icon>
-      Schüler
-    </button>
-  </mat-card>
-  <eco-fab-speed-dial class="fab" *ngIf="isScreenSmall()" animationMode="scale">
-    <eco-fab-speed-dial-trigger>
-      <button mat-fab color="primary" matTooltip="Menü"><mat-icon>menu</mat-icon></button>
-    </eco-fab-speed-dial-trigger>
-
-    <eco-fab-speed-dial-actions>
-      <button mat-mini-fab color="primary" matTooltip="Noten eintragen"><mat-icon>edit</mat-icon></button>
-      <button mat-mini-fab color="primary" matTooltip="Schüler auslosen" [disabled]="students.length<2" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'random']"><mat-icon>not_listed_location</mat-icon></button>
-      <button mat-mini-fab color="primary" matTooltip="Notenschlüssel festlegen"><mat-icon>settings</mat-icon></button>
-    </eco-fab-speed-dial-actions>
-  </eco-fab-speed-dial>
+  <router-outlet></router-outlet>
 </div>

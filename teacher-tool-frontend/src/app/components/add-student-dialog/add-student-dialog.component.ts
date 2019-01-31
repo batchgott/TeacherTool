@@ -3,6 +3,8 @@ import {Student} from '../../models/student';
 import {StudentService} from '../../services/student.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
+import {SettingsService} from '../../services/settings.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-add-student-dialog',
@@ -14,6 +16,8 @@ export class AddStudentDialogComponent implements OnInit {
   student:Student;
   class_id:number;
   studentForm:FormGroup;
+
+
 
   constructor(private studentService:StudentService,
               private dialogRef:MatDialogRef<AddStudentDialogComponent>) { }

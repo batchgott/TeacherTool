@@ -8,6 +8,7 @@ import {SubjectService} from '../../services/subject.service';
 import {AddStudentDialogComponent} from '../add-student-dialog/add-student-dialog.component';
 import {AddClassDialogComponent} from '../add-class-dialog/add-class-dialog.component';
 import {StudentService} from '../../services/student.service';
+import {SettingsService} from '../../services/settings.service';
 
 const SMALL_WIDTH_BREAKPOINT=768;
 const PHONE_WIDTH_BREAKPOINT=426;
@@ -22,6 +23,7 @@ export class ClassesMenuComponent implements OnInit {
   private phoneMediaMatcher:MediaQueryList=matchMedia(`(max-width: ${PHONE_WIDTH_BREAKPOINT}px)`);
   @ViewChild(MatDrawer) drawer:MatDrawer;
   classes:Observable<Class[]>;
+  darkTheme_enabled:Observable<boolean>;
 
   constructor(zone:NgZone,
               private router:Router,
@@ -30,7 +32,8 @@ export class ClassesMenuComponent implements OnInit {
               public subjectService:SubjectService,
               public studentService:StudentService,
               private dialog:MatDialog,
-              private snackBar:MatSnackBar) {
+              private snackBar:MatSnackBar,
+              public settingsService:SettingsService) {
     this.mediaMatcher.addListener(mql =>
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
     this.phoneMediaMatcher.addListener(mql =>
@@ -46,6 +49,8 @@ export class ClassesMenuComponent implements OnInit {
         this.drawer.close();
 
     });
+    this.settingsService.loadSettings();
+    this.darkTheme_enabled=this.settingsService.dark_theme;
   }
 
   isScreenSmall():boolean {

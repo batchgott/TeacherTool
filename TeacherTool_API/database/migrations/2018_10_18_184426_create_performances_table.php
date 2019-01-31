@@ -18,6 +18,8 @@ class CreatePerformancesTable extends Migration
             $table->string('name');
             $table->date('date');
             $table->integer('grade');
+            $table->integer('points')->nullable();
+            $table->integer('max_points')->nullable();
             $table->integer('student_id')->unsigned();
             $table->integer('assessment_id')->unsigned();
             $table->integer('subject_id')->unsigned();

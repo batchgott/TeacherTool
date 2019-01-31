@@ -1,0 +1,54 @@
+.add-student-button{
+  //display: block;
+  horiz-align: center;
+}
+mat-card{
+  margin-bottom: 5px;
+}
+.fab{
+  position: sticky;
+  float: right;
+  right: 20px;
+  bottom: 20px;
+}
+.algin-content{
+  display: flex;
+  justify-content: left;
+  flex-flow: row;
+}
+.class-name-card{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  margin-right: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.class-options-card{
+  display: flex;
+  justify-content: left;
+  flex-flow: column;
+  width: 80%;
+  height: 150px;
+}
+.less-heigth{
+  height: 100px;
+  margin-right: 0;
+}
+.subject-menu-button{
+  height: 100%;
+  margin-bottom: 5px;
+}
+.no-bottom-margin{
+  margin-bottom: 0;
+}
+
+mat-card-header{
+  height: 60px;
+}
+.student-list-item{
+  margin-bottom: 4px;
+  &:hover{
+    background: #d3d3d3;
+  }
+}

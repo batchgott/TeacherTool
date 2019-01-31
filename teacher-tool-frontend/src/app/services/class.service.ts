@@ -69,4 +69,14 @@ export class ClassService {
       }
     );
   }
+
+  editClass(class_item:Class){
+    return this.http.put(environment.apiURL+"/class/",class_item).subscribe(
+      data=>{this.loadAll()},
+      error=>{
+        console.log("Failed to delete class")
+      }
+    );
+  }
+
 }

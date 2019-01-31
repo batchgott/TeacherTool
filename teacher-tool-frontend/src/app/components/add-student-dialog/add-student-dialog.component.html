@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Schüler hinzufügen</h1>
-<div mat-dialog-content>
+<div mat-dialog-content [ngClass]="{'dark-theme': darkTheme_enabled | async}">
   <form [formGroup]="studentForm">
     <mat-form-field>
       <input matInput type="text" placeholder="Vorname" id="firstName" formControlName="firstName">

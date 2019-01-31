@@ -12,4 +12,17 @@ export class ClassUploadComponent implements OnInit {
   ngOnInit() {
   }
 
+  private file: string;
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      console.log(reader.result);
+      reader.onload = (event) => { // called once readAsDataURL is completed
+       console.log(reader.result);
+      }
+    }
+  }
+
 }

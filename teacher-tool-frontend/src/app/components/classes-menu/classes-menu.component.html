@@ -1,8 +1,8 @@
-<mat-drawer-container class="app-sidenav-container" autosize>
+<mat-drawer-container class="app-sidenav-container" autosize
+                      [ngClass]="{'dark-theme': darkTheme_enabled | async}">
   <mat-drawer #drawer class="app-sidenav mat-elevation-z10"
               [mode]="isScreenSmall()? 'over':'side'"
-              [opened]="!isScreenSmall()"
-              [ngClass]="{'dark-theme': _dark_theme | async}">
+              [opened]="!isScreenSmall()">
     <mat-nav-list>
       <mat-toolbar color="primary">Klassen</mat-toolbar>
         <mat-list-item *ngFor="let c of classes | async"
