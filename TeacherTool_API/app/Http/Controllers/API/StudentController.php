@@ -17,10 +17,7 @@ class StudentController extends Controller
     public function index()
     {
         $students=Student::all();
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
-        return response()->json($students,200,$header);
+        return response()->json($students,200);
     }
 
     /**
@@ -46,13 +43,10 @@ class StudentController extends Controller
         $student->lastname = $request->input('lastname');
         $student->class_id =  $request->input('class_id');
 
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
         if($student->save()) {
-            return response()->json($student,$status,$header);
+            return response()->json($student,$status);
         }
-        return response(["msg"=>"An error occured"],404,$header);
+        return response(["msg"=>"An error occured"],404);
     }
     public function storeRange(Request $request){
         $students=$request->all();
@@ -66,10 +60,7 @@ class StudentController extends Controller
             array_push($studentArray,$temp);
         }
 
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
-        return response()->json($studentArray,200,$header);
+        return response()->json($studentArray,200);
     }
 
     /**

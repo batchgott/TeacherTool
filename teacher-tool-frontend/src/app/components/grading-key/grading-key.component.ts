@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ClassService} from '../../services/class.service';
 import {Class} from '../../models/class';
 import {Subject} from '../../models/subject';
+import {SubjectService} from '../../services/subject.service';
 
 const SMALL_WIDTH_BREAKPOINT = 426;
 
@@ -21,7 +22,8 @@ export class GradingKeyComponent implements OnInit {
   constructor(zone: NgZone,
               private route:ActivatedRoute,
               private classService:ClassService,
-              private router:Router) {
+              private router:Router,
+              private subjectService:SubjectService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.mediaMatcher.addListener(mql =>
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
@@ -43,6 +45,16 @@ export class GradingKeyComponent implements OnInit {
         this.subject = this.class.subjects.find(x => x.id == subject_id);
       });
     });
+  }
+
+  changeNumerator(value){
+    this.subject.first_semester_numerator=value;
+    this.subjectService.updateSubject(this.subject);
+  }
+
+  changeDenominator(value){
+    this.subject.first_semester_denominator=value;
+    this.subjectService.updateSubject(this.subject);
   }
 
   isScreenSmall(): boolean {

@@ -17,10 +17,7 @@ class SettingController extends Controller
     public function getDarkTheme()
     {
         $setting=Setting::find(1);
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
-        return response()->json(['dark_theme'=>$setting->dark_theme],200,$header);
+        return response()->json(['dark_theme'=>$setting->dark_theme],200);
     }
 
 
@@ -34,11 +31,8 @@ class SettingController extends Controller
     {
         $setting=Setting::findOrFail(1);
         $setting->dark_theme=!$setting->dark_theme;
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
         if($setting->save()) {
-            return response()->json(['dark_theme'=>$setting->dark_theme],200,$header);
+            return response()->json(['dark_theme'=>$setting->dark_theme],200);
         }
     }
 

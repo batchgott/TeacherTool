@@ -28,10 +28,7 @@ class SubjectController extends Controller
         $students=Subject::find($id)->class()->students();
         foreach ($students as $student)
             $student["currentGrade"]=0;
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
-        return response()->json($students,200,$header);
+        return response()->json($students,200);
     }
 
     /**
@@ -60,13 +57,10 @@ class SubjectController extends Controller
             null:
             $subject->first_semester_denominator=$request->input('first_semester_denominator');
 
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
         if($subject->save()) {
-            return response()->json($subject,$status,$header);
+            return response()->json($subject,$status);
         }
-        return response(["msg"=>"An error occured"],404,$header);
+        return response(["msg"=>"An error occured"],404);
 
     }
 
