@@ -80,7 +80,7 @@ class ClassController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Clas  $clas
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)

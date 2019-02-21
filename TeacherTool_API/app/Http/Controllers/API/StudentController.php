@@ -54,6 +54,23 @@ class StudentController extends Controller
         }
         return response(["msg"=>"An error occured"],404,$header);
     }
+    public function storeRange(Request $request){
+        $students=$request->all();
+        $studentArray=array();
+        foreach ($students as $student){
+            $temp=new Student();
+            $temp->firstname=$student['firstname'];
+            $temp->lastname=$student['lastname'];
+            $temp->class_id=$student['class_id'];
+            $temp->save();
+            array_push($studentArray,$temp);
+        }
+
+        $header = array(
+            "Access-Control-Allow-Origin" => "*"
+        );
+        return response()->json($studentArray,200,$header);
+    }
 
     /**
      * Display the specified resource.
