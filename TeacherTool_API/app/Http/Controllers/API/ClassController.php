@@ -17,9 +17,6 @@ class ClassController extends Controller
     public function index()
     {
         $classes=Clas::all()->where('archieved',0);
-        $header = array(
-        "Access-Control-Allow-Origin" => "*"
-        );
         foreach( $classes as $class){
             $subjects=$class->subjects();
             foreach ($subjects as $subject) {
@@ -30,15 +27,12 @@ class ClassController extends Controller
             }
             $class["subjects"]=$subjects;
         }
-        return response(json_encode(array_values($classes->toArray())),200,$header);
+        return response(json_encode(array_values($classes->toArray())),200);
     }
 
     public function getSubjects($id){
         $subjects=Clas::find($id)->subjects();
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
-        return response()->json($subjects,200,$header);
+        return response()->json($subjects,200);
     }
 
 
@@ -68,13 +62,10 @@ class ClassController extends Controller
         $class->schoolyear=$request->input('schoolyear');
         $request->input('archieved')==null?$class->archieved=0:$class->archieved=$request->input('archieved');
 
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
         if($class->save()) {
-            return response()->json($class,$status,$header);
+            return response()->json($class,$status);
         }
-        return response(["msg"=>"An error occured"],404,$header);
+        return response(["msg"=>"An error occured"],404);
     }
 
     /**
@@ -99,11 +90,8 @@ class ClassController extends Controller
     public function destroy($id)
     {
         $class=Clas::findOrfail($id);
-        $header = array(
-            "Access-Control-Allow-Origin" => "*"
-        );
         if ($class->delete())
-            return response([],202,$header);
-        return response()->json(["msg"=>"an error occured"],404,$header);
+            return response([],202);
+        return response()->json(["msg"=>"an error occured"],404);
     }
 }

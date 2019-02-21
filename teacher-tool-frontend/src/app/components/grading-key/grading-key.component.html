@@ -10,9 +10,9 @@
     <div class="semester">
       <h4>1. Semester</h4>
       <div class="fraction">
-        <input type="number" [ngModel]="subject.first_semester_numerator">
+        <input type="number" #numerator [(ngModel)]="subject.first_semester_numerator" (change)="changeNumerator(numerator.value)">
         <hr>
-        <input type="number" [ngModel]="subject.first_semester_denominator">
+        <input type="number" #denominator [(ngModel)]="subject.first_semester_denominator"  (change)="changeDenominator(denominator.value)">
       </div>
     </div>
     <div class="semester">

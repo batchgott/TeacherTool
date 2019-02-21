@@ -79,6 +79,14 @@ export class SubjectService {
     return this.http.delete(environment.apiURL+"/subject/"+id).subscribe(
       data=>{this.classService.loadAll()},
       error=>{
+        console.log("Failed to delete subject")
+      }
+    );
+  }
+  updateSubject(subject:Subject) {
+    return this.http.put(environment.apiURL+"/subject/",subject).subscribe(
+      data=>{},
+      error=>{
         console.log("Failed to delete class")
       }
     );
