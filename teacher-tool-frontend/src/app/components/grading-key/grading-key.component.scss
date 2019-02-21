@@ -14,3 +14,45 @@ mat-card-title{
 .margin-top{
   margin-top: 15px;
 }
+.semester-wrapper{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-top: 20px;
+
+  .semester{
+    margin-right: 75px;
+    margin-left: 75px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    .fraction{
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      align-content: start;
+      input{
+        display: block;
+        width: 35px;
+        text-align: center;
+      }
+      p{
+        display: block;
+        text-align: center;
+        margin: 4px 0 0;
+      }
+      hr{
+        display: block;
+        width: 45px;
+        border-color: black;
+        border-width: 1.5px;
+        margin: 5px;
+      }
+    }
+  }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

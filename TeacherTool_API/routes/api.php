@@ -37,6 +37,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('students','API\StudentController@index');
     Route::get('student/{id}','API\StudentController@show');
     Route::post('student','API\StudentController@store');
+    Route::post('students','API\StudentController@storeRange');
     Route::put('student','API\StudentController@store');
     Route::delete('student/{id}','API\StudentController@destroy');
 

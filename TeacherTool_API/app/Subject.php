@@ -21,7 +21,7 @@ class Subject extends Model
     /**
      * @var array
      */
-    protected $fillable = ['class_id', 'name', 'created_at', 'updated_at'];
+    protected $fillable = ['class_id', 'name','first_semester_numerator','first_semester_denominator', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
