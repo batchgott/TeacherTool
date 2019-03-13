@@ -22,7 +22,7 @@ class Performance extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name','student_id', 'assessment_id', 'subject_id', 'date', 'grade', 'created_at', 'updated_at'];
+    protected $fillable = ['name','student_id', 'assessment_id', 'subject_id', 'date', 'grade', 'semester','created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

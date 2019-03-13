@@ -26,7 +26,7 @@ class SubjectAssessment extends Model
     /**
      * @var array
      */
-    protected $fillable = ['subject_id', 'assessment_id', 'scale_factor','semester', 'created_at', 'updated_at'];
+    protected $fillable = ['subject_id', 'assessment_id', 'scale_factor', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

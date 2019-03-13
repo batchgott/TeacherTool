@@ -34,7 +34,8 @@ class PerformanceController extends Controller
             'assessment_id' => 'required',
             'subject_id' => 'required',
             'date'=>'required',
-            'grade'=>'required'
+            'grade'=>'required',
+            'semester'=>'required'
         ]);
 
         $status=201;
@@ -47,6 +48,7 @@ class PerformanceController extends Controller
         $performance->subject_id =  $request->input('subject_id');
         $performance->date =  $request->input('date');
         $performance->grade =  $request->input('grade');
+        $performance->semester=$request->input('semester');
 
         if($performance->save()) {
             return response()->json($performance,$status);

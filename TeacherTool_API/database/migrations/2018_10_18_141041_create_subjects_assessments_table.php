@@ -16,7 +16,6 @@ class CreateSubjectsAssessmentsTable extends Migration
         Schema::create('subjects_assessments', function (Blueprint $table) {
             $table->increments('id');
             $table->decimal('scale_factor');
-            $table->char('semester');
             $table->integer('subject_id')->unsigned();
             $table->integer('assessment_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects');

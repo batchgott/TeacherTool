@@ -27,6 +27,7 @@ import { GradingKeyComponent } from './components/grading-key/grading-key.compon
 import { EditClassDialogComponent } from './components/edit-class-dialog/edit-class-dialog.component';
 import { SubjectOverviewComponent } from './components/subject-overview/subject-overview.component';
 import { SecondSemesterNumeratorPipe } from './pipes/second-semester-numerator.pipe';
+import { AssessmentTypesComponent } from './components/assessment-types/assessment-types.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { SecondSemesterNumeratorPipe } from './pipes/second-semester-numerator.p
     GradingKeyComponent,
     EditClassDialogComponent,
     SubjectOverviewComponent,
-    SecondSemesterNumeratorPipe
+    SecondSemesterNumeratorPipe,
+    AssessmentTypesComponent
   ],
   imports: [
     BrowserModule,
