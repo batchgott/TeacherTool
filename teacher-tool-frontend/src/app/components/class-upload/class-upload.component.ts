@@ -21,7 +21,7 @@ export class ClassUploadComponent implements OnInit {
   file:any;
   datas:string;
   splitted;
-  all;
+  lines: string[];
   fileChanged(event) {
     this.file = event.target.files[0];
     this.uploadDocument(this.file)
@@ -31,8 +31,8 @@ export class ClassUploadComponent implements OnInit {
     let fileReader = new FileReader();
     fileReader.onload = (e) => {
       this.datas=fileReader.result;
-      this.splitted=this.datas.split(";",19);
-      this.all=this.datas.split(";");
+      this.lines=this.datas.split("\n");
+      this.splitted=this.lines[0].split(";");
     };
     fileReader.readAsText(this.file);
   }
@@ -148,52 +148,22 @@ export class ClassUploadComponent implements OnInit {
   createStudent(classwithId) {
     let positionFirst;
     let postionLast;
-    for (let i=0; i<this.all.length; i++)
+    let firstline=this.lines[0].split(";");
+    for (let i=0; i<firstline.length; i++)
     {
-      if(this.all[i]==this.firstnameValue)
+      if(firstline[i]==this.firstnameValue)
       {positionFirst=i;}
-      if(this.all[i]==this.lastnameValue)
+      if(firstline[i]==this.lastnameValue)
       {postionLast=i;}
     }
-    let students:{firstname, lastname, class_id}[]=[];
-    let firstName=null;
-    let lastName=null;
-    let count=1;
-
-    for (let i=0; i<this.all.length; i++) {
-      if(i==positionFirst+count*20)
-      {
-        firstName=this.all[i];
-        if(lastName!=null)
-        {
-          students.push({firstname: firstName, lastname: lastName, class_id: classwithId.id});
-          count++;
-          firstName=null;
-          lastName=null;
-          console.log(students);
-        }
-      }
-      if(i==postionLast+count*20)
-      {
-        lastName= this.all[i];
-        if(firstName!=null)
-        {
-          students.push({firstname: firstName, lastname: lastName, class_id: classwithId.id});
-          count++;
-          firstName=null;
-          lastName=null;
-          console.log(students);
-        }
-      }
-    }
-    for(let i=0; i<students.length; i++)
-    {
+    for (let i=1; i<this.lines.length-1; i++) {
       let student:Student=new Student();
-      student.firstname=students[i].firstname;
-      student.lastname=students[i].lastname;
-      student.class_id=students[i].class_id;
-      console.log(student);
+      let currentLine=this.lines[i].split(";");
+      student.firstname= currentLine[positionFirst];
+      student.lastname= currentLine[postionLast];
+      student.class_id= classwithId.id;
       this.studentService.addStudent(student);
+      console.log(student);
     }
   }
 

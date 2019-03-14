@@ -27,6 +27,7 @@ import { GradingKeyComponent } from './components/grading-key/grading-key.compon
 import { EditClassDialogComponent } from './components/edit-class-dialog/edit-class-dialog.component';
 import { SubjectOverviewComponent } from './components/subject-overview/subject-overview.component';
 import { SecondSemesterNumeratorPipe } from './pipes/second-semester-numerator.pipe';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { SecondSemesterNumeratorPipe } from './pipes/second-semester-numerator.p
     MaterialModule,
     HttpClientModule,
     EcoFabSpeedDialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent],
