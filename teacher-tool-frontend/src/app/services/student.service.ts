@@ -63,6 +63,23 @@ export class StudentService {
     });
   }
 
+  addStudents(students: Student[])
+  {
+    return new Promise((resolve, reject) => {
+      this.http.post<Student[]>(environment.apiURL + "/students", students)
+        .toPromise()
+        .then(
+          res => {
+            this.classService.loadAll();
+            resolve(res);
+          },
+          msg => {
+            reject(msg);
+          }
+        );
+    });
+  }
+
   deleteStudent(id: number) {
     return this.http.delete(environment.apiURL+"/student/"+id).subscribe(
       data=>{this.classService.loadAll()},

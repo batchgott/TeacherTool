@@ -142,13 +142,16 @@ export class ClassUploadComponent implements OnInit {
     this.classService.addClass(this.class).then(result =>
       (
     this.classForId=result,
-      this.createStudent(this.classForId)));
+      this.createStudent(this.classForId),
+      ClassUploadComponent.lastNameLength=0,
+      ClassUploadComponent.firstNameLenght=0));
     this.dialogRef.close();
   }
 
   createStudent(classwithId) {
     let positionFirst;
     let postionLast;
+    let students=[];
     let firstline=this.lines[0].split(";");
     for (let i=0; i<firstline.length; i++)
     {
@@ -163,12 +166,15 @@ export class ClassUploadComponent implements OnInit {
       student.firstname= currentLine[positionFirst];
       student.lastname= currentLine[postionLast];
       student.class_id= classwithId.id;
-      this.studentService.addStudent(student);
-      console.log(student);
+      students.push(student);
     }
+    this.studentService.addStudents(students);
+
   }
 
   cancel() {
+    ClassUploadComponent.lastNameLength=0;
+      ClassUploadComponent.firstNameLenght=0;
     this.dialogRef.close(null);
   }
 
