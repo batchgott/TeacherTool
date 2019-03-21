@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Performance;
+use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -81,5 +82,53 @@ class PerformanceController extends Controller
         if ($performance->delete())
             return response()->json([], 202);
         return response()->json(["msg" => "an error occured"], 404);
+    }
+
+    public function currentGrade($subject_id, $student_id)
+    {
+        $performances=Performance::where([ ['subject_id',$subject_id], ['student_id', $student_id],['semester',1] ]);
+        $subject_assessments=SubjectAssessment::where([['subject_id',$subject_id],['semester',1]]);
+        $semFactors=Subject::where(['id', $subject_id]);
+
+        $grade=0;
+
+        foreach ($subject_assessments as $subject_assessment)
+        {
+            $count=0;
+            foreach ($performances as $performance)
+            {
+                if($subject_assessment->assessment_id==$performance->assessment_id)
+                {
+                    $grade+= $grade+$performance->grade;
+                    $count++;
+                }
+            }
+            $grade=($grade/$count)*$subject_assessment->scale_factor;
+        }
+        $grade=$grade*$semFactors->first_semester_numerator/$semFactors->first_semester_denominator;
+
+        $performances=Performance::where([ ['subject_id',$subject_id], ['student_id', $student_id],['semester',2] ]);
+        $subject_assessments=SubjectAssessment::where([['subject_id',$subject_id],['semester',2]]);
+
+        $gradeSecond=0;
+
+        foreach ($subject_assessments as $subject_assessment)
+        {
+            $count=0;
+            foreach ($performances as $performance)
+            {
+                if($subject_assessment->assessment_id==$performance->assessment_id)
+                {
+                    $grade+= $gradeSecond+$performance->grade;
+                    $count++;
+                }
+            }
+            $gradeSecond=($gradeSecond/$count)*$subject_assessment->scale_factor;
+        }
+        $gradeSecond= $gradeSecond*($semFactors->first_semester_denominator-$semFactors->first_semester_numerator)/$semFactors->first_semester_denominator;
+        $grade= $grade+$gradeSecond;
+
+
+        return response()->json($grade, 200);
     }
 }
