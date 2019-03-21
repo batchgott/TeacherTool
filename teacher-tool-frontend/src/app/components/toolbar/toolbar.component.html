@@ -14,7 +14,7 @@
     <button mat-menu-item (click)="finishYear()"><mat-icon>done_outline</mat-icon>Jahresabschluss</button>
     <button mat-menu-item (click)="finishYear()"><mat-icon>archive</mat-icon>Archiv</button>
     <div mat-menu-item class="no-hover-effect" (click)="$event.stopPropagation();" disableRipple >
-    <mat-slide-toggle labelPosition="before" (toggleChange)="toggleTheme();" color="accent" [ngModel]="darkTheme_enabled|async">Dark Theme</mat-slide-toggle>
+    <mat-slide-toggle labelPosition="before" color="accent" [checked]="darkTheme_enabled | async" (change)="toggleTheme()">Dark Theme</mat-slide-toggle>
     </div>
   </mat-menu>
 </mat-toolbar>

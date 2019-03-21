@@ -1,3 +1,80 @@
-<p>
-  class-upload works!
-</p>
+<form [formGroup]="classForm">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Name" id="name" formControlName="name">
+    <mat-error *ngIf="classForm.get('name').hasError('required')">
+      Ein Name ist verlangt
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Schulstufe" id="level" formControlName="level">
+    <mat-error *ngIf="classForm.get('level').hasError('required')">
+      Sie müssen eine Schulstufe angeben
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Maximale Schulstufe" id="max-level" formControlName="max-level">
+    <mat-error *ngIf="classForm.get('level').hasError('required')">
+      Sie müssen eine maximale Schulstufe angeben
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select [(value)]="selectedYear" placeholder="Schuljahr" id="schoolyear" formControlName="schoolyear">
+      <mat-option [value]="year" *ngFor="let year of years">{{year | schoolyear}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+
+<input type='file' mat-ripple="true" (change)="fileChanged($event)">
+
+
+<div cdkDropListGroup class="box-wrapper">
+  <div class="example-container">
+    <h2>Elements</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="splitted"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of splitted"cdkDrag [cdkDragData]="item">{{item}}</div>
+    </div>
+  </div>
+
+  <div class="right-wrapper">
+  <div class="example-container">
+    <h2>Firstname</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="firstname"
+      class="example-list"
+      [cdkDropListEnterPredicate]="allowAddFirstName"
+      (cdkDropListExited)="FirstNameRemoved($event)"
+      (cdkDropListEntered)="FirstNameEntered($event)"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of firstname"  cdkDrag [cdkDragData]="item">{{item}}</div>
+    </div>
+
+  </div>
+  <div class="example-container">
+    <h2>Lastname</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="lastName"
+      class="example-list"
+      [cdkDropListEnterPredicate]="allowAddLastName"
+      (cdkDropListExited)="LastNameRemoved($event)"
+      (cdkDropListEntered)="LastNameEntered($event)"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of lastName" cdkDrag [cdkDragData]="item">{{item}}</div>
+    </div>
+
+  </div>
+    <div mat-dialog-actions class="mat-dialog-actions">
+      <button mat-button type="submit" [disabled]="!classForm.valid" (click)="createClass()">Erstellen</button>
+      <button mat-button (click)="cancel()">Abbrechen</button>
+    </div>
+  </div>
+</div>

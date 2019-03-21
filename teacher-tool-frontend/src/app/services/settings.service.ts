@@ -39,6 +39,8 @@ export class SettingsService {
       data=>{
         this.dataStore.dark_theme=data['dark_theme'];
         this._dark_theme.next(Object.assign({},this.dataStore).dark_theme);
+        console.log(this._dark_theme);
+        console.log("toogled")
       },
       error=>{
         console.log("Failed to toggle Dark Theme")

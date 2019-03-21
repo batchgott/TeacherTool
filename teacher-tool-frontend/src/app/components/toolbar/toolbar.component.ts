@@ -16,7 +16,7 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.darkTheme_enabled=this.settingsService.dark_theme;
-    this.settingsService.loadSettings();
+
   }
 
   toggleTheme():void{
