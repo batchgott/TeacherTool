@@ -31,13 +31,14 @@
 <div cdkDropListGroup class="box-wrapper">
   <div class="example-container">
     <h2>Elements</h2>
-
+    <div  [class.elements]="fileUploaded" cdk-scrollable>
     <div
       cdkDropList
       [cdkDropListData]="splitted"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of splitted"cdkDrag [cdkDragData]="item">{{item}}</div>
+    </div>
     </div>
   </div>
 

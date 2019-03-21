@@ -17,7 +17,7 @@ import {forEach} from '@angular/router/src/utils/collection';
 })
 export class ClassUploadComponent implements OnInit {
 
-
+  fileUploaded: boolean=false;
   file:any;
   datas:string;
   splitted;
@@ -33,6 +33,7 @@ export class ClassUploadComponent implements OnInit {
       this.datas=fileReader.result;
       this.lines=this.datas.split("\n");
       this.splitted=this.lines[0].split(";");
+      this.fileUploaded=true;
     };
     fileReader.readAsText(this.file);
   }
