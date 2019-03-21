@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Performance;
 use App\Subject;
+use App\SubjectAssessment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -88,7 +89,7 @@ class PerformanceController extends Controller
     {
         $performances=Performance::where([ ['subject_id',$subject_id], ['student_id', $student_id],['semester',1] ]);
         $subject_assessments=SubjectAssessment::where([['subject_id',$subject_id],['semester',1]]);
-        $semFactors=Subject::where(['id', $subject_id]);
+        $semFactors=Subject::find($subject_id);
 
         $grade=0;
 
