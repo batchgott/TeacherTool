@@ -27,11 +27,9 @@ import { GradingKeyComponent } from './components/grading-key/grading-key.compon
 import { EditClassDialogComponent } from './components/edit-class-dialog/edit-class-dialog.component';
 import { SubjectOverviewComponent } from './components/subject-overview/subject-overview.component';
 import { SecondSemesterNumeratorPipe } from './pipes/second-semester-numerator.pipe';
-<<<<<<< HEAD
 import { AssessmentTypesComponent } from './components/assessment-types/assessment-types.component';
-=======
 import {DragDropModule} from '@angular/cdk/drag-drop';
->>>>>>> b6bee44f46e62c8bde7a96b3603252e9fbde9751
+
 
 
 @NgModule({
