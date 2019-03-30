@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $table
+ * @property string $name
  * @property string $created_at
  * @property string $updated_at
  * @property Performance[] $performances

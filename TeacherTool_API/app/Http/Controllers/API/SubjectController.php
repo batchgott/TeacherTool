@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Assessment;
 use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -56,6 +57,9 @@ class SubjectController extends Controller
         $request->input('first_semester_denominator')==null?
             null:
             $subject->first_semester_denominator=$request->input('first_semester_denominator');
+        $request->input('participation_valence')==null?
+            null:
+            $subject->participation_valence=$request->input('participation_valence');
 
         if($subject->save()) {
             return response()->json($subject,$status);
@@ -90,5 +94,19 @@ class SubjectController extends Controller
         if($subject->delete())
             return response()->json([],202);
         return response()->json(["msg"=>"an error occured"],404);
+    }
+
+    public function getAssessments($id,Request $request){
+        if ($request->has('type'))
+            $subjectAssessments=Subject::find($id)->subjectsAssessmentsByType($request->get('type'));
+        else
+            $subjectAssessments=Subject::find($id)->subjectsAssessments();
+
+        $sas=array();
+        foreach ($subjectAssessments as $sa) {
+            $sa["name"] = Assessment::find($sa->assessment_id)->name;
+            array_push($sas,$sa);
+        }
+        return response()->json($sas,200);
     }
 }

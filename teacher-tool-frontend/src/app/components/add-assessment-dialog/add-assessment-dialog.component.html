@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Bewertungsart hinzufügen</h1>
+<div mat-dialog-content [ngClass]="{'dark-theme': darkTheme_enabled | async}">
+  <form [formGroup]="assessmentForm">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Name" id="name" formControlName="name">
+      <mat-error *ngIf="assessmentForm.get('name').hasError('required')">
+        Ein Vorname ist verlangt
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Wert" id="scale_factor" formControlName="scale_factor">
+      <mat-error *ngIf="assessmentForm.get('scale_factor').hasError('required')">
+        Ein Wert ist Verlangt
+      </mat-error>
+    </mat-form-field>
+    <label id="radio-group-label">Bewertungsart</label>
+    <mat-radio-group
+      aria-labelledby="radio-group-label"
+      label="radio-group-label"
+      class="radio-group"
+      [ngModelOptions]="{standalone: true}"
+      [(ngModel)]="type">
+      <mat-radio-button class="radio-button" value="n">Normal</mat-radio-button>
+      <mat-radio-button class="radio-button" value="p">Mitarbeit</mat-radio-button>
+    </mat-radio-group>
+  </form>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button mat-button type="submit" [disabled]="!assessmentForm.valid" (click)="createAssessment()">Erstellen</button>
+  <button mat-button (click)="cancel()">Abbrechen</button>
+</div>

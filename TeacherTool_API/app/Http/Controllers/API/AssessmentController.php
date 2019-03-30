@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Assessment;
+use App\SubjectAssessment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -30,19 +31,35 @@ class AssessmentController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'subject_id' => 'required',
+            'scale_factor' => 'required'
         ]);
 
         $status=201;
         ($request->isMethod('put'))?$status=204:null;
-        $assessment = $request->isMethod('put') ? Assessment::findOrFail($request->id): new Assessment();
+        $assessment = $request->isMethod('put') ? Assessment::findOrFail($request->get('assessment_id')): new Assessment();
 
         $assessment->name = $request->input('name');
 
-        if($assessment->save()) {
-            return response()->json($assessment,$status);
+        $assessment->save();
+        $sa = ($request->isMethod('put')) ? SubjectAssessment::all()
+            ->where("subject_id",$request->get('subject_id'))
+            ->where("assessment_id",$request->get('assessment_id'))
+            ->first():
+             new SubjectAssessment();
+        $sa->subject_id = $request->input('subject_id');
+        $sa->assessment_id = $assessment->id;
+        $sa->scale_factor =  $request->input('scale_factor');
+        $request->has('type')?
+            $sa->type=$request->input('type'):
+            $sa->type='n';
+        if($sa->save()) {
+            return response()->json($sa,$status);
         }
         return response(["msg"=>"An error occured"],404);
     }
+
+
 
     /**
      * Display the specified resource.

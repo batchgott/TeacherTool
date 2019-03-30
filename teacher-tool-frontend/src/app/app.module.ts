@@ -29,6 +29,9 @@ import { SubjectOverviewComponent } from './components/subject-overview/subject-
 import { SecondSemesterNumeratorPipe } from './pipes/second-semester-numerator.pipe';
 import { AssessmentTypesComponent } from './components/assessment-types/assessment-types.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { AssessmentTypeComponent } from './components/assessment-types/assessment-type/assessment-type.component';
+import { AddAssessmentDialogComponent } from './components/add-assessment-dialog/add-assessment-dialog.component';
+
 
 
 
@@ -53,7 +56,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     EditClassDialogComponent,
     SubjectOverviewComponent,
     SecondSemesterNumeratorPipe,
-    AssessmentTypesComponent
+    AssessmentTypesComponent,
+    AssessmentTypeComponent,
+    AddAssessmentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +81,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     RemoveSubjectDialogComponent,
     RemoveStudentDialogComponent,
     ChooseStudentsDialogComponent,
-    EditClassDialogComponent
+    EditClassDialogComponent,
+    AddAssessmentDialogComponent
   ]
 })
 export class AppModule { }

@@ -21,7 +21,7 @@ class Subject extends Model
     /**
      * @var array
      */
-    protected $fillable = ['class_id', 'name','first_semester_numerator','first_semester_denominator', 'created_at', 'updated_at'];
+    protected $fillable = ['class_id', 'name','participation_valence','first_semester_numerator','first_semester_denominator', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -32,11 +32,14 @@ class Subject extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function subjectsAssessments()
     {
-        return $this->hasMany('App\SubjectsAssessment');
+        return $this->hasMany('App\SubjectAssessment')->get();
     }
-
+    public function subjectsAssessmentsByType(string $type)
+    {
+        return $this->hasMany('App\SubjectAssessment')->get()->where('type',$type);
+    }
 }

@@ -1,0 +1,10 @@
+<mat-card>
+  <span>{{assessment.name}}</span>
+  <i class="material-icons" (click)="removeAssessment()" matTooltip="Bewertungsart entfernen">
+    clear
+  </i>
+  <mat-form-field class="input-participation-valance">
+    <input matInput type="number" placeholder="Wert" [(ngModel)]="assessment.scale_factor" (ngModelChange)="dataEdited()">
+  </mat-form-field>
+
+</mat-card>

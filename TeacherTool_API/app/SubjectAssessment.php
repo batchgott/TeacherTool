@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $subject_id
+ * @property string $type
  * @property int $assessment_id
  * @property float $scale_factor
  * @property string $created_at
@@ -26,7 +27,7 @@ class SubjectAssessment extends Model
     /**
      * @var array
      */
-    protected $fillable = ['subject_id', 'assessment_id', 'scale_factor', 'created_at', 'updated_at'];
+    protected $fillable = ['subject_id', 'assessment_id', 'scale_factor','type', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

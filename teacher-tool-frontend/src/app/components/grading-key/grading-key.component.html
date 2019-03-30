@@ -2,8 +2,10 @@
   <mat-spinner></mat-spinner>
 </div>
 <mat-card *ngIf="class">
-  <a class="go-back-button" [routerLink]="['/class',class.id,'subject',subject.id]" mat-flat-button>« Zur
+  <a class="go-back-button" (click)="goBack()" mat-flat-button>« Zur
     Fach-Übersicht</a>
+  <button mat-button class="save-button" color="primary" disabled *ngIf="!editedData"><mat-icon>done_outline</mat-icon> Notenschlüssel aktuell</button>
+  <button mat-flat-button class="save-button" (click)="save()" color="primary" *ngIf="editedData"><mat-icon>save</mat-icon> Änderungen speichern</button>
   <mat-card-title [ngClass]="{'margin-top':isScreenSmall()}">Notenschlüssel</mat-card-title>
   <mat-card-content>
     <div class="semester-wrapper">
@@ -24,6 +26,6 @@
       </div>
     </div>
     </div>
-    <app-assessment-types></app-assessment-types>
+    <app-assessment-types [subject]="subject"></app-assessment-types>
   </mat-card-content>
 </mat-card>

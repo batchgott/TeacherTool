@@ -16,6 +16,7 @@ class CreateSubjectsTable extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->decimal('participation_valence')->default(30);
             $table->integer('first_semester_numerator')->default(1);
             $table->integer('first_semester_denominator')->default(3);
             $table->integer('class_id')->unsigned();

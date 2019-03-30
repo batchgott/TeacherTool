@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
     Route::put('subject','API\SubjectController@store');
     Route::delete('subject/{id}','API\SubjectController@destroy');
     Route::get('subject/{id}/students','API\SubjectController@getStudents');
+    Route::get('subject/{id}/assessments','API\SubjectController@getAssessments');
 
     Route::get('classes','API\ClassController@index');
     Route::get('class/{id}','API\ClassController@show');
@@ -31,7 +32,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('assessments','API\AssessmentController@index');
     Route::get('assessment/{id}','API\AssessmentController@show');
     Route::post('assessment','API\AssessmentController@store');
-    Route::put('assessment','API\AssessmentController@store');
+//    Route::put('assessment','API\AssessmentController@store');
     Route::delete('assessment/{id}','API\AssessmentController@destroy');
 
     Route::get('students','API\StudentController@index');
@@ -51,7 +52,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('subjects_assessments','API\SubjectAssessmentController@index');
     Route::get('subjects_assessments/{subject_id}/{assessment_id}','API\SubjectAssessmentController@show');
     Route::post('subjects_assessments','API\SubjectAssessmentController@store');
-    Route::put('subjects_assessments','API\SubjectAssessmentController@store');
+    Route::put('subjects_assessments','API\SubjectAssessmentController@updateRange');
     Route::delete('subjects_assessments/{subject_id}/{assessment_id}','API\SubjectAssessmentController@destroy');
 
     Route::get('setting/dark_theme','API\SettingController@getDarkTheme');

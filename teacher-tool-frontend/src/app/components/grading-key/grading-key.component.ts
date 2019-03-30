@@ -4,13 +4,17 @@ import {ClassService} from '../../services/class.service';
 import {Class} from '../../models/class';
 import {Subject} from '../../models/subject';
 import {SubjectService} from '../../services/subject.service';
+import {AssessmentService} from '../../services/assessment.service';
+import {ConfirmationDialogComponent} from '../../shared/confirmation-dialog.component';
+import {MatDialog} from '@angular/material';
 
 const SMALL_WIDTH_BREAKPOINT = 426;
 
 @Component({
   selector: 'app-grading-key',
   templateUrl: './grading-key.component.html',
-  styleUrls: ['./grading-key.component.scss']
+  styleUrls: ['./grading-key.component.scss'],
+  providers:[AssessmentService]
 })
 export class GradingKeyComponent implements OnInit {
 
@@ -18,18 +22,22 @@ export class GradingKeyComponent implements OnInit {
 
   class:Class;
   subject:Subject;
+  editedData:boolean;
 
   constructor(zone: NgZone,
               private route:ActivatedRoute,
               private classService:ClassService,
               private router:Router,
-              private subjectService:SubjectService) {
+              private subjectService:SubjectService,
+              private assessmentService:AssessmentService,
+              private dialog:MatDialog) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.mediaMatcher.addListener(mql =>
       zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
   }
 
   ngOnInit() {
+    this.assessmentService.editedData$.subscribe(editedData=>this.editedData=editedData);
     this.route.parent.params.subscribe(params => {
       let id = +params['id'];
       let subject_id = +params['subjectid'];
@@ -59,5 +67,24 @@ export class GradingKeyComponent implements OnInit {
 
   isScreenSmall(): boolean {
     return this.mediaMatcher.matches;
+  }
+
+  goBack() {
+    if (!this.editedData)
+    this.router.navigate(['/class',this.class.id,'subject',this.subject.id]);
+    else {
+      let dialogRef=this.dialog.open(ConfirmationDialogComponent);
+      dialogRef.componentInstance.message="Sind Sie sicher, dass Sie diesen Bereich ohne Speichern verlassen wollen?";
+      dialogRef.componentInstance.do="Verlassen";
+      dialogRef.afterClosed().subscribe(result=>{
+        if (result) {
+          this.router.navigate(['/class',this.class.id,'subject',this.subject.id]);
+        }
+      });
+    }
+  }
+
+  save() {
+    this.assessmentService.editAssessments();
   }
 }
