@@ -5,7 +5,7 @@
   <a class="go-back-button" (click)="goBack()" mat-flat-button>« Zur
     Fach-Übersicht</a>
   <button mat-button class="save-button" color="primary" disabled *ngIf="!editedData"><mat-icon>done_outline</mat-icon> Notenschlüssel aktuell</button>
-  <button mat-flat-button class="save-button" (click)="save()" color="primary" *ngIf="editedData"><mat-icon>save</mat-icon> Änderungen speichern</button>
+  <button mat-flat-button class="save-button" (click)="save()" [disabled]="overallValence>100||overallParticipationValance>100" color="primary" *ngIf="editedData"><mat-icon>save</mat-icon> Änderungen speichern</button>
   <mat-card-title [ngClass]="{'margin-top':isScreenSmall()}">Notenschlüssel</mat-card-title>
   <mat-card-content>
     <div class="semester-wrapper">

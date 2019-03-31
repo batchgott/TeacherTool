@@ -8,12 +8,11 @@
       </mat-panel-title>
       <mat-panel-description>
         <mat-form-field class="input-participation-valance">
-          <input matInput type="number" placeholder="Wert" [(ngModel)]="subject.participation_valence" (ngModelChange)="dataEdited()">
+          <input matInput type="number" placeholder="Wert" [(ngModel)]="participation_valance" (ngModelChange)="dataEdited()">
         </mat-form-field>
       </mat-panel-description>
     </mat-expansion-panel-header>
-
-      hello
+    <app-assessment-type *ngFor="let assessment of assessments_participation |async" [assessment]="assessment"></app-assessment-type>
   </mat-expansion-panel>
 </mat-accordion>
 <button mat-button class="add-student-button" color="accent" (click)="openAddAssessmentDialog()">

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Schüler auswählen</h1>
+<h1 mat-dialog-title>Schüler <span class="choose-specific-student" (click)="openChooseSpecificStudentDialog()">auswählen</span></h1>
 <div mat-dialog-content>
   <mat-checkbox [checked]="entryStudents?.length==selectedStudents?.length" (change)="checkAll()">Alle auswählen</mat-checkbox>
   <mat-selection-list #students [(ngModel)]="selectedStudents">

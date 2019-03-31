@@ -45,6 +45,7 @@ export class StudentRandomizerComponent implements OnInit {
   selectedStudent: Student;
   interval;
   studentsSelected:boolean=false;
+  choosenStudent:Student;
 
   constructor(private classService: ClassService,
               private route: ActivatedRoute,
@@ -83,10 +84,12 @@ export class StudentRandomizerComponent implements OnInit {
               dialogRef.componentInstance.entryStudents=this.students.slice();
               dialogRef.afterClosed().subscribe(result=>{
                 if (result) {
-                  this.selectedStudents=result.slice();
+                  this.selectedStudents=result.selectedStudents.slice();
+                  this.choosenStudent=result.selectedStudent;
                   this.startSelection();
                 }
                 else
+
                   this.router.navigate(["/class",this.class.id,'subject',this.selectedSubject.id]);
               });
             });
@@ -98,8 +101,15 @@ export class StudentRandomizerComponent implements OnInit {
 
   startSelection() {
     this.interval=setInterval(() => {
-        if (this.selectedStudents.length !=1)
-        this.selectedStudents.splice(Math.floor(Math.random() * this.selectedStudents.length),1);
+        if (this.selectedStudents.length !=1) {
+          let randomValue:number=Math.floor(Math.random() * (this.selectedStudents.length-1));
+          if (this.choosenStudent != null)
+          if (this.selectedStudents[randomValue].id == this.choosenStudent.id){
+            ((this.selectedStudents.length-1-randomValue)>randomValue)?randomValue++:randomValue--;
+            // (randomValue==this.selectedStudents.length-1)?randomValue--:randomValue++;
+          }
+          this.selectedStudents.splice(randomValue, 1);
+        }
         else {
           this.selectedStudent=this.selectedStudents[0];
           clearInterval(this.interval);

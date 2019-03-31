@@ -31,6 +31,7 @@ import { AssessmentTypesComponent } from './components/assessment-types/assessme
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AssessmentTypeComponent } from './components/assessment-types/assessment-type/assessment-type.component';
 import { AddAssessmentDialogComponent } from './components/add-assessment-dialog/add-assessment-dialog.component';
+import { ChooseSpecificStudentDialogComponent } from './components/choose-specific-student-dialog/choose-specific-student-dialog.component';
 
 
 
@@ -58,7 +59,8 @@ import { AddAssessmentDialogComponent } from './components/add-assessment-dialog
     SecondSemesterNumeratorPipe,
     AssessmentTypesComponent,
     AssessmentTypeComponent,
-    AddAssessmentDialogComponent
+    AddAssessmentDialogComponent,
+    ChooseSpecificStudentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ import { AddAssessmentDialogComponent } from './components/add-assessment-dialog
     RemoveStudentDialogComponent,
     ChooseStudentsDialogComponent,
     EditClassDialogComponent,
-    AddAssessmentDialogComponent
+    AddAssessmentDialogComponent,
+    ChooseSpecificStudentDialogComponent
   ]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Student} from '../../models/student';
-import {MatDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {ChooseSpecificStudentDialogComponent} from '../choose-specific-student-dialog/choose-specific-student-dialog.component';
 
 @Component({
   selector: 'app-choose-students-dialog',
@@ -12,8 +13,12 @@ export class ChooseStudentsDialogComponent implements OnInit {
   entryStudents:Student[];
   selectedStudents:Student[];
   checkedAll:boolean=true;
+  selectedStudent:Student;
 
-  constructor(private dialogRef:MatDialogRef<ChooseStudentsDialogComponent>) { }
+  constructor(private dialogRef:MatDialogRef<ChooseStudentsDialogComponent>,
+              private dialog:MatDialog) {
+    this.selectedStudent=null;
+  }
 
   ngOnInit() {
     this.selectedStudents=this.entryStudents.slice();
@@ -32,6 +37,21 @@ export class ChooseStudentsDialogComponent implements OnInit {
   }
 
   submit() {
-    this.dialogRef.close(this.selectedStudents);
+    this.dialogRef.close({selectedStudents:this.selectedStudents,selectedStudent:this.selectedStudent});
+  }
+
+  openChooseSpecificStudentDialog() {
+    let dialogRef=this.dialog.open(ChooseSpecificStudentDialogComponent,{
+      width:"700px"
+    });
+    dialogRef.componentInstance.entryStudents=this.entryStudents;
+    if (this.selectedStudent!=null)
+      dialogRef.componentInstance.selectedStudent=this.selectedStudent;
+    dialogRef.afterClosed().subscribe(result=>{
+      if (result)
+        this.selectedStudent=result;
+      else
+        this.selectedStudent=null;
+    })
   }
 }

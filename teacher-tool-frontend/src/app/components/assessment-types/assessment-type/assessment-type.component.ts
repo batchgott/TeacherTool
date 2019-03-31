@@ -36,5 +36,7 @@ export class AssessmentTypeComponent implements OnInit {
   }
   dataEdited(){
     this.assessmentService.editedData.next(true);
+    this.assessmentService.calculateOverallValence();
+    this.assessmentService.calculateOverallParticipationValence();
   }
 }

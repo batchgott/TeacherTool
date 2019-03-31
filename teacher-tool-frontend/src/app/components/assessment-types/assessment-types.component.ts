@@ -8,6 +8,7 @@ import {AddStudentDialogComponent} from '../add-student-dialog/add-student-dialo
 import {MatDialog, MatSnackBar, MatSnackBarRef, SimpleSnackBar} from '@angular/material';
 import {AddAssessmentDialogComponent} from '../add-assessment-dialog/add-assessment-dialog.component';
 import {Router} from '@angular/router';
+import {SubjectService} from '../../services/subject.service';
 
 @Component({
   selector: 'app-assessment-types',
@@ -20,14 +21,18 @@ export class AssessmentTypesComponent implements OnInit {
   assessments_normal:Observable<Assessment[]>;
   assessments_participation:Observable<Assessment[]>;
   editedData:boolean;
+  participation_valance:number;
 
   constructor(private assessmentService:AssessmentService,
               private dialog:MatDialog,
-              private snackbar:MatSnackBar) {
+              private snackbar:MatSnackBar,
+              private subjectServer:SubjectService) {
   }
 
   ngOnInit() {
     this.assessmentService.editedData$.subscribe(editedData=>this.editedData=editedData);
+    this.assessmentService.participation_valence$.subscribe(participation_valance=>this.participation_valance=participation_valance);
+    this.assessmentService.participation_valence.next(this.subject.participation_valence);
     this.assessments_normal=this.assessmentService.assessments_normal;
     this.assessments_participation=this.assessmentService.assessments_participation;
     this.assessmentService.loadAssessmentsOfSubject_Normal(this.subject.id);
@@ -65,5 +70,6 @@ export class AssessmentTypesComponent implements OnInit {
 
   dataEdited(){
     this.assessmentService.editedData.next(true);
+    this.assessmentService.participation_valence.next(this.participation_valance);
   }
 }

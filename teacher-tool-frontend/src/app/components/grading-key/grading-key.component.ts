@@ -23,6 +23,8 @@ export class GradingKeyComponent implements OnInit {
   class:Class;
   subject:Subject;
   editedData:boolean;
+  overallValence:number;
+  overallParticipationValance:number;
 
   constructor(zone: NgZone,
               private route:ActivatedRoute,
@@ -38,6 +40,8 @@ export class GradingKeyComponent implements OnInit {
 
   ngOnInit() {
     this.assessmentService.editedData$.subscribe(editedData=>this.editedData=editedData);
+    this.assessmentService.overallValence$.subscribe(overallValance=>this.overallValence=overallValance);
+    this.assessmentService.overallParticipationValence$.subscribe(overallParticipationValance=>this.overallParticipationValance=overallParticipationValance);
     this.route.parent.params.subscribe(params => {
       let id = +params['id'];
       let subject_id = +params['subjectid'];
@@ -85,6 +89,6 @@ export class GradingKeyComponent implements OnInit {
   }
 
   save() {
-    this.assessmentService.editAssessments();
+    this.assessmentService.editAssessments(this.subject);
   }
 }
