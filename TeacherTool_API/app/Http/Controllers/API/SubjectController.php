@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Assessment;
+use App\Performance;
 use App\Subject;
+use App\SubjectAssessment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
@@ -28,7 +30,7 @@ class SubjectController extends Controller
     public function getStudents($id){
         $students=Subject::find($id)->class()->students();
         foreach ($students as $student)
-            $student["currentGrade"]=0;
+            $student["currentGrade"]=$this->currentGrade($student->id,$id);
         return response()->json($students,200);
     }
 
@@ -108,5 +110,83 @@ class SubjectController extends Controller
             array_push($sas,$sa);
         }
         return response()->json($sas,200);
+    }
+
+    public function currentGrade($student_id,$subject_id)
+    {
+        $performances=Performance::where([ ['subject_id',$subject_id], ['student_id', $student_id],['semester',1] ])->get();
+        $subject_assessments=SubjectAssessment::where('subject_id',$subject_id)->get();
+        $semFactors=Subject::find($subject_id);
+        $grade=0;
+        $partgrade=0;
+        foreach ($subject_assessments as $subject_assessment) {
+            $count = 0;
+            $partcalc = 0;
+            if ($subject_assessment->type == 'p') {
+                foreach ($performances as $performance) {
+                    if ($subject_assessment->assessment_id == $performance->assessment_id) {
+
+                        $partcalc = $partcalc + $performance->grade;
+                        $count++;
+
+                    }
+                }
+                if($count>0) {
+                    $partgrade = ($partcalc / $count) * $subject_assessment->scale_factor / 100 + $partgrade;
+                }
+            } else {
+                foreach ($performances as $performance) {
+                    if ($subject_assessment->assessment_id == $performance->assessment_id) {
+
+                        $partcalc = $partcalc + $performance->grade;
+                        $count++;
+
+                    }
+                }
+                if($count>0) {
+                    $grade = ($partcalc / $count) * $subject_assessment->scale_factor / 100 + $grade;
+                }
+            }
+        }
+        $grade = ($grade + $partgrade * $semFactors->participation_valence / 100);
+        $performances=Performance::where([ ['subject_id',$subject_id], ['student_id', $student_id],['semester',2] ]);
+        $gradeSecond=0;
+        $partgrade=0;
+        foreach ($subject_assessments as $subject_assessment) {
+            $count = 0;
+            $partcalc = 0;
+            if ($subject_assessment->type == 'p') {
+                foreach ($performances as $performance) {
+                    if ($subject_assessment->assessment_id == $performance->assessment_id) {
+
+                        $partcalc = $partcalc + $performance->grade;
+                        $count++;
+
+                    }
+                }
+                if($count>0) {
+                    $partgrade = ($partcalc / $count) * $subject_assessment->scale_factor / 100 + $partgrade;
+                }
+            } else {
+                foreach ($performances as $performance) {
+                    if ($subject_assessment->assessment_id == $performance->assessment_id) {
+
+                        $partcalc = $partcalc + $performance->grade;
+                        $count++;
+                    }
+                }
+                if($count>0) {
+                    $gradeSecond = ($partcalc / $count) * $subject_assessment->scale_factor / 100 + $gradeSecond;
+                }
+            }
+        }
+        $gradeSecond = ($gradeSecond + $partgrade * $semFactors->participation_valence / 100) * ($semFactors->first_semester_denominator - $semFactors->first_semester_numerator) / $semFactors->first_semester_denominator;
+        if($gradeSecond!=0)
+        {
+            $grade = $grade * $semFactors->first_semester_numerator / $semFactors->first_semester_denominator;
+        }
+        $grade = $grade + $gradeSecond;
+        $grade=round($grade,2);
+        return $grade;
     }
 }
