@@ -15,7 +15,6 @@ class CreatePerformancesTable extends Migration
     {
         Schema::create('performances', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->date('date');
             $table->integer('grade');
             $table->integer('points')->nullable();

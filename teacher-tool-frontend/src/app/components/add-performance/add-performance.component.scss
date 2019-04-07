@@ -1,0 +1,89 @@
+.radio-group {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 30px 0;
+}
+
+.radio-button {
+  margin: 5px;
+}
+form{
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-flow: wrap row;
+}
+.flex-wrapper-row {
+  display: flex;
+  flex-flow: column wrap;
+  //width: 30%;
+  flex-grow: 1;
+  min-width: 29%;
+}
+mat-card{
+  margin: 2.5px;
+  flex-grow: 1;
+}
+.grade-card{
+  min-width: 35%;
+}
+.semester-card{
+  cursor: pointer;
+  font-size: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &:hover{
+    background: #d3d3d3;
+  }
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.active{
+  background: rgba(255,64,129,0.1);
+  &:hover{
+    background: rgba(255,64,129,0.1);
+    cursor: default;
+  }
+}
+.assessment-card{
+  min-width: 30%;
+  flex: 1 1;
+  mat-card-title{
+    font-size: 17px;
+  }
+}
+.points-card{
+  min-width: 30%;
+  flex: 1 1;
+}
+.eintragen-button{
+  margin: 2.5px;
+  flex-grow: 1;
+}
+.show-more {
+  -webkit-transition: max-height 1s;
+  -moz-transition: max-height 1s;
+  -ms-transition: max-height 1s;
+  -o-transition: max-height 1s;
+  transition: max-height 1s;
+  overflow: hidden;
+  max-height: 0;
+}
+.show-more.show {
+  max-height: 300px;
+}
+.input-max-points{
+  margin-right: 10px;
+}
+.flex-wrapper-row-button {
+  display: flex;
+  flex-flow: column wrap;
+  //width: 30%;
+  flex-grow: 1;
+  min-width: 20%;
+}

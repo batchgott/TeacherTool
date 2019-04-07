@@ -1,0 +1,76 @@
+<form [formGroup]="performanceForm" [@fade]>
+  <div class="flex-wrapper-row">
+    <mat-card class="title-card">
+      <mat-card-title>
+        Bewertung eintragen
+      </mat-card-title>
+    </mat-card>
+    <mat-card>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" (dateChange)="dateChanged()" [(ngModel)]="date" id="date"
+               formControlName="date" placeholder="Datum">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="performanceForm.get('date').hasError('required')">
+          Ein Datum ist verlangt
+        </mat-error>
+      </mat-form-field>
+    </mat-card>
+  </div>
+  <mat-card class="grade-card">
+    <mat-card-title>
+      Note
+    </mat-card-title>
+    <mat-radio-group
+      aria-labelledby="radio-group-label"
+      label="radio-group-label"
+      class="radio-group"
+      [ngModelOptions]="{standalone: true}"
+      [(ngModel)]="grade">
+      <mat-radio-button class="radio-button" [value]="1">1</mat-radio-button>
+      <mat-radio-button class="radio-button" [value]="2">2</mat-radio-button>
+      <mat-radio-button class="radio-button" [value]="3">3</mat-radio-button>
+      <mat-radio-button class="radio-button" [value]="4">4</mat-radio-button>
+      <mat-radio-button class="radio-button" [value]="5">5</mat-radio-button>
+    </mat-radio-group>
+  </mat-card>
+  <div class="flex-wrapper-row">
+    <mat-card class="semester-card" [ngClass]="{'active':firstSemester}" (click)="firstSemester=true">
+      <span> 1.Semester</span>
+    </mat-card>
+    <mat-card class="semester-card" [ngClass]="{'active':!firstSemester}" (click)="firstSemester=false">
+      <span>2.Semester</span>
+    </mat-card>
+  </div>
+  <mat-card class="assessment-card">
+    <mat-form-field>
+      <mat-label>Bewertungsart</mat-label>
+      <mat-select [(ngModel)]="selectedAssessment" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let assessment of assessments|async"  [value]="assessment">
+          {{assessment.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="selectedAssessment==null">
+        Ein Bewertungsart ist verlangt
+      </mat-error>
+    </mat-form-field>
+  </mat-card>
+  <mat-card class="points-card">
+    <mat-checkbox [(ngModel)]="withPoints" [ngModelOptions]="{standalone: true}">Punkte vergeben</mat-checkbox>
+    <div *ngIf="withPoints">
+      <mat-form-field>
+        <input matInput type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="reachedPoints"
+               placeholder="Erreichte Punkte">
+      </mat-form-field>
+      <mat-form-field class="input-max-points">
+        <input matInput type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="maxPoints"
+               placeholder="Maximale Punktezahl">
+      </mat-form-field>
+    </div>
+  </mat-card>
+  <div class="flex-wrapper-row-button">
+  <button mat-flat-button color="primary" class="eintragen-button" (click)="addPerformance()" [disabled]="selectedAssessment==null||date==null">Eintragen</button>
+    <button mat-stroked-button class="eintragen-button" (click)="cancel()">Abbrechen</button>
+  </div>
+</form>
+

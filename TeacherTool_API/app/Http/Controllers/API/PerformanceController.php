@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Performance;
 use App\Subject;
 use App\SubjectAssessment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -31,7 +32,6 @@ class PerformanceController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'=>'required',
             'student_id' => 'required',
             'assessment_id' => 'required',
             'subject_id' => 'required',
@@ -44,11 +44,10 @@ class PerformanceController extends Controller
         ($request->isMethod('put'))?$status=204:null;
         $performance = $request->isMethod('put') ? Performance::findOrFail($request->id): new Performance();
 
-        $performance->name = $request->input('name');
         $performance->student_id = $request->input('student_id');
         $performance->assessment_id =  $request->input('assessment_id');
         $performance->subject_id =  $request->input('subject_id');
-        $performance->date =  $request->input('date');
+        $performance->date = Carbon::parse($request->input('date'));
         $performance->grade =  $request->input('grade');
         $performance->semester=$request->input('semester');
 

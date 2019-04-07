@@ -32,6 +32,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AssessmentTypeComponent } from './components/assessment-types/assessment-type/assessment-type.component';
 import { AddAssessmentDialogComponent } from './components/add-assessment-dialog/add-assessment-dialog.component';
 import { ChooseSpecificStudentDialogComponent } from './components/choose-specific-student-dialog/choose-specific-student-dialog.component';
+import { AddPerformanceComponent } from './components/add-performance/add-performance.component';
 
 
 
@@ -60,7 +61,8 @@ import { ChooseSpecificStudentDialogComponent } from './components/choose-specif
     AssessmentTypesComponent,
     AssessmentTypeComponent,
     AddAssessmentDialogComponent,
-    ChooseSpecificStudentDialogComponent
+    ChooseSpecificStudentDialogComponent,
+    AddPerformanceComponent
   ],
   imports: [
     BrowserModule,

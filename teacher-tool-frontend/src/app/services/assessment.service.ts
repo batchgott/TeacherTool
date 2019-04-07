@@ -7,12 +7,14 @@ import {Student} from '../models/student';
 import {environment} from '../../environments/environment';
 import {Subject} from '../models/subject';
 import {SubjectService} from './subject.service';
+import {b} from '@angular/core/src/render3';
 
 @Injectable()
 export class AssessmentService {
 
   private _assessments_normal:BehaviorSubject<Assessment[]>;
   private _assessments_participation:BehaviorSubject<Assessment[]>;
+  private _allAssessments:BehaviorSubject<Assessment[]>;
   editedData:BehaviorSubject<boolean>=new BehaviorSubject(false);
   editedData$=this.editedData.asObservable();
   participation_valence:BehaviorSubject<number>=new BehaviorSubject(0);
@@ -24,14 +26,20 @@ export class AssessmentService {
 
   private dataStore:{
     assessments_normal:Assessment[],
-    assessments_participation:Assessment[]
+    assessments_participation:Assessment[],
+    allAssessments:Assessment[]
   };
   
   constructor(private http:HttpClient,
               private subjectService:SubjectService) {
-    this.dataStore={assessments_normal:[],assessments_participation:[]};
+    this.dataStore={assessments_normal:[],assessments_participation:[],allAssessments:[]};
     this._assessments_normal=new BehaviorSubject<Assessment[]>([]);
     this._assessments_participation=new BehaviorSubject<Assessment[]>([]);
+    this._allAssessments=new BehaviorSubject<Assessment[]>([]);
+  }
+
+  get allAssessments():Observable<Assessment[]>{
+    return this._allAssessments.asObservable();
   }
 
   get assessments_normal():Observable<Assessment[]>{
@@ -52,6 +60,19 @@ export class AssessmentService {
 
   get assessments_participation():Observable<Assessment[]>{
     return this._assessments_participation.asObservable();
+  }
+
+  loadAllAssessmentsOfSubject(subject_id:number){
+    return this.http.get<Assessment[]>(environment.apiURL+"/subject/"+subject_id+"/assessments").subscribe(
+      data=>{
+        this.dataStore.allAssessments=data;
+        this.dataStore.allAssessments.sort((a,b)=>(a.type=='p'&&b.type=='n')?1:((a.type=='n'&&b.type=='p')?-1:0));
+        this._allAssessments.next(Object.assign({},this.dataStore).allAssessments);
+      },
+      error=>{
+        console.log("Failed to fetch assessments")
+      }
+    );
   }
 
   loadAssessmentsOfSubject_Normal(subject_id:number){

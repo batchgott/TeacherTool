@@ -40,9 +40,11 @@ export class ChooseStudentsDialogComponent implements OnInit {
     this.dialogRef.close({selectedStudents:this.selectedStudents,selectedStudent:this.selectedStudent});
   }
 
+
   openChooseSpecificStudentDialog() {
     let dialogRef=this.dialog.open(ChooseSpecificStudentDialogComponent,{
-      width:"700px"
+      width:"700px",
+      disableClose: true
     });
     dialogRef.componentInstance.entryStudents=this.entryStudents;
     if (this.selectedStudent!=null)
