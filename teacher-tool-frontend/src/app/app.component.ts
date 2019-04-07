@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
 
 
 @Component({
@@ -11,9 +12,14 @@ export class AppComponent {
 
 
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
-
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
   }
 }

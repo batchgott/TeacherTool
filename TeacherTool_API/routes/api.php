@@ -46,6 +46,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('performances','API\PerformanceController@index');
     Route::get('performance/{id}','API\PerformanceController@show');
     Route::post('performance','API\PerformanceController@store');
+    Route::post('performances','API\PerformanceController@storeRange');
     Route::put('performance','API\PerformanceController@store');
     Route::delete('performance/{id}','API\PerformanceController@destroy');
 

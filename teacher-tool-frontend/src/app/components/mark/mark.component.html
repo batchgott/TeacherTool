@@ -1,0 +1,55 @@
+<button mat-icon-button class="go-back-button" (click)="goBack()">
+  <mat-icon [inline]="true" aria-label="Zurück zur Fach-Übersicht">close</mat-icon>
+</button>
+<h2>Bewertungen eintragen</h2>
+<div class="wrapper">
+<mat-form-field>
+  <mat-label>Bewertungsart</mat-label>
+  <mat-select [(ngModel)]="selectedAssessment">
+    <mat-option *ngFor="let assessment of assessments|async"  [value]="assessment">
+      {{assessment.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" (dateChange)="dateChanged()" [(ngModel)]="date" placeholder="Datum">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+  <mat-radio-group
+    aria-labelledby="radio-group-label"
+    label="radio-group-label"
+    class="radio-semester"
+    [(ngModel)]="firstSemester">
+    <mat-radio-button class="radio-button" [value]="true">1.Semester</mat-radio-button>
+    <mat-radio-button class="radio-button" [value]="false">2.Semester</mat-radio-button>
+  </mat-radio-group>
+  <div class="max-point-wrapper">
+    <mat-checkbox [(ngModel)]="withPoints">Punkte vergeben</mat-checkbox>
+    <mat-form-field>
+      <input matInput placeholder="Maximale Punktezahl" [(ngModel)]="maxPoints" [disabled]="!withPoints">
+    </mat-form-field>
+  </div>
+</div>
+<mat-card *ngFor="let item of markList" [ngClass]="{'disabled':!item.attendant}">
+  <span>{{item.student.firstname+" "+ item.student.lastname}}</span>
+  <div style="flex-grow: 1"></div>
+  <mat-form-field *ngIf="withPoints">
+  <input matInput placeholder="Punkte" [(ngModel)]="item.points" [disabled]="!item.attendant">
+  </mat-form-field>
+  <mat-radio-group
+    aria-labelledby="radio-group-label"
+    label="radio-group-label"
+    class="radio-group"
+    [disabled]="!item.attendant"
+    [(ngModel)]="item.grade">
+    <mat-radio-button class="radio-button" [value]="1">1</mat-radio-button>
+    <mat-radio-button class="radio-button" [value]="2">2</mat-radio-button>
+    <mat-radio-button class="radio-button" [value]="3">3</mat-radio-button>
+    <mat-radio-button class="radio-button" [value]="4">4</mat-radio-button>
+    <mat-radio-button class="radio-button" [value]="5">5</mat-radio-button>
+  </mat-radio-group>
+  <mat-checkbox [(ngModel)]="item.attendant"></mat-checkbox>
+</mat-card>
+<button mat-flat-button color="primary" class="send-performances" (click)="createPerformances()" [disabled]="selectedAssessment==null||date==null">Bewertungen eintragen</button>
+

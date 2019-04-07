@@ -1,8 +1,8 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, NgZone, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Class} from '../../models/class';
 import {ClassService} from '../../services/class.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Subject} from '../../models/subject';
 import {Student} from '../../models/student';
 import {AddStudentDialogComponent} from '../add-student-dialog/add-student-dialog.component';

@@ -7,6 +7,7 @@ import {ClassUploadComponent} from '../components/class-upload/class-upload.comp
 import {StudentRandomizerComponent} from '../components/student-randomizer/student-randomizer.component';
 import {GradingKeyComponent} from '../components/grading-key/grading-key.component';
 import {SubjectOverviewComponent} from '../components/subject-overview/subject-overview.component';
+import {MarkComponent} from '../components/mark/mark.component';
 
 const appRoutes: Routes=[
   {path: 'class',component:ClassOverviewComponent},
@@ -17,6 +18,7 @@ const appRoutes: Routes=[
       {path:'grading',component:GradingKeyComponent}
     ]},
   {path:'class/:id/subject/:subjectid/random',component:StudentRandomizerComponent},
+  {path:'class/:id/subject/:subjectid/mark',component:MarkComponent},
   {path: '', redirectTo: 'class',pathMatch: 'full'},
   {path: '**', redirectTo: 'class',pathMatch: 'full'}
 ];

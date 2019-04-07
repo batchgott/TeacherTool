@@ -5,7 +5,7 @@
   <div class="class-options-card" *ngIf="!isScreenSmall()">
     <button mat-raised-button color="primary" class="subject-menu-button mat-elevation-z1" [disabled]="!selectedSubject" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'grading']">Notenschlüssel festlegen</button>
     <button mat-raised-button color="primary" class="subject-menu-button mat-elevation-z1" [disabled]="students.length<2" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'random']">Schüler auslosen</button>
-    <button mat-raised-button color="primary" class="subject-menu-button mat-elevation-z1 no-bottom-margin">Noten eintragen</button>
+    <button mat-raised-button color="primary" class="subject-menu-button mat-elevation-z1 no-bottom-margin" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'mark']">Noten eintragen</button>
   </div>
 </div>
 <mat-card *ngIf="selectedSubject">
@@ -24,8 +24,8 @@
   </eco-fab-speed-dial-trigger>
 
   <eco-fab-speed-dial-actions>
-    <button mat-mini-fab color="primary" matTooltip="Notenschlüssel festlegen"><mat-icon>settings</mat-icon></button>
+    <button mat-mini-fab color="primary" matTooltip="Noten eintragen" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'mark']"><mat-icon>edit</mat-icon></button>
     <button mat-mini-fab color="primary" matTooltip="Schüler auslosen" [disabled]="students.length<2" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'random']"><mat-icon>not_listed_location</mat-icon></button>
-    <button mat-mini-fab color="primary" matTooltip="Noten eintragen" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'grading']"><mat-icon>edit</mat-icon></button>
+    <button mat-mini-fab color="primary" matTooltip="Notenschlüssel festlegen" [routerLink]="['/class',class.id,'subject',selectedSubject.id,'grading']"><mat-icon>settings</mat-icon></button>
   </eco-fab-speed-dial-actions>
 </eco-fab-speed-dial>

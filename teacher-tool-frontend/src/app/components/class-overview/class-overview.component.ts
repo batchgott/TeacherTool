@@ -1,5 +1,5 @@
-import {AfterContentInit, Component, DoCheck, NgZone, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {AfterContentInit, AfterViewChecked, Component, DoCheck, NgZone, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {ClassService} from '../../services/class.service';
 import {Class} from '../../models/class';
 import get = Reflect.get;
@@ -76,7 +76,7 @@ export class ClassOverviewComponent implements OnInit,OnDestroy {
         if (this.selectedSubject != undefined)
         this.students=this.selectedSubject.students;
       });
-    })
+    });
   }
 
   openAddSubjectDialog() {

@@ -1,0 +1,72 @@
+.radio-group {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.radio-button {
+  margin: 5px;
+}
+mat-card{
+  margin-bottom: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+
+  span{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  mat-checkbox{
+    position: absolute;
+    margin-right: 30px;
+    right: 0;
+  }
+  mat-radio-group{
+    margin-right: 80px;
+  }
+  mat-form-field{
+    margin-right: 50px;
+    width: 55px;
+  }
+}
+.disabled{
+  background: rgba(158,158,158,0.2);
+}
+mat-form-field{
+  margin-right: 20px;
+}
+.wrapper{
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 0;
+}
+.radio-semester{
+  display: flex;
+  flex-flow: column wrap;
+}
+.max-point-wrapper{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  margin-left: 30px;
+
+  mat-checkbox{
+    margin-right: 20px;
+  }
+}
+.go-back-button{
+  top: 0;
+  float: right;
+  right: 0;
+  mat-icon{
+    //width: fit-content;
+    //height: fit-content;
+    font-size: 25pt;
+  }
+}
+h2{margin-top: 0}
+.send-performances{
+  height: 50px;
+  width: 200px;
+  float: right;
+}

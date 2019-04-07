@@ -58,11 +58,11 @@
   <mat-card class="points-card">
     <mat-checkbox [(ngModel)]="withPoints" [ngModelOptions]="{standalone: true}">Punkte vergeben</mat-checkbox>
     <div *ngIf="withPoints">
-      <mat-form-field>
+      <mat-form-field class="input-max-points" >
         <input matInput type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="reachedPoints"
                placeholder="Erreichte Punkte">
       </mat-form-field>
-      <mat-form-field class="input-max-points">
+      <mat-form-field >
         <input matInput type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="maxPoints"
                placeholder="Maximale Punktezahl">
       </mat-form-field>

@@ -50,11 +50,34 @@ class PerformanceController extends Controller
         $performance->date = Carbon::parse($request->input('date'));
         $performance->grade =  $request->input('grade');
         $performance->semester=$request->input('semester');
+        $performance->max_points=$request->input('max_points');
+        $performance->points=$request->input('points');
 
         if($performance->save()) {
             return response()->json($performance,$status);
         }
         return response(["msg"=>"An error occured"],404);
+    }
+
+    public function storeRange(Request $request){
+        $performances=$request->all();
+        $performanceArray=array();
+        foreach ($performances as $performance){
+            $temp=new Performance();
+            $temp->student_id=$performance['student_id'];
+            $temp->assessment_id=$performance['assessment_id'];
+            $temp->subject_id=$performance['subject_id'];
+            $temp->date=Carbon::parse($performance['date']);
+            $temp->grade=$performance['grade'];
+            $temp->semester=$performance['semester'];
+//            if (isset($performance['max_points']))
+            $temp->max_points=$performance['max_points'];
+//            if (isset($performance['points']))
+            $temp->points=$performance['points'];
+            $temp->save();
+            array_push($performanceArray,$temp);
+        }
+        return response()->json($performanceArray,200);
     }
 
     /**

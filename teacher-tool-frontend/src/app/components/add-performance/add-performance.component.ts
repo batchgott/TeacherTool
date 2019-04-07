@@ -70,6 +70,7 @@ export class AddPerformanceComponent implements OnInit {
   dateChanged() {
     let currentMonth=this.date.getMonth();
     this.firstSemester = !(currentMonth >= 1 && currentMonth < 8);
+    console.log(this.maxPoints);
   }
 
   addPerformance() {

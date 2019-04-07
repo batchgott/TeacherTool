@@ -33,6 +33,7 @@ import { AssessmentTypeComponent } from './components/assessment-types/assessmen
 import { AddAssessmentDialogComponent } from './components/add-assessment-dialog/add-assessment-dialog.component';
 import { ChooseSpecificStudentDialogComponent } from './components/choose-specific-student-dialog/choose-specific-student-dialog.component';
 import { AddPerformanceComponent } from './components/add-performance/add-performance.component';
+import { MarkComponent } from './components/mark/mark.component';
 
 
 
@@ -62,7 +63,8 @@ import { AddPerformanceComponent } from './components/add-performance/add-perfor
     AssessmentTypeComponent,
     AddAssessmentDialogComponent,
     ChooseSpecificStudentDialogComponent,
-    AddPerformanceComponent
+    AddPerformanceComponent,
+    MarkComponent
   ],
   imports: [
     BrowserModule,

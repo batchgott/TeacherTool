@@ -4,6 +4,7 @@ import {Class} from '../models/class';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Performance} from '../models/performance';
+import {Student} from '../models/student';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,15 @@ export class PerformanceService {
           }
         );
     });
+  }
+
+  addRangeOfPerformances(performances:Performance[]) {
+    return this.http.post<Performance[]>(environment.apiURL+"/performances",performances).subscribe(
+      data=>{},
+      error=>{
+        console.log("Failed to add range of performance")
+      }
+    );
   }
 
   deletePerformance(id: number) {

@@ -1,5 +1,5 @@
 import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {MatDialog, MatDrawer, MatSnackBar, MatSnackBarRef, SimpleSnackBar} from '@angular/material';
 import {Observable} from 'rxjs';
 import {Class} from '../../models/class';
@@ -51,6 +51,12 @@ export class ClassesMenuComponent implements OnInit {
     });
     this.settingsService.loadSettings();
     this.darkTheme_enabled=this.settingsService.dark_theme;
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
   }
 
   isScreenSmall():boolean {
