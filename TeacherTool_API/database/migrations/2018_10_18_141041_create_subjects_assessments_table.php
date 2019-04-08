@@ -19,8 +19,8 @@ class CreateSubjectsAssessmentsTable extends Migration
             $table->char('type')->default('n');
             $table->integer('subject_id')->unsigned();
             $table->integer('assessment_id')->unsigned();
-            $table->foreign('subject_id')->references('id')->on('subjects');
-            $table->foreign('assessment_id')->references('id')->on('assessments');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('assessment_id')->references('id')->on('assessments')->onDelete('cascade');
 
             $table->timestamps();
         });
