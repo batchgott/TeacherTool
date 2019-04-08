@@ -55,7 +55,7 @@ class SubjectController extends Controller
         $subject->class_id =  $request->input('class_id');
         $request->input('first_semester_numerator')==null?
             null:
-            $subject->first_semester_denominator=$request->input('first_semester_numerator');
+            $subject->first_semester_numerator=$request->input('first_semester_numerator');
         $request->input('first_semester_denominator')==null?
             null:
             $subject->first_semester_denominator=$request->input('first_semester_denominator');

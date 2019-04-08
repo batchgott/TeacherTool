@@ -23,9 +23,9 @@ class CreatePerformancesTable extends Migration
             $table->integer('student_id')->unsigned();
             $table->integer('assessment_id')->unsigned();
             $table->integer('subject_id')->unsigned();
-            $table->foreign('student_id')->references('id')->on('students');
-            $table->foreign('assessment_id')->references('id')->on('assessments');
-            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');;
+            $table->foreign('assessment_id')->references('id')->on('assessments')->onDelete('cascade');;
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');;
             $table->timestamps();
         });
     }
