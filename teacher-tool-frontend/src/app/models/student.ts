@@ -3,6 +3,6 @@ export class Student {
   firstname:string;
   lastname:string;
   class_id:number;
-  currentGrade:number;
+  grade:number;
 
 }

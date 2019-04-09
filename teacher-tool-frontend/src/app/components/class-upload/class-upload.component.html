@@ -23,19 +23,20 @@
     </mat-select>
   </mat-form-field>
 </form>
-
-
-<input type='file' mat-ripple="true" (change)="fileChanged($event)">
+  <button mat-stroked-button (click)="fileInput.click()">
+    <mat-icon>cloud_upload</mat-icon>
+    <span>CSV-Datei hochladen</span>
+    <input #fileInput type="file" (change)="fileChanged($event)" style="display:none;" />
+  </button>
 
 
 <div cdkDropListGroup class="box-wrapper">
   <div class="example-container">
-    <h2>Elements</h2>
-    <div  [class.elements]="fileUploaded" cdk-scrollable>
+    <h2>Elemente</h2>
+    <div class="beforeUpload" [class.elements]="fileUploaded" cdk-scrollable>
     <div
       cdkDropList
       [cdkDropListData]="splitted"
-      class="example-list"
       (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of splitted"cdkDrag [cdkDragData]="item">{{item}}</div>
     </div>
@@ -44,7 +45,7 @@
 
   <div class="right-wrapper">
   <div class="example-container">
-    <h2>Firstname</h2>
+    <h2>Vorname</h2>
 
     <div
       cdkDropList
@@ -59,8 +60,7 @@
 
   </div>
   <div class="example-container">
-    <h2>Lastname</h2>
-
+    <h2>Nachname</h2>
     <div
       cdkDropList
       [cdkDropListData]="lastName"
@@ -73,9 +73,9 @@
     </div>
 
   </div>
-    <div mat-dialog-actions class="mat-dialog-actions">
-      <button mat-button type="submit" [disabled]="!classForm.valid" (click)="createClass()">Erstellen</button>
-      <button mat-button (click)="cancel()">Abbrechen</button>
-    </div>
   </div>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button mat-button type="submit" [disabled]="!classForm.valid" (click)="createClass()">Erstellen</button>
+  <button mat-button (click)="cancel()">Abbrechen</button>
 </div>

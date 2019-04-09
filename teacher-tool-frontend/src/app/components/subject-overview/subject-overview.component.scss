@@ -53,3 +53,16 @@ mat-card-header{
     background: #d3d3d3;
   }
 }
+
+.grade-card{
+  float: right;
+
+}
+
+.grade-color{
+  background: rgba(181, 5, 5,0.2);
+
+  &:hover{
+    background: rgba(181, 5, 5,0.7);
+  }
+}

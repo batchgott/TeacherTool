@@ -34,6 +34,7 @@ import { AddAssessmentDialogComponent } from './components/add-assessment-dialog
 import { ChooseSpecificStudentDialogComponent } from './components/choose-specific-student-dialog/choose-specific-student-dialog.component';
 import { AddPerformanceComponent } from './components/add-performance/add-performance.component';
 import { MarkComponent } from './components/mark/mark.component';
+import { CompleteYearComponent } from './components/complete-year/complete-year.component';
 
 
 
@@ -64,7 +65,8 @@ import { MarkComponent } from './components/mark/mark.component';
     AddAssessmentDialogComponent,
     ChooseSpecificStudentDialogComponent,
     AddPerformanceComponent,
-    MarkComponent
+    MarkComponent,
+    CompleteYearComponent
   ],
   imports: [
     BrowserModule,

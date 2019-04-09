@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Subject} from '../models/subject';
+import {CompleteYearService} from './complete-year.service';
 
 
 @Injectable({
@@ -17,7 +18,8 @@ export class ClassService {
     classes:Class[]
   };
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,
+              private completeYearService:CompleteYearService) {
     this.dataStore={classes:[]};
     this._classes=new BehaviorSubject<Class[]>([]);
   }
@@ -31,7 +33,7 @@ export class ClassService {
   }
 
   loadAll(){
-    return this.http.get<Class[]>(environment.apiURL+"/classes").subscribe(
+    return this.http.get<Class[]>(environment.apiURL+"/classes?grade").subscribe(
       data=>{
         this.dataStore.classes=data;
         this._classes.next(Object.assign({},this.dataStore).classes);
@@ -52,6 +54,7 @@ export class ClassService {
         .toPromise()
         .then(
           res => {
+            this.completeYearService.loadAll();
             resolve(res);
           },
           msg => {

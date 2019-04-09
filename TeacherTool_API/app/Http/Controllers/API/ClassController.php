@@ -14,15 +14,17 @@ class ClassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $classes=Clas::all()->where('archieved',0);
         foreach( $classes as $class){
             $subjects=$class->subjects();
             foreach ($subjects as $subject) {
                 $students=$class->students();
-                foreach ($students as $student)
-                    $student["currentGrade"]=0;
+                if($request->has('grade')) {
+                    foreach ($students as $student)
+                        $student["grade"] = $subject->currentGrade($student->id,$subject->id);
+                }
                 $subject["students"] = $students;
             }
             $class["subjects"]=$subjects;

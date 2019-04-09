@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Performance} from '../models/performance';
 import {Student} from '../models/student';
+import {ClassService} from './class.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class PerformanceService {
     performances:Performance[]
   };
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,
+              private classService:ClassService) {
     this.dataStore={performances:[]};
     this._performances=new BehaviorSubject<Performance[]>([]);
   }
@@ -58,7 +60,7 @@ export class PerformanceService {
 
   addRangeOfPerformances(performances:Performance[]) {
     return this.http.post<Performance[]>(environment.apiURL+"/performances",performances).subscribe(
-      data=>{},
+      data=>{this.classService.loadAll()},
       error=>{
         console.log("Failed to add range of performance")
       }

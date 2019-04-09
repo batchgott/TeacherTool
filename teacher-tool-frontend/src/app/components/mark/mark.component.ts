@@ -122,6 +122,7 @@ export class MarkComponent implements OnInit {
       if (result) {
         this.performanceService.addRangeOfPerformances(performances);
         this.router.navigate(['/class',this.class.id,'subject',this.selectedSubject.id]);
+
       }
     });
   }

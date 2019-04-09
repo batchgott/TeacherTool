@@ -11,7 +11,9 @@
 <mat-card *ngIf="selectedSubject">
   <h3>Schüler</h3>
   <mat-action-list>
-    <button mat-list-item class="student-list-item" *ngFor="let student of students">{{student.firstname}} {{student.lastname}}</button>
+    <button mat-list-item class="student-list-item" [ngClass]="{'grade-color': student.grade>4.49}"  *ngFor="let student of students">
+      <span>{{student.firstname+" "+ student.lastname}}</span>
+      <div style="flex-grow: 1"></div><span  style="font-size: 20px">{{student.grade}}</span></button>
   </mat-action-list>
   <button mat-button class="add-student-button" color="accent" (click)="openAddStudentDialog()">
     <mat-icon>add</mat-icon>

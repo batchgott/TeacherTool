@@ -1,0 +1,14 @@
+<h1>Jahresabschluss</h1>
+<div cdkDropListGroup class="box-wrapper">
+  <div class="example-container" *ngFor="let item of groupedbyLevel">
+    <h2>{{item.level}}. Stufe</h2>
+      <div
+        cdkDropList
+        class="example-list"
+        [cdkDropListData]="item.classes"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let element of item.classes"cdkDrag [cdkDragData]="item">{{element.name}}</div>
+      </div>
+    </div>
+</div>
+

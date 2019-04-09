@@ -11,8 +11,8 @@
     <mat-icon class="icon">more_vert</mat-icon>
   </button>
   <mat-menu  #menu="matMenu">
-    <button mat-menu-item (click)="finishYear()"><mat-icon>done_outline</mat-icon>Jahresabschluss</button>
-    <button mat-menu-item (click)="finishYear()"><mat-icon>archive</mat-icon>Archiv</button>
+    <button mat-menu-item [routerLink]="['/complete']"><mat-icon>done_outline</mat-icon>Jahresabschluss</button>
+    <button mat-menu-item><mat-icon>archive</mat-icon>Archiv</button>
     <div mat-menu-item class="no-hover-effect" (click)="$event.stopPropagation();" disableRipple >
     <mat-slide-toggle labelPosition="before" color="accent" [checked]="darkTheme_enabled | async" (change)="toggleTheme()">Dark Theme</mat-slide-toggle>
     </div>
