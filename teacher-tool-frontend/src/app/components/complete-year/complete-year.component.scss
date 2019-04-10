@@ -54,4 +54,7 @@
 .box-wrapper{
   display: flex;
   width: 100%;
+  flex-flow: row wrap;
 }
+
+button{float: right}

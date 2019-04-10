@@ -41,7 +41,6 @@ use Illuminate\Support\Facades\Route;
     Route::post('students','API\StudentController@storeRange');
     Route::put('student','API\StudentController@store');
     Route::delete('student/{id}','API\StudentController@destroy');
-    Route::get('student/{student_id}/subject/{subject_id}/grade', 'API\PerformanceController@currentGrade');
 
     Route::get('performances','API\PerformanceController@index');
     Route::get('performance/{id}','API\PerformanceController@show');

@@ -1,3 +1,4 @@
+<h1>Jahresabschluss</h1>
 <mat-tab-group>
   <mat-tab label="Fächer">
     <mat-accordion>
@@ -8,7 +9,7 @@
           </mat-panel-title>
           <mat-panel-description>
             <mat-form-field class="input-name">
-              <input matInput type="text" placeholder="neuer Name"  [(ngModel)]="item.newname">
+              <input matInput type="text" placeholder="neuer Name"  [(ngModel)]="item.newname" (ngModelChange)="finishPrediacte()">
             </mat-form-field>
           </mat-panel-description>
         </mat-expansion-panel-header>
@@ -28,7 +29,7 @@
           </mat-panel-title>
           <mat-panel-description>
             <mat-form-field class="input-name">
-              <input matInput type="text" placeholder="neuer Name"  [(ngModel)]="item.newname">
+              <input matInput type="text" placeholder="neuer Name"  [(ngModel)]="item.newname" (ngModelChange)="finishPrediacte()">
             </mat-form-field>
           </mat-panel-description>
         </mat-expansion-panel-header>
@@ -41,5 +42,5 @@
   </mat-tab>
 </mat-tab-group>
 <button mat-flat-button class="backButton" color="primary" [routerLink]="['/complete']">Zurück</button>
-<button mat-flat-button class="finishButton"  color="primary" [routerLink]="['']">Jahr abschließen</button>
+<button mat-flat-button class="finishButton" [disabled]="!isFinished" (click)="finishYear()" color="primary" [routerLink]="['']">Jahr abschließen</button>
 

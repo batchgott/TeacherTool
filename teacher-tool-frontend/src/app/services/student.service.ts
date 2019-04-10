@@ -88,4 +88,12 @@ export class StudentService {
       }
     );
   }
+  updateStudent(student:Student) {
+    return this.http.put(environment.apiURL+"/student/",student).subscribe(
+      data=>{},
+      error=>{
+        console.log("Failed to delete class")
+      }
+    );
+  }
 }
