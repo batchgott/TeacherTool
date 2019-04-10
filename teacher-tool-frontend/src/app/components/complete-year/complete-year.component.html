@@ -5,10 +5,23 @@
       <div
         cdkDropList
         class="example-list"
+        [id]="item.level"
+        [cdkDropListEnterPredicate]="allowRising"
         [cdkDropListData]="item.classes"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let element of item.classes"cdkDrag [cdkDragData]="item">{{element.name}}</div>
+        <div class="example-box" *ngFor="let element of item.classes"cdkDrag [cdkDragData]="element">{{element.name}}</div>
       </div>
     </div>
+  <div class="example-container" >
+    <h2>Archiviert</h2>
+    <div
+      cdkDropList
+      class="example-list"
+      [cdkDropListData]="archieved"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of archieved"cdkDrag [cdkDragData]="item">{{item.name}}</div>
+    </div>
+  </div>
 </div>
+<button mat-flat-button color="primary" (click)="finishedRising()" [routerLink]="['/complete/editclasses']">Weiter</button>
 

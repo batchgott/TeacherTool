@@ -9,6 +9,7 @@ import {GradingKeyComponent} from '../components/grading-key/grading-key.compone
 import {SubjectOverviewComponent} from '../components/subject-overview/subject-overview.component';
 import {MarkComponent} from '../components/mark/mark.component';
 import {CompleteYearComponent} from '../components/complete-year/complete-year.component';
+import {CompleteYearEditClassesComponent} from '../components/complete-year-edit-classes/complete-year-edit-classes.component';
 
 const appRoutes: Routes=[
   {path: 'class',component:ClassOverviewComponent},
@@ -21,6 +22,7 @@ const appRoutes: Routes=[
   {path:'class/:id/subject/:subjectid/random',component:StudentRandomizerComponent},
   {path:'class/:id/subject/:subjectid/mark',component:MarkComponent},
   {path:'complete',component:CompleteYearComponent},
+  {path:'complete/editclasses',component:CompleteYearEditClassesComponent},
   {path: '', redirectTo: 'class',pathMatch: 'full'},
   {path: '**', redirectTo: 'class',pathMatch: 'full'}
 ];

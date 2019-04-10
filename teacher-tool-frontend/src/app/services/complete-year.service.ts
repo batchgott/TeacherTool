@@ -11,6 +11,8 @@ export class CompleteYearService {
 
   private _classes:BehaviorSubject<Class[]>;
 
+  public groupedbyLevel: {classes: Class[], level:number }[]=[];
+
   private dataStore:{
     classes:Class[]
   };

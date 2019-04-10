@@ -1,0 +1,39 @@
+mat-checkbox{
+  float: right;
+  margin-right: 20px;
+}
+
+mat-expansion-panel-header{
+  margin-bottom: 5px;
+  height: 52px;
+  padding-left: 16px;
+}
+mat-expansion-panel {
+  width: 100%;
+}
+.input-name{
+  float: right;
+  margin-right: 14px;
+  margin-top: 16px;
+  color: black;
+}
+mat-panel-title{
+  margin-top: 22px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+}
+
+.remove{
+  background: #d3d3d3;
+}
+
+.backButton{
+  margin-top: 30px;
+  float: left;
+}
+
+.finishButton{
+  margin-top: 30px;
+  float: right;
+}

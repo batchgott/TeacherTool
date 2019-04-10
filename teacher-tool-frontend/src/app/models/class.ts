@@ -1,4 +1,5 @@
 import {Subject} from './subject';
+import {Student} from './student';
 
 export class Class {
 

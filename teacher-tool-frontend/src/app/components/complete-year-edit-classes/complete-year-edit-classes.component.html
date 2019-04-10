@@ -1,0 +1,45 @@
+<mat-tab-group>
+  <mat-tab label="Fächer">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let item of classes">
+        <mat-expansion-panel-header [collapsedHeight]="'57px'" class="right-aligned-header">
+          <mat-panel-title>
+            {{item.name}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <mat-form-field class="input-name">
+              <input matInput type="text" placeholder="neuer Name"  [(ngModel)]="item.newname">
+            </mat-form-field>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-card *ngFor="let elements of item.subjects" [class.remove]="!elements.attend">
+          <span>{{elements.subject.name}}</span>
+          <mat-checkbox [(ngModel)]="elements.attend" (change)="toogleSubject(elements,item)" ></mat-checkbox>
+        </mat-card>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+  <mat-tab label="Schüler">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let item of classes">
+        <mat-expansion-panel-header [collapsedHeight]="'57px'" class="right-aligned-header">
+          <mat-panel-title>
+            {{item.name}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <mat-form-field class="input-name">
+              <input matInput type="text" placeholder="neuer Name"  [(ngModel)]="item.newname">
+            </mat-form-field>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-card  *ngFor="let elements of item.students" [class.remove]="!elements.attend" >
+            <span>{{elements.student.firstname}} {{elements.student.lastname}}</span>
+          <mat-checkbox [(ngModel)]="elements.attend" (change)="toggleStudent(elements,item)"></mat-checkbox>
+        </mat-card>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+</mat-tab-group>
+<button mat-flat-button class="backButton" color="primary" [routerLink]="['/complete']">Zurück</button>
+<button mat-flat-button class="finishButton"  color="primary" [routerLink]="['']">Jahr abschließen</button>
+

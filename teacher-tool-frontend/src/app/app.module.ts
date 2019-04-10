@@ -35,6 +35,7 @@ import { ChooseSpecificStudentDialogComponent } from './components/choose-specif
 import { AddPerformanceComponent } from './components/add-performance/add-performance.component';
 import { MarkComponent } from './components/mark/mark.component';
 import { CompleteYearComponent } from './components/complete-year/complete-year.component';
+import { CompleteYearEditClassesComponent } from './components/complete-year-edit-classes/complete-year-edit-classes.component';
 
 
 
@@ -66,7 +67,8 @@ import { CompleteYearComponent } from './components/complete-year/complete-year.
     ChooseSpecificStudentDialogComponent,
     AddPerformanceComponent,
     MarkComponent,
-    CompleteYearComponent
+    CompleteYearComponent,
+    CompleteYearEditClassesComponent
   ],
   imports: [
     BrowserModule,
