@@ -79,6 +79,20 @@ export class StudentService {
         );
     });
   }
+  addStudentCompleteYear(student: Student){
+    return new Promise((resolve, reject) => {
+      this.http.post<Student>(environment.apiURL + "/student", student)
+        .toPromise()
+        .then(
+          res => {
+            resolve(res);
+          },
+          msg => {
+            reject(msg);
+          }
+        );
+    });
+  }
 
   deleteStudent(id: number) {
     return this.http.delete(environment.apiURL+"/student/"+id).subscribe(

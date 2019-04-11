@@ -177,13 +177,13 @@ export class CompleteYearEditClassesComponent implements OnInit {
         {
           if(this.classes[i].students[x].attend) {
             this.classes[i].students[x].student.class_id = result.id;
-            this.studentService.addStudent(this.classes[i].students[x].student);
+            this.studentService.addStudentCompleteYear(this.classes[i].students[x].student);
           }
         }
-
+        if(this.classes.length-1==i)
+        this.classService.loadAll();
       });
     }
-
   }
 
 }
