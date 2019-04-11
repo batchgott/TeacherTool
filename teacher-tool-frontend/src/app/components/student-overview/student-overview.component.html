@@ -1,0 +1,5 @@
+<h1 *ngIf="student">{{student.firstname+" "+student.lastname}} <mat-icon class="edit-icon" (click)="edit()">edit</mat-icon></h1>
+<mat-card *ngFor="let performance of performances">
+  <span><strong>Typ: </strong>{{performance.assessment_name}}</span>
+  <span><strong>Datum: </strong>{{performance.date |date:'dd.MM.yyyy'}}</span>
+</mat-card>

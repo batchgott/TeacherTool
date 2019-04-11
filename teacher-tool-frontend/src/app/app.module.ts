@@ -37,6 +37,8 @@ import { MarkComponent } from './components/mark/mark.component';
 import { CompleteYearComponent } from './components/complete-year/complete-year.component';
 import { CompleteYearEditClassesComponent } from './components/complete-year-edit-classes/complete-year-edit-classes.component';
 import { EditSubjectDialogComponent } from './components/edit-subject-dialog/edit-subject-dialog.component';
+import { StudentOverviewComponent } from './components/student-overview/student-overview.component';
+import { EditStudentDialogComponent } from './components/edit-student-dialog/edit-student-dialog.component';
 
 
 
@@ -70,7 +72,9 @@ import { EditSubjectDialogComponent } from './components/edit-subject-dialog/edi
     MarkComponent,
     CompleteYearComponent,
     CompleteYearEditClassesComponent,
-    EditSubjectDialogComponent
+    EditSubjectDialogComponent,
+    StudentOverviewComponent,
+    EditStudentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +100,8 @@ import { EditSubjectDialogComponent } from './components/edit-subject-dialog/edi
     EditClassDialogComponent,
     AddAssessmentDialogComponent,
     ChooseSpecificStudentDialogComponent,
-    EditSubjectDialogComponent
+    EditSubjectDialogComponent,
+    EditStudentDialogComponent
   ]
 })
 export class AppModule { }
