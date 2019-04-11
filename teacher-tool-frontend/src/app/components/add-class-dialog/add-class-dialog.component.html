@@ -1,8 +1,9 @@
-<mat-dialog-content>
 <h1 mat-dialog-title>Klasse erstellen</h1>
 <mat-tab-group [dynamicHeight]="true">
   <mat-tab label="CSV-Import">
+    <mat-dialog-content>
     <app-class-upload></app-class-upload>
+    </mat-dialog-content>
   </mat-tab>
   <mat-tab label="Erstellen">
       <form [formGroup]="classForm">
@@ -36,4 +37,4 @@
     </div>
   </mat-tab>
 </mat-tab-group>
-</mat-dialog-content>
+
