@@ -17,19 +17,12 @@ export class CompleteYearComponent implements OnInit {
   groupedbyLevel: {classes: Class[], level:number }[]=[];
   archieved:Class[]=[];
   ngOnInit() {
+
     this.completeYearService.classes.subscribe(classes => {
       this.groupedbyLevel=[];
-      if (classes.length == 0) {
-        this.completeYearService.loadAll();
-      }
-
       let maxLevel=0;
       for (let i=0; i<classes.length; i++)
       {
-        if(classes[i].subjects.length==0)
-        {
-          this.completeYearService.loadAll();
-        }
         if(classes[i].max_level>maxLevel)
         {
           maxLevel=classes[i].max_level;
@@ -46,6 +39,7 @@ export class CompleteYearComponent implements OnInit {
         this.groupedbyLevel.push({level:i+1,classes: classofLevel });
       }
     });
+    this.completeYearService.loadAll();
   }
 
   allowRising( item: CdkDrag<Class>, level: CdkDropList) {
