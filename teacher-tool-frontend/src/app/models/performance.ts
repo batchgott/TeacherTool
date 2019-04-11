@@ -8,4 +8,5 @@ export class Performance {
   student_id:number;
   assessment_id:number;
   subject_id:number;
+  assessment_name:string;
 }

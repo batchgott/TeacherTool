@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Schüler bearbeiten</h1>
+<div mat-dialog-content [ngClass]="{'dark-theme': darkTheme_enabled | async}">
+  <form [formGroup]="studentForm">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Vorname" id="firstName" formControlName="firstName">
+      <mat-error *ngIf="studentForm.get('firstName').hasError('required')">
+        Ein Vorname ist verlangt
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Nachname" id="lastName" formControlName="lastName">
+      <mat-error *ngIf="studentForm.get('lastName').hasError('required')">
+        Ein Nachname ist verlangt
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button mat-button type="submit" [disabled]="!studentForm.valid" (click)="editStudent()">Bearbeiten</button>
+  <button mat-button (click)="cancel()">Abbrechen</button>
+</div>

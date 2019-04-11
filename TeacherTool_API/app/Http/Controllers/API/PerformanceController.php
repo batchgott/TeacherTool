@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Assessment;
 use App\Performance;
 use App\Subject;
 use App\SubjectAssessment;
@@ -19,6 +20,9 @@ class PerformanceController extends Controller
     public function index()
     {
         $performances=Performance::all();
+        foreach ($performances as $performance){
+            $performance['assessment_name']=Assessment::find($performance->assessment_id)->name;
+        }
         return response()->json($performances,200);
     }
 
