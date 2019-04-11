@@ -8,8 +8,20 @@
 
 mat-card{
   margin-bottom: 5px;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 span{
   margin-right: 15px;
+}
+.go-back-button{
+  top: 0;
+  float: right;
+  right: 0;
+  mat-icon{
+    //width: fit-content;
+    //height: fit-content;
+    font-size: 25pt;
+  }
 }

@@ -1,5 +1,11 @@
+<button mat-icon-button class="go-back-button" [routerLink]="['/class',class?.id,'subject',subject?.id]">
+  <mat-icon [inline]="true" aria-label="Zurück zur Fach-Übersicht">close</mat-icon>
+</button>
 <h1 *ngIf="student">{{student.firstname+" "+student.lastname}} <mat-icon class="edit-icon" (click)="edit()">edit</mat-icon></h1>
 <mat-card *ngFor="let performance of performances">
   <span><strong>Typ: </strong>{{performance.assessment_name}}</span>
   <span><strong>Datum: </strong>{{performance.date |date:'dd.MM.yyyy'}}</span>
+  <span><strong>Note: </strong>{{performance.grade}}</span>
+  <span *ngIf="performance.points"><strong>Punkte: </strong>{{performance.points}}</span>
+  <span *ngIf="performance.max_points"><strong>Maximale Punkte: </strong>{{performance.max_points}}</span>
 </mat-card>

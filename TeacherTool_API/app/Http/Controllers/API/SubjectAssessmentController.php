@@ -111,8 +111,11 @@ class SubjectAssessmentController extends Controller
     public function destroy($subject_id,$assessment_id)
     {
         $sa=SubjectAssessment::all()->where("subject_id",$subject_id)->where("assessment_id",$assessment_id)->first();
-        if($sa->delete())
-            return response()->json([],202);
+        if($sa->delete()) {
+            $assessment=Assessment::find($assessment_id);
+            $assessment->delete();
+            return response()->json([], 202);
+        }
         return response()->json(["msg"=>"an error occured"],404);
     }
 }
