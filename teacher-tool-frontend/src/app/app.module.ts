@@ -39,6 +39,8 @@ import { CompleteYearEditClassesComponent } from './components/complete-year-edi
 import { EditSubjectDialogComponent } from './components/edit-subject-dialog/edit-subject-dialog.component';
 import { StudentOverviewComponent } from './components/student-overview/student-overview.component';
 import { EditStudentDialogComponent } from './components/edit-student-dialog/edit-student-dialog.component';
+import { AddPerformanceDialogComponent } from './components/add-performance-dialog/add-performance-dialog.component';
+import { EditPerformanceDialogComponent } from './components/edit-performance-dialog/edit-performance-dialog.component';
 
 
 
@@ -74,7 +76,9 @@ import { EditStudentDialogComponent } from './components/edit-student-dialog/edi
     CompleteYearEditClassesComponent,
     EditSubjectDialogComponent,
     StudentOverviewComponent,
-    EditStudentDialogComponent
+    EditStudentDialogComponent,
+    AddPerformanceDialogComponent,
+    EditPerformanceDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +105,9 @@ import { EditStudentDialogComponent } from './components/edit-student-dialog/edi
     AddAssessmentDialogComponent,
     ChooseSpecificStudentDialogComponent,
     EditSubjectDialogComponent,
-    EditStudentDialogComponent
+    EditStudentDialogComponent,
+    AddPerformanceDialogComponent,
+    EditPerformanceDialogComponent
   ]
 })
 export class AppModule { }
