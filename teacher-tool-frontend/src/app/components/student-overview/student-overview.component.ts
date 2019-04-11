@@ -11,6 +11,9 @@ import {EditStudentDialogComponent} from '../edit-student-dialog/edit-student-di
 import {PerformanceService} from '../../services/performance.service';
 import {Observable} from 'rxjs';
 import {Performance} from '../../models/performance';
+import {ConfirmationDialogComponent} from '../../shared/confirmation-dialog.component';
+import {AddPerformanceDialogComponent} from '../add-performance-dialog/add-performance-dialog.component';
+import {EditPerformanceDialogComponent} from '../edit-performance-dialog/edit-performance-dialog.component';
 
 @Component({
   selector: 'app-student-overview',
@@ -57,5 +60,40 @@ export class StudentOverviewComponent implements OnInit {
     });
     dialogRef.componentInstance.student=this.student;
     dialogRef.componentInstance.class_id = this.class.id;
+  }
+
+  removePerformance(performance:Performance) {
+    let dialogRef=this.dialog.open(ConfirmationDialogComponent);
+    dialogRef.componentInstance.message="Sind Sie sicher, dass Sie die Bewertung löschen wollen?";
+    dialogRef.afterClosed().subscribe(result=>{
+      if (result) {
+        this.performanceService.deletePerformance(performance.id);
+      }
+    });
+  }
+
+  openAddPerformanceDialog() {
+    let dialogRef=this.dialog.open(AddPerformanceDialogComponent);
+    dialogRef.componentInstance.class=this.class;
+    dialogRef.componentInstance.subject=this.subject;
+    dialogRef.componentInstance.student=this.student;
+    dialogRef.afterClosed().subscribe(data=>{
+      if (data){
+        this.performanceService.loadAll();
+      }
+    })
+  }
+
+  editPerformance(performance: Performance) {
+    let dialogRef=this.dialog.open(EditPerformanceDialogComponent);
+    dialogRef.componentInstance.class=this.class;
+    dialogRef.componentInstance.subject=this.subject;
+    dialogRef.componentInstance.student=this.student;
+    dialogRef.componentInstance.performance=performance;
+    dialogRef.afterClosed().subscribe(data=>{
+      if (data){
+        this.performanceService.loadAll();
+      }
+    })
   }
 }

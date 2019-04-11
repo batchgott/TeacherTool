@@ -5,7 +5,19 @@
 <mat-card *ngFor="let performance of performances">
   <span><strong>Typ: </strong>{{performance.assessment_name}}</span>
   <span><strong>Datum: </strong>{{performance.date |date:'dd.MM.yyyy'}}</span>
+  <span><strong>Semester: </strong>{{performance.semester}}</span>
   <span><strong>Note: </strong>{{performance.grade}}</span>
   <span *ngIf="performance.points"><strong>Punkte: </strong>{{performance.points}}</span>
   <span *ngIf="performance.max_points"><strong>Maximale Punkte: </strong>{{performance.max_points}}</span>
+  <div style="flex-grow: 1"></div>
+  <i class="material-icons icons" (click)="editPerformance(performance)" matTooltip="Bewertung bearbeiten">
+    edit
+  </i>
+  <i class="material-icons" (click)="removePerformance(performance)" matTooltip="Bewertung entfernen">
+    delete
+  </i>
 </mat-card>
+<button mat-button class="add-student-button" color="accent" (click)="openAddPerformanceDialog()">
+  <mat-icon>add</mat-icon>
+  Bewertung
+</button>

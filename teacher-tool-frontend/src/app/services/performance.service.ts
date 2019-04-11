@@ -49,6 +49,7 @@ export class PerformanceService {
         .toPromise()
         .then(
           res => {
+            this.loadAll();
             resolve(res);
           },
           msg => {
