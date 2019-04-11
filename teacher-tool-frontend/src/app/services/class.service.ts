@@ -44,6 +44,23 @@ export class ClassService {
     );
   }
 
+  loadAllwithPromise(){
+    return new Promise((resolve, reject) => {
+      this.http.get<Class[]>(environment.apiURL+"/classes?grade")
+        .toPromise()
+        .then(
+          res => {
+            this.dataStore.classes=res;
+            this._classes.next(Object.assign({},this.dataStore).classes);
+            resolve(res);
+          },
+          msg => {
+            reject(msg);
+          }
+        );
+    });
+  }
+
   classArrayById(index: number):Class {
     return this.dataStore.classes[index];
   }

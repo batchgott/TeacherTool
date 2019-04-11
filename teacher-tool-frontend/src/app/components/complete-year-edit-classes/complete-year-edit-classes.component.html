@@ -1,3 +1,7 @@
+<div *ngIf="load">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!load">
 <h1>Jahresabschluss</h1>
 <mat-tab-group>
   <mat-tab label="Fächer">
@@ -42,5 +46,5 @@
   </mat-tab>
 </mat-tab-group>
 <button mat-flat-button class="backButton" color="primary" [routerLink]="['/complete']">Zurück</button>
-<button mat-flat-button class="finishButton" [disabled]="!isFinished" (click)="finishYear()" color="primary" [routerLink]="['']">Jahr abschließen</button>
-
+<button mat-flat-button class="finishButton" [disabled]="!isFinished" (click)="finishYear()" color="primary">Jahr abschließen</button>
+</div>

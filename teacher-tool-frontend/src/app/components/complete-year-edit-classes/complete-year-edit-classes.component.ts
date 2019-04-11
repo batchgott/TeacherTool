@@ -12,6 +12,7 @@ import {StudentService} from '../../services/student.service';
 import {SubjectService} from '../../services/subject.service';
 import {SubjectAssessmentService} from '../../services/subject-assessment.service';
 import {SubjectAssessments} from '../../models/subject-assessments';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-complete-year-edit-classes',
@@ -20,11 +21,13 @@ import {SubjectAssessments} from '../../models/subject-assessments';
 })
 export class CompleteYearEditClassesComponent implements OnInit {
 
+  load:boolean= false;
   constructor(private completeYearService: CompleteYearService,
               private  classService: ClassService,
               private studentService:StudentService,
               private subjectService:SubjectService,
-              private subjectAssementService:SubjectAssessmentService) { }
+              private subjectAssementService:SubjectAssessmentService,
+              private router:Router) { }
 
   isFinished: boolean=false;
   groupedbyLevel: {classes: Class[], level:number }[]=[];
@@ -113,6 +116,7 @@ export class CompleteYearEditClassesComponent implements OnInit {
 
   finishYear()
   {
+    this.load=true;
     let subjectAssessments:SubjectAssessments[]=[];
     this.subjectAssementService.subjectAssesments.subscribe(result=> {
       if (result.length == 0) {
@@ -128,6 +132,7 @@ export class CompleteYearEditClassesComponent implements OnInit {
       }
       classesForArchive=result
     });
+
 
     for (let i=0; i<classesForArchive.length; i++)
     {
@@ -181,7 +186,12 @@ export class CompleteYearEditClassesComponent implements OnInit {
           }
         }
         if(this.classes.length-1==i)
-        this.classService.loadAll();
+        {
+          this.classService.loadAllwithPromise().then(result=>{
+            console.log('test');
+            this.router.navigate(['yes']);
+          });
+        }
       });
     }
   }

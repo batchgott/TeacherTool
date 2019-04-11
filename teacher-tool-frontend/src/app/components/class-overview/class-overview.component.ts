@@ -82,7 +82,8 @@ export class ClassOverviewComponent implements OnInit,OnDestroy {
 
   openAddSubjectDialog() {
     let dialogRef= this.dialog.open(AddSubjectDialogComponent, {
-      width: '250px'
+      width: '250px',
+
     });
     dialogRef.componentInstance.class_id=this.class.id;
     dialogRef.afterClosed().subscribe(result=>{
