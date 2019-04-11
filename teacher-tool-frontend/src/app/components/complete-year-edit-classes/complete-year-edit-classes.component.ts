@@ -10,6 +10,8 @@ import {Student} from '../../models/student';
 import {YearCompleteClass} from '../../models/year-complete-Class';
 import {StudentService} from '../../services/student.service';
 import {SubjectService} from '../../services/subject.service';
+import {SubjectAssessmentService} from '../../services/subject-assessment.service';
+import {SubjectAssessments} from '../../models/subject-assessments';
 
 @Component({
   selector: 'app-complete-year-edit-classes',
@@ -21,7 +23,8 @@ export class CompleteYearEditClassesComponent implements OnInit {
   constructor(private completeYearService: CompleteYearService,
               private  classService: ClassService,
               private studentService:StudentService,
-              private subjectService:SubjectService) { }
+              private subjectService:SubjectService,
+              private subjectAssementService:SubjectAssessmentService) { }
 
   isFinished: boolean=false;
   groupedbyLevel: {classes: Class[], level:number }[]=[];
@@ -55,7 +58,6 @@ export class CompleteYearEditClassesComponent implements OnInit {
           archieved:this.groupedbyLevel[i].classes[y].archieved,
           subjects:subjects,
           students:students});
-
       }
     }
   }
@@ -101,7 +103,7 @@ export class CompleteYearEditClassesComponent implements OnInit {
 
     for (let i=0; i<this.classes.length; i++)
     {
-      console.log(this.classes[i].newname);
+
       if(this.classes[i].newname=='')
       {this.isFinished=false;
       break;}
@@ -111,11 +113,13 @@ export class CompleteYearEditClassesComponent implements OnInit {
 
   finishYear()
   {
-
-    for (let i=0; i<this.deleteStudents.length; i++)
-    {
-      this.studentService.deleteStudent(this.deleteStudents[i].student.id);
-    }
+    let subjectAssessments:SubjectAssessments[]=[];
+    this.subjectAssementService.subjectAssesments.subscribe(result=> {
+      if (result.length == 0) {
+        this.subjectAssementService.loadSubjectAssementsofSubject();
+      }
+      subjectAssessments=result;
+    });
 
     let classesForArchive=[];
     this.classService.classes.subscribe(result=> {
@@ -148,29 +152,35 @@ export class CompleteYearEditClassesComponent implements OnInit {
       };
       this.classService.addClass(currentClass).then((result:Class) => {
 
+
         for (let x=0; x<this.classes[i].subjects.length; x++)
         {
           if(this.classes[i].subjects[x].attend) {
             this.classes[i].subjects[x].subject.class_id = result.id;
-            this.subjectService.updateSubject(this.classes[i].subjects[x].subject)
+
+            this.subjectService.addSubject(this.classes[i].subjects[x].subject).then(
+              (result:Subject)=> {
+
+                for(let y=0; y<subjectAssessments.length; y++)
+                {
+                  if(subjectAssessments[y].subject_id==this.classes[i].subjects[x].subject.id)
+                  {
+                    subjectAssessments[y].subject_id=result.id;
+                    this.subjectAssementService.addSA(subjectAssessments[y])
+                  }
+                }
+              }
+            )
           }
         }
         for (let x=0; x<this.classes[i].students.length; x++)
         {
-          let checkDelet=true;
-          for (let y=0; y<this.deleteStudents.length; y++)
-          {
-            if(this.deleteStudents[y].student.id==this.classes[i].students[x].student.id)
-            {
-              checkDelet=false;
-              break;
-            }
-          }
-          if(checkDelet) {
+          if(this.classes[i].students[x].attend) {
             this.classes[i].students[x].student.class_id = result.id;
-            this.studentService.updateStudent(this.classes[i].students[x].student)
+            this.studentService.addStudent(this.classes[i].students[x].student);
           }
         }
+
       });
     }
 

@@ -22,9 +22,14 @@ export class CompleteYearComponent implements OnInit {
       if (classes.length == 0) {
         this.completeYearService.loadAll();
       }
+
       let maxLevel=0;
       for (let i=0; i<classes.length; i++)
       {
+        if(classes[i].subjects.length==0)
+        {
+          this.completeYearService.loadAll();
+        }
         if(classes[i].max_level>maxLevel)
         {
           maxLevel=classes[i].max_level;
