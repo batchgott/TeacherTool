@@ -16,6 +16,7 @@ import {ConfirmationDialogComponent} from '../../shared/confirmation-dialog.comp
 import {RemoveSubjectDialogComponent} from '../remove-subject-dialog/remove-subject-dialog.component';
 import {RemoveStudentDialogComponent} from '../remove-student-dialog/remove-student-dialog.component';
 import {EditClassDialogComponent} from '../edit-class-dialog/edit-class-dialog.component';
+import {EditSubjectDialogComponent} from '../edit-subject-dialog/edit-subject-dialog.component';
 
 const SMALL_WIDTH_BREAKPOINT=426;
 @Component({
@@ -141,6 +142,20 @@ export class ClassOverviewComponent implements OnInit,OnDestroy {
       width: '700px'
     });
     dialogRef.componentInstance.class=this.class;
+    dialogRef.afterClosed().subscribe(result=>{
+      if (result) {
+        if (this.selectedSubject == undefined)
+          this.selectedSubject=this.class.subjects[0];
+      }
+    });
+  }
+
+  editSubject() {
+    let dialogRef= this.dialog.open(EditSubjectDialogComponent, {
+      width: '250px'
+    });
+    dialogRef.componentInstance.class_id=this.class.id;
+    dialogRef.componentInstance.subject=this.selectedSubject;
     dialogRef.afterClosed().subscribe(result=>{
       if (result) {
         if (this.selectedSubject == undefined)

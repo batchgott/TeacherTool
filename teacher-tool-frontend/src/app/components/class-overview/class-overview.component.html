@@ -7,7 +7,11 @@
       <mat-icon>more_horiz</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="editClass()"><mat-icon>edit</mat-icon>Klasse bearbeiten</button>
+      <button mat-menu-item [mat-menu-trigger-for]="editMenu"><mat-icon>edit</mat-icon>Bearbeiten</button>
+      <mat-menu #editMenu>
+        <button mat-menu-item (click)="editClass()">Klasse bearbeiten</button>
+        <button mat-menu-item (click)="editSubject()">Fach bearbeiten</button>
+      </mat-menu>
       <button mat-menu-item [mat-menu-trigger-for]="deleteMenu">
         <mat-icon>delete</mat-icon>
         Löschen
