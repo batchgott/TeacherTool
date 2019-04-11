@@ -14,6 +14,7 @@ import {ClassUploadComponent} from '../class-upload/class-upload.component';
 export class CompleteYearComponent implements OnInit {
 
   constructor(private completeYearService: CompleteYearService) { }
+  continue:boolean=false;
   groupedbyLevel: {classes: Class[], level:number }[]=[];
   archieved:Class[]=[];
   ngOnInit() {
@@ -58,6 +59,27 @@ export class CompleteYearComponent implements OnInit {
     return false;
   }
 
+  checkRising()
+  {
+    this.continue=true;
+    for (let i=0; i<this.groupedbyLevel.length;i++)
+    {
+      for (let x=0; x<this.groupedbyLevel[i].classes.length;x++) {
+        if (this.groupedbyLevel[i].classes[x].level == this.groupedbyLevel[i].level) {
+          this.continue = false;
+
+          console.log(this.groupedbyLevel[i].level);
+          console.log(this.groupedbyLevel[i].classes[x]);
+          break;
+        }
+      }
+      if(!this.continue)
+        break;
+    }
+
+  }
+
+
   finishedRising()
   {
     this.completeYearService.groupedbyLevel=this.groupedbyLevel;
@@ -67,11 +89,13 @@ export class CompleteYearComponent implements OnInit {
 
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+
     } else {
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
     }
+    this.checkRising();
   }
 }

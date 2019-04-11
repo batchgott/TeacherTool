@@ -23,5 +23,5 @@
     </div>
   </div>
 </div>
-<button mat-flat-button color="primary" (click)="finishedRising()" [routerLink]="['/complete/editclasses']">Weiter</button>
+<button mat-flat-button color="primary" [disabled]="!continue" (click)="finishedRising()" [routerLink]="['/complete/editclasses']">Weiter</button>
 
