@@ -32,14 +32,15 @@ export class SubjectService {
   loadSubjectsOfClass(class_id:number){
     return this.http.get<Subject[]>(environment.apiURL+"/class/"+class_id+"/subjects").subscribe(
       data=>{
-        this.dataStore.subjects=data;
-        this._subjects.next(Object.assign({},this.dataStore).subjects);
+        //this.dataStore.subjects=data;
+        //this._subjects.next(Object.assign({},this.dataStore).subjects);
       },
       error=>{
         console.log("Failed to fetch classes")
       }
     );
   }
+
 
   subjectArrayById(index: number):Subject {
     return this.dataStore.subjects[index];
